@@ -5,8 +5,8 @@ App para organizar a divisão de contas de quem divide apartamento
 
 ### Qual é a ideia?
 
-Quando for dividir o apartamento com um amigo você deve dar atenção a algumas coisas, e uma das principais delas é a gestão financeira. Quem pagou o quê? A divisão das contas está certa?Tem alguém pagando menos do que devia?
-O 'Contas do apê' é um site que vai te ajudar a organizar suas finanças e não ter respostas rapidas para estas pergutas inconvenientes. Com ele você pode facilemte organizar as contas do apê que devem ser divididas.  
+Quando for dividir o apartamento com um amigo você deve dar atenção a algumas coisas, e uma das principais delas é a gestão financeira. Quem pagou o quê? A divisão das contas está certa? Tem alguém pagando menos do que devia?
+O 'Contas do apê' é um site que vai te ajudar a organizar suas finanças e ter respostas rapidas para estas pergutas inconvenientes. Com ele você pode facilmente organizar as contas do apê que devem ser divididas.  
 
 ### Quais os recursos?
 
