@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: yanc
+Version: 0.2.4
+Summary: Yet another nose colorer
+Home-page: https://github.com/0compute/yanc
+Author: Arthur Noel
+Author-email: arthur@0compute.net
+License: GPL
+Description: YANC
+        ----
+        
+        YANC is color output plugin for nose that plays nicely with others.
+        
+        To enable the plugin pass `--with-yanc` to `nosetests`.
+        
+Keywords: nose color
+Platform: UNKNOWN
