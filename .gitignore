@@ -2,6 +2,9 @@
 
 *~
 
+#Virtualenv
+env/
+
 # C extensions
 *.so
 
