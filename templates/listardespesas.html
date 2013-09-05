@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Autor</th>
+              <th>Valor</th>
+              <th>Descricao</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for despesa in despesas %}
+              <tr>
+                  <td>{{ despesa.data }}</td>
+                  <td>{{ despesa.nome }}</td>
+                  <td>{{ despesa.valor }}</td>
+                  <td>{{ despesa.descricao }}</td>
+               </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+{% endblock %}

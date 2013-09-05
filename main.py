@@ -1,9 +1,12 @@
 import bottle
-from app.views import Home
+from app.views import despesa
+from mongoengine import connect
 
 @bottle.route('/assets/<filepath:path>')
 def server_static(filepath):
     return bottle.static_file(filepath, root='assets')
 
+connect('contasdoape')
+
 bottle.debug(True)
-bottle.run(host='0.0.0.0', port=8080)
+bottle.run(host='0.0.0.0', port=8083, reloader=True)

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Lista de despesas</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Autor</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for despesa in despesas %}
+              <tr>
+                  <td>{{ despesa.data }}</td>
+                  <td>{{ despesa.autor }}</td>
+                  <td>{{ despesa.valor }}</td>
+               </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+      
+<form action="/despesas/nova" method="get">
+    <button type="submit" name="novadespesa" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
+</form>
+{% endblock %}
