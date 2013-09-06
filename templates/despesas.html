@@ -4,7 +4,37 @@
 
 <h1>Lista de despesas</h1>
 
-<div class="table-responsive">
+<div class="container hidden-xs pull-right" >
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <select class="form-control input-sm" id="mes" name="mes">
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <h4>de<h4>
+      </div>
+      
+      <div class="form-group">
+        <input type="text" class="form-control input-sm" value="{{ ano }}" id="ano" name="ano" placeholder="Ano"> 
+      </div>
+      
+      <button type="submit" class="btn btn-default btn-sm" id="filtar">Filtrar</button>
+    </form>
+</div>
+
     <table class="table table-striped">
           <thead>
             <tr>
@@ -24,9 +54,10 @@
             
           </tbody>
         </table>
-      </div>
+
       
 <form action="/despesas/nova" method="get">
-    <button type="submit" name="novadespesa" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
+    <button type="submit" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
 </form>
+
 {% endblock %}

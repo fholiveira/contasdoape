@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="container col-md-7">
+    <h1>Histórico despesas</h1>
+  </div> 
+  <div class="container col-md-1">
+    <img src="../assets/images/garatuja.jpg" class="img-responsive img-circle" alt="Responsive image">
+  </div>
+  <section class="container col-md-4">
+    <h2>Fernando Oliveira</h2>
+    <h4>Saldo do mês atual <strong>R$ 500,00</strong></h4>
+    <h6>Percentual na divisão<strong>50%</strong></h6>
+  </section>
+</div>
+
+
+    
+    <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Mês</th>
+              <th>Total de gastos</th>
+              <th>Saldo</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Janeiro</td>
+                  <td>R$ 1000,00</td>
+                  <td>R$ -230,00</td>
+               </tr>    
+               <tr>
+                  <td>Janeiro</td>
+                  <td>R$ 1000,00</td>
+                  <td>R$ -230,00</td>
+               </tr>           
+               <tr>
+                  <td>Janeiro</td>
+                  <td>R$ 1702,00</td>
+                  <td>R$ +490,00</td>
+               </tr>    
+          </tbody>
+        </table>
+        
+    <div class="container pull-right">
+      <h4>Dia do fechamento: <strong>11</strong></h3>
+    </div> 
+{% endblock %}

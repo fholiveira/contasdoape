@@ -1,6 +1,7 @@
 from .Despesa import Despesa
 from datetime import datetime
 from time import strptime
+from calendar import monthrange
 
 class Caixa():
     def lancar_despesa(self, autor, data, valor, descricao = None):
@@ -21,5 +22,17 @@ class Caixa():
         except:
             raise ValueError('data')
 
-    def listar_despesas(self):
+    def listar_todas_despesas(self):
         return Despesa.objects.all()
+
+    def listar_despesas(self, mes, ano):
+        start = datetime(year = ano, month = mes, day = 1)
+        end = self._calcular_ultimo_dia_do_mes(start)
+
+        return Despesa.objects(data__gte = start, data__lte = end)
+
+
+    def _calcular_ultimo_dia_do_mes(self, data):
+        days = monthrange(data.year, data.month)
+        return data.replace(day=days[1])
+
