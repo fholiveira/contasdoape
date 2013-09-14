@@ -2,38 +2,22 @@
 
 {% block content %}
 
-<h1>Lista de despesas</h1>
+<h1 class="text-center">{{ mes }}</h1>
 
-<div class="container hidden-xs pull-right" >
-    <form class="form-inline" role="form">
-      <div class="form-group">
-        <select class="form-control input-sm" id="mes" name="mes">
-          <option value="1">Janeiro</option>
-          <option value="2">Fevereiro</option>
-          <option value="3">Março</option>
-          <option value="4">Abril</option>
-          <option value="5">Maio</option>
-          <option value="6">Junho</option>
-          <option value="7">Julho</option>
-          <option value="8">Agosto</option>
-          <option value="9">Setembro</option>
-          <option value="10">Outubro</option>
-          <option value="11">Novembro</option>
-          <option value="12">Dezembro</option>
-        </select>
-      </div>
-      
-      <div class="form-group">
-        <h4>de<h4>
-      </div>
-      
-      <div class="form-group">
-        <input type="text" class="form-control input-sm" value="{{ ano }}" id="ano" name="ano" placeholder="Ano"> 
-      </div>
-      
-      <button type="submit" class="btn btn-default btn-sm" id="filtar">Filtrar</button>
-    </form>
+<div class="row text-center">
+    <h4>Total de despesas <strong>R$ XXX, XX</strong>:  <strong>A</strong> deve <strong>R$ XX,XX</strong> para <strong>B</strong></h4>
 </div>
+
+<div class="row">
+  <div class="col-xs-6">
+    <h4>{{ data_inicio }}</h4>
+  </div>
+  <div class="col-xs-6">
+    <h4 class="pull-right">{{ data_fim }}</h4>
+  </div>
+</div>
+
+
 
     <table class="table table-striped">
           <thead>
@@ -41,6 +25,7 @@
               <th>Data</th>
               <th>Autor</th>
               <th>Valor</th>
+              <th>Descrição</th>
             </tr>
           </thead>
           <tbody>
@@ -49,15 +34,21 @@
                   <td>{{ despesa.data }}</td>
                   <td>{{ despesa.autor }}</td>
                   <td>{{ despesa.valor }}</td>
+                  <td>{{ despesa.descricao }}</td>
                </tr>
             {% endfor %}
             
           </tbody>
-        </table>
+     </table>
 
+<div class="container row">
+   <form class="col-xs-6"  action="/despesas" method="get">
+       <button type="submit" id=historico" class="btn btn-primary btn-lg">Ver histórico</button>
+   </form>
       
-<form action="/despesas/nova" method="get">
-    <button type="submit" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
-</form>
+   <form class="col-xs-6" action="/despesas/nova" method="get">
+       <button type="submit" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
+   </form>
+</div>
 
 {% endblock %}

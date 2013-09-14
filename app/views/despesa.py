@@ -15,17 +15,17 @@ def nova_despesa():
                            valor = request.POST.valor,
                            descricao = request.POST.descricao)
     
-    redirect('/despesas')
+    redirect('/')
 
-@get('/despesas')
+@get('/')
 def listar_despesas():
-    mes = request.query.mes
-    ano = request.query.ano
+    caixa = Caixa()
+    despesas = caixa.listar_despesas_atuais()
+    periodo = caixa.calcular_periodo_atual()
+    data_inicio, data_fim = periodo
 
-    despesas = None
-    if mes and ano:
-        despesas = Caixa().listar_despesas(int(mes), int(ano))
-        return template('despesas.html', despesas = [d.to_dict() for d in despesas], ano = ano, mes = mes) 
-    else:
-        despesas = Caixa().listar_todas_despesas()
-        return template('despesas.html', despesas = [d.to_dict() for d in despesas])
+    return template('despesas.html',
+                    despesas = [d.to_dict() for d in despesas], 
+                    data_inicio = data_inicio.strftime('%d/%m/%Y'), 
+                    data_fim = data_fim.strftime('%d/%m/%Y'),
+                    mes = caixa.descobrir_nome_do_periodo(periodo) + ' de ' + str(data_inicio.year))
