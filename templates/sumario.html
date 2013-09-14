@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center">Sumário</h1>
+
+<div class="row">
+    <h4 class="pull-right">Ano fiscal <strong>{{ ano }}</strong></h4>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mês</th>
+            <th>Total</th>
+            {% for pessoa in pessoas %}
+                <th>{{ pessoa }}</th>
+            {% endfor %}            
+        </tr>
+    </thead>
+    <tbody>
+        {% for mes in meses %}
+            <tr>
+                <td>{{ mes.nome }}</td>
+                <td>R$ {{ mes.total }}</td>
+                {% for pessoa in pessoas %}
+                    <th>R$ {{ mes[pessoa] }}</th>
+                {% endfor %}   
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="container row">
+   <form class="col-xs-6"  action="/" method="get">
+       <button type="submit" id=voltar" class="btn btn-primary btn-lg">Voltar</button>
+   </form>
+</div>
+
+{% endblock %}

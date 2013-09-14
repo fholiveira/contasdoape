@@ -1,5 +1,5 @@
 import bottle
-from app.views import despesa, usuario
+from app.views import despesa, sumario
 from mongoengine import connect
 
 @bottle.route('/assets/<filepath:path>')

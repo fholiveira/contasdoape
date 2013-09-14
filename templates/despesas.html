@@ -4,8 +4,8 @@
 
 <h1 class="text-center">{{ mes }}</h1>
 
-<div class="row text-center">
-    <h4>Total de despesas <strong>R$ XXX, XX</strong>:  <strong>A</strong> deve <strong>R$ XX,XX</strong> para <strong>B</strong></h4>
+<div class="row">
+    <h4 class="pull-right">Total: <strong>R$ {{ total }}</strong></h4>
 </div>
 
 <div class="row">
@@ -42,8 +42,8 @@
      </table>
 
 <div class="container row">
-   <form class="col-xs-6"  action="/despesas" method="get">
-       <button type="submit" id=historico" class="btn btn-primary btn-lg">Ver histórico</button>
+   <form class="col-xs-6"  action="/sumario" method="get">
+       <button type="submit" id=sumario" class="btn btn-primary btn-lg">Sumário</button>
    </form>
       
    <form class="col-xs-6" action="/despesas/nova" method="get">

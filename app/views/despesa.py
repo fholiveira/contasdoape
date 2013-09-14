@@ -1,6 +1,8 @@
 from bottle import TEMPLATE_PATH, get, post, redirect, request, jinja2_template as template
 from app.models.Despesa import Despesa
 from app.models.Caixa import Caixa
+from app.models.Tesoureiro import Tesoureiro
+from datetime import datetime
 
 TEMPLATE_PATH.append('./templates')
 
@@ -19,13 +21,12 @@ def nova_despesa():
 
 @get('/')
 def listar_despesas():
-    caixa = Caixa()
-    despesas = caixa.listar_despesas_atuais()
-    periodo = caixa.calcular_periodo_atual()
-    data_inicio, data_fim = periodo
+    mes_fiscal = Tesoureiro().obter_mes_fiscal(datetime.now())
+    despesas = mes_fiscal.listar_despesas()
 
     return template('despesas.html',
                     despesas = [d.to_dict() for d in despesas], 
-                    data_inicio = data_inicio.strftime('%d/%m/%Y'), 
-                    data_fim = data_fim.strftime('%d/%m/%Y'),
-                    mes = caixa.descobrir_nome_do_periodo(periodo) + ' de ' + str(data_inicio.year))
+                    data_inicio = mes_fiscal.data_inicio.strftime('%d/%m/%Y'), 
+                    data_fim = mes_fiscal.data_fim.strftime('%d/%m/%Y'),
+                    mes = mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),
+                    total = mes_fiscal.calcular_saldo())

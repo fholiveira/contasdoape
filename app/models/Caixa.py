@@ -21,29 +21,3 @@ class Caixa():
             return datetime.strptime(data, "%Y-%m-%d")
         except:
             raise ValueError('data')
-
-    def listar_despesas_atuais(self):
-        return self._listar_despesas(self._calcular_periodo(datetime.now()))
-
-    def listar_despesas(self, mes, ano):
-        data = datetime(year = ano, month = mes, day = 1)
-        return self._listar_despesas(self._calcular_periodo(data))
-
-    def calcular_periodo_atual(self):
-        return self._calcular_periodo(datetime.now())
-
-    def _listar_despesas(self, periodo):
-        data_inicio, data_fim = periodo
-        return Despesa.objects(data__gte = data_inicio, data__lte = data_fim)
-    
-    def _calcular_periodo(self, data):
-        days = monthrange(data.year, data.month)
-        return (data.replace(day = 1), data.replace(day = days[1]))
-
-    def descobrir_nome_do_periodo(self, periodo):
-        meses = {1 : 'Janeiro', 2 : 'Fevereiro', 3 : 'Março', 4 : 'Abril', 
-                 5 : 'Maio', 6 : 'Junho', 7 : 'Julho', 8 : 'Agosto', 
-                 9 : 'Setembro', 10 : 'Outubro', 11 : 'Novembro', 12 : 'Dezembro' }
-        
-        data_inicio = periodo[0]
-        return meses[data_inicio.month]
