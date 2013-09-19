@@ -1,4 +1,5 @@
 from .Despesa import Despesa 
+from .GrupoFiscal import GrupoFiscal
 from datetime import datetime
 
 class MesFiscal():
@@ -28,22 +29,17 @@ class MesFiscal():
         
         return meses[self.data_inicio.month]
 
-    def obter_autores(self):
-        return Despesa.objects(data__gte = self.data_inicio, 
-                               data__lte = self.data_fim).distinct('nome')
-
-
-    def calcular_saldo_por_autor(self, autor):
-        return Despesa.objects(data__gte = self.data_inicio, 
-                               data__lte = self.data_fim, 
-                               nome = autor).sum('valor')
-
     def obter_sumario(self):
         sumario = {'nome' : self.nome_do_mes(),
                    'total' : self.calcular_saldo()}
+        
+        grupo = GrupoFiscal( (self.data_inicio, self.data_fim) )
+        devedor = grupo.obter_devedor()
 
-        for autor in self.obter_autores():
-            sumario[autor] = self.calcular_saldo_por_autor(autor)
+        for autor, valor in grupo.obter_autores().items():
+            sumario[autor] = valor if valor else 0
+
+        sumario['devedor'] = devedor if devedor else '-'
+        sumario['valor_divida'] = grupo.calcular_divida(devedor) if devedor else 0
 
         return sumario
-

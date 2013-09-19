@@ -15,7 +15,9 @@
             <th>Total</th>
             {% for pessoa in pessoas %}
                 <th>{{ pessoa }}</th>
-            {% endfor %}            
+            {% endfor %} 
+            <th>Devedor</th>           
+            <th>Valor</th>           
         </tr>
     </thead>
     <tbody>
@@ -26,6 +28,8 @@
                 {% for pessoa in pessoas %}
                     <th>R$ {{ mes[pessoa] }}</th>
                 {% endfor %}   
+                <td>{{ mes.devedor }}</td>
+                <td>R$ {{ mes.valor_divida }}</td>
             </tr>
         {% endfor %}
     </tbody>
