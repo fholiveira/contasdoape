@@ -26,8 +26,11 @@ class GrupoFiscal():
         return min(self._autores, key=self._autores.get) if self._autores else None
 
     def calcular_divida(self, autor):
-        valor_por_autor = sum(self._autores.values()) / len(self._autores)
-        return self._autores[autor] - valor_por_autor
+        if len(self._autores) > 0:
+            valor_por_autor = sum(self._autores.values()) / len(self._autores)
+            return self._autores[autor] - valor_por_autor
+        else:
+            return 0
 
     def obter_autores(self):
         return self._autores

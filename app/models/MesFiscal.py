@@ -31,15 +31,15 @@ class MesFiscal():
 
     def obter_sumario(self):
         sumario = {'nome' : self.nome_do_mes(),
-                   'total' : self.calcular_saldo()}
+                   'total' : '%.2f' % self.calcular_saldo()}
         
         grupo = GrupoFiscal( (self.data_inicio, self.data_fim) )
         devedor = grupo.obter_devedor()
 
         for autor, valor in grupo.obter_autores().items():
-            sumario[autor] = valor if valor else 0
+            sumario[autor] = '%.2f' % valor 
 
         sumario['devedor'] = devedor if devedor else '-'
-        sumario['valor_divida'] = grupo.calcular_divida(devedor) if devedor else 0
+        sumario['valor_divida'] = '%.2f' % grupo.calcular_divida(devedor) 
 
         return sumario

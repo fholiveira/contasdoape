@@ -26,7 +26,7 @@
                 <td>{{ mes.nome }}</td>
                 <td>R$ {{ mes.total }}</td>
                 {% for pessoa in pessoas %}
-                    <th>R$ {{ mes[pessoa] }}</th>
+                    <td>R$ {{ mes[pessoa] if mes[pessoa] else '0.00' }}</td>
                 {% endfor %}   
                 <td>{{ mes.devedor }}</td>
                 <td>R$ {{ mes.valor_divida }}</td>
