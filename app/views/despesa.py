@@ -21,7 +21,10 @@ def nova_despesa():
 
 @get('/')
 def listar_despesas():
-    mes_fiscal = Tesoureiro().obter_mes_fiscal(datetime.now())
+    ano = request.query.ano or datetime.now().year
+    mes = request.query.mes or datetime.now().month
+
+    mes_fiscal = Tesoureiro().obter_mes_fiscal(datetime(year=int(ano), month=int(mes), day=1))
     despesas = mes_fiscal.listar_despesas()
 
     return template('despesas.html',

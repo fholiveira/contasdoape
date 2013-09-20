@@ -23,7 +23,11 @@
     <tbody>
         {% for mes in meses %}
             <tr>
-                <td>{{ mes.nome }}</td>
+                <td>
+		    <a href="/?mes={{ meses.index(mes) + 1 }}&ano={{ ano }}">
+			{{ mes.nome }}
+		    </a>
+		</td>
                 <td>R$ {{ mes.total }}</td>
                 {% for pessoa in pessoas %}
                     <td>R$ {{ mes[pessoa] if mes[pessoa] else '0.00' }}</td>

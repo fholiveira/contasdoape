@@ -5,7 +5,7 @@ from datetime import datetime
 class TestDespesa(TestCase):
 
     def setUp(self):
-        self.despesa = Despesa(valor = 1, nome = "Ususario", data = datetime.now())
+        self.despesa = Despesa(valor = 1, nome = "Usuario", data = datetime.now())
     
     def test_deve_conter_descricao(self):
         self.assertTrue(hasattr(self.despesa, "descricao"))

@@ -1,14 +1,14 @@
-from bottle import get, redirect, jinja2_template as template
+from bottle import get, redirect, request, jinja2_template as template
 from app.models.Tesoureiro import Tesoureiro
 from datetime import datetime
 
 @get('/sumario')
 def sumario():
-    data = datetime.now()
+    ano = request.query.ano or datetime.now().year
 
-    meses = Tesoureiro().listar_meses(data.year)
+    meses = Tesoureiro().listar_meses(int(ano))
    
     return template('sumario.html',
                     pessoas = ['Erlan', 'Fernando'], 
-                    ano = data.year,
+                    ano = ano,
                     meses = [mes.obter_sumario() for mes in meses])
