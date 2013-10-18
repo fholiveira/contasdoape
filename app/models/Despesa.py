@@ -29,7 +29,7 @@ class Despesa(Document):
         return  {'valor' : 'R$ ' + str(self.valor), 
                  'data' : self.data.strftime('%d/%m/%Y'), 
                  'autor' : self.nome,
-                 'descricao' : self.descricao['descricao'],
+                 'descricao' : self.descricao,
                  'id' : self.id }
                 
         

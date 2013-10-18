@@ -3,7 +3,7 @@
 *~
 
 #Virtualenv
-env/
+site/
 
 # C extensions
 *.so

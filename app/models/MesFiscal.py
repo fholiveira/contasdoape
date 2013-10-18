@@ -1,4 +1,5 @@
 from .Despesa import Despesa 
+from .DespesasRepository import DespesaRepository
 from .GrupoFiscal import GrupoFiscal
 from datetime import datetime
 
@@ -17,11 +18,12 @@ class MesFiscal():
             raise ValueError("data_fim")
 
     def listar_despesas(self):
-        return Despesa.objects(data__gte = self.data_inicio, data__lte = self.data_fim)
-    
+        return DespesaRepository().listar_despesas_do_periodo(self.data_inicio, self.data_fim)
+
     def calcular_saldo(self):
-        return Despesa.objects(data__gte = self.data_inicio, data__lte = self.data_fim).sum('valor')
-    
+        despesas = DespesaRepository().listar_despesas_do_periodo(self.data_inicio, self.data_fim) 
+        return sum(d.valor for d in despesas)
+
     def nome_do_mes(self):
         meses = {1 : 'Janeiro', 2 : 'Fevereiro', 3 : 'Março', 4 : 'Abril', 
                  5 : 'Maio', 6 : 'Junho', 7 : 'Julho', 8 : 'Agosto', 
@@ -30,16 +32,16 @@ class MesFiscal():
         return meses[self.data_inicio.month]
 
     def obter_sumario(self):
-        sumario = {'nome' : self.nome_do_mes(),
-                   'total' : '%.2f' % self.calcular_saldo()}
-        
         grupo = GrupoFiscal( (self.data_inicio, self.data_fim) )
         devedor = grupo.obter_devedor()
+        
+        autores = { autor : '%.2f' % valor for autor, valor in grupo.obter_autores().items() }
 
-        for autor, valor in grupo.obter_autores().items():
-            sumario[autor] = '%.2f' % valor 
+        sumario = { 'nome' : self.nome_do_mes(),
+                    'total' : '%.2f' % self.calcular_saldo(),
+                    'devedor' : devedor if devedor else '-',
+                    'valor_divida' : '%.2f' % grupo.calcular_divida(devedor) }
 
-        sumario['devedor'] = devedor if devedor else '-'
-        sumario['valor_divida'] = '%.2f' % grupo.calcular_divida(devedor) 
+        sumario.update(autores)
 
         return sumario

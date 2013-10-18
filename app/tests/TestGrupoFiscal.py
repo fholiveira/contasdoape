@@ -1,11 +1,17 @@
+from models.DespesasRepository import DespesaRepository
 from models.GrupoFiscal import GrupoFiscal
+from models.Despesa import Despesa 
+from datetime import datetime
 from unittest import TestCase
 from unittest.mock import patch
 
 class TestGrupoFiscal(TestCase):
     def setUp(self):
-        autores = { 'A' : 10, 'B' : 20 }
-        with patch.object(GrupoFiscal, '_carregar_autores', return_value = autores) as fake:
+        despesas = [ Despesa(10, 'A', datetime.now), 
+                     Despesa(20, 'B', datetime.now),
+                     Despesa(10, 'B', datetime.now) ]
+
+        with patch.object(DespesaRepository, 'listar_despesas_do_periodo', return_value = despesas) as fake:
             self._grupo = GrupoFiscal(('2013-08-02', '2013-09-02'));
     
     def test_nao_deve_criar_sem_dicionario_de_autores(self):
@@ -18,7 +24,7 @@ class TestGrupoFiscal(TestCase):
         self.assertEqual('A', self._grupo.obter_devedor())
 
     def test_deve_calcular_a_divida_de_um_autor(self):
-        self.assertEqual(-5, self._grupo.calcular_divida('A'))
+        self.assertEqual(-10, self._grupo.calcular_divida('A'))
 
     def test_deve_retornar_os_autores(self):
-        self.assertDictEqual({ 'A' : 10, 'B' : 20 }, self._grupo.obter_autores())
+        self.assertDictEqual({ 'A' : 10, 'B' : 30 }, self._grupo.obter_autores())

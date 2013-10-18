@@ -1,6 +1,8 @@
 from unittest import TestCase
 from models.Despesa import Despesa
 from models.Caixa import Caixa
+from datetime import datetime
+from unittest.mock import patch
 
 class TestCaixa(TestCase):
     def test_nao_deve_aceitar_valores_nao_numericos(self):
@@ -16,3 +18,11 @@ class TestCaixa(TestCase):
             caixa.lancar_despesa(autor = 'Fernando', data = '29-12-2015', valor = '13,5')
 
         self.assertEqual("data", str(error.exception))
+
+    def test_deve_salvar_despesa(self):
+        caixa = Caixa()
+
+        with patch.object(Despesa, 'save') as mock_method:
+            caixa.lancar_despesa('Fernando', '1992-05-10', '13')
+
+        mock_method.assert_called() 

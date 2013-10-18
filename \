@@ -38,13 +38,13 @@ class TestDespesa(TestCase):
         self.assertEqual("data", str(error.exception))
 
     def test_deve_gerar_dicionario(self):
-        esperado = {'valor' : 'R$ 15.32', 
+        esperado = {'valor' : 'R$ 15,00', 
                     'data' : '10/05/1992', 
                     'autor' : 'João',
                     'descricao' : 'Compras na farmácia',
                     'id' : 25 }
 
-        despesa = Despesa(15.32, 'João', datetime(1992, 5, 10))
+        despesa = Despesa(15.32, 'João', datetime(1992, 5, 10)
         despesa.descricao = 'Compras na farmácia'
         despesa.id = 25
 

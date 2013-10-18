@@ -1,3 +1,4 @@
+from .DespesasRepository import DespesaRepository
 from .Despesa import Despesa 
 from datetime import datetime
 
@@ -11,16 +12,10 @@ class GrupoFiscal():
     def _carregar_autores(self, periodo):
         data_inicio, data_fim = periodo            
 
-        nomes = Despesa.objects(data__gte = data_inicio, 
-                                data__lte = data_fim).distinct('nome')
+        despesas = DespesaRepository().listar_despesas_do_periodo(data_inicio, data_fim)
+        nomes = list(set(d.nome for d in despesas))
 
-        pessoas = { }
-        for nome in nomes:
-            pessoas[nome] = Despesa.objects(data__gte = data_inicio, 
-                                            data__lte = data_fim,
-                                            nome = nome).sum('valor')
-        
-        return pessoas
+        return { nome : sum(d.valor for d in despesas if d.nome == nome) for nome in nomes }
         
     def obter_devedor(self):
         return min(self._autores, key=self._autores.get) if self._autores else None
