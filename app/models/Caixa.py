@@ -8,6 +8,7 @@ class Caixa():
         valor_adaptado = self._adaptar_valor(valor)
         despesa = Despesa(valor_adaptado, autor, self._converter_datetime(data))
         despesa.descricao = descricao
+
         return despesa.save()
 
     def _adaptar_valor(self, valor):

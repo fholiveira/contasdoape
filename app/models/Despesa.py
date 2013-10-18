@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Despesa(Document):
     nome = StringField(required = True)
-    descricao = StringField(required = True)
+    descricao = StringField(required = False)
     valor = FloatField(required = True)
     data = DateTimeField(required = True)
 
@@ -31,5 +31,3 @@ class Despesa(Document):
                  'autor' : self.nome,
                  'descricao' : self.descricao,
                  'id' : self.id }
-                
-        
