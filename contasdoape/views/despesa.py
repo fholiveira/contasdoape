@@ -1,8 +1,8 @@
-from flask import render_template, request
+from flask import render_template, request, redirect
 from contasdoape import app
-from models.Despesa import Despesa
-from models.Caixa import Caixa
-from models.Tesoureiro import Tesoureiro
+from contasdoape.models.Despesa import Despesa
+from contasdoape.models.Caixa import Caixa
+from contasdoape.models.Tesoureiro import Tesoureiro
 from datetime import datetime
 
 @app.route('/despesas/nova', methods=['GET'])
@@ -20,8 +20,8 @@ def nova_despesa():
 
 @app.route('/', methods=['GET'])
 def listar_despesas():
-    ano = request.query.ano or datetime.now().year
-    mes = request.query.mes or datetime.now().month
+    ano = request.args.get('ano') or datetime.now().year
+    mes = request.args.get('mes') or datetime.now().month
 
     mes_fiscal = Tesoureiro().obter_mes_fiscal(datetime(year=int(ano), month=int(mes), day=1))
     despesas = mes_fiscal.listar_despesas()
