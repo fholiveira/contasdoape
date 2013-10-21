@@ -73,6 +73,3 @@ class TestMesfiscal(TestCase):
             recebido = self.mes_fiscal.obter_sumario()
         
         self.assertEqual(esperado, recebido)
-
-
-
