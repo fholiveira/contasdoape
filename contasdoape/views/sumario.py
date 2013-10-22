@@ -5,11 +5,11 @@ from contasdoape import app
 
 @app.route('/sumario', methods=['GET'])
 def sumario():
-    ano = request.query.ano or datetime.now().year
+    ano = request.args.get('ano') or datetime.now().year
 
     meses = Tesoureiro().listar_meses(int(ano))
    
-    return template('sumario.html',
-                    pessoas = ['Erlan', 'Fernando'], 
-                    ano = ano,
-                    meses = [mes.obter_sumario() for mes in meses])
+    return render_template('sumario.html',
+                           pessoas = ['Erlan', 'Fernando'], 
+                           ano = ano,
+                           meses = [mes.obter_sumario() for mes in meses])
