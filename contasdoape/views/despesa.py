@@ -1,9 +1,9 @@
-from flask import render_template, request, redirect
-from contasdoape import app
+from flask import render_template, request, redirect, url_for
+from contasdoape.models.Tesoureiro import Tesoureiro
 from contasdoape.models.Despesa import Despesa
 from contasdoape.models.Caixa import Caixa
-from contasdoape.models.Tesoureiro import Tesoureiro
 from datetime import datetime
+from contasdoape import app
 
 @app.route('/despesas/nova', methods=['GET'])
 def home():
@@ -11,12 +11,12 @@ def home():
 
 @app.route('/despesas/nova', methods=['POST'])
 def nova_despesa():
-    Caixa().lancar_despesa(data = request.form.data,
-                           autor = request.form.autor,
-                           valor = request.form.valor,
-                           descricao = request.form.descricao)
+    Caixa().lancar_despesa(data = request.form['data'],
+                           autor = request.form['autor'],
+                           valor = request.form['valor'],
+                           descricao = request.form['descricao'])
     
-    redirect('/')
+    return redirect(url_for('listar_despesas'))
 
 @app.route('/', methods=['GET'])
 def listar_despesas():

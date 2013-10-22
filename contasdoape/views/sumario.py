@@ -1,8 +1,9 @@
-from bottle import get, redirect, request, jinja2_template as template
-from app.models.Tesoureiro import Tesoureiro
+from flask import render_template, request, redirect, url_for
+from contasdoape.models.Tesoureiro import Tesoureiro
 from datetime import datetime
+from contasdoape import app
 
-@get('/sumario')
+@app.route('/sumario', methods=['GET'])
 def sumario():
     ano = request.query.ano or datetime.now().year
 
