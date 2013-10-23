@@ -1,9 +1,9 @@
-from models.DespesasRepository import DespesaRepository
-from models.GrupoFiscal import GrupoFiscal
-from models.Despesa import Despesa 
+from contasdoape.models.DespesasRepository import DespesaRepository
+from contasdoape.models.GrupoFiscal import GrupoFiscal
+from contasdoape.models.Despesa import Despesa 
+from unittest.mock import patch
 from datetime import datetime
 from unittest import TestCase
-from unittest.mock import patch
 
 class TestGrupoFiscal(TestCase):
     def setUp(self):

@@ -1,8 +1,8 @@
-from unittest import TestCase
-from models.Despesa import Despesa
-from models.Caixa import Caixa
-from datetime import datetime
+from contasdoape.models.Despesa import Despesa
+from contasdoape.models.Caixa import Caixa
 from unittest.mock import patch
+from unittest import TestCase
+from datetime import datetime
 
 class TestCaixa(TestCase):
     def test_nao_deve_aceitar_valores_nao_numericos(self):

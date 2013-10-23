@@ -1,8 +1,8 @@
-from models.DespesasRepository import DespesaRepository
-from models.Despesa import Despesa 
-from unittest import TestCase
-from models.MesFiscal import MesFiscal
+from contasdoape.models.DespesasRepository import DespesaRepository
+from contasdoape.models.MesFiscal import MesFiscal
+from contasdoape.models.Despesa import Despesa 
 from unittest.mock import patch
+from unittest import TestCase
 from datetime import datetime
 
 class TestMesfiscal(TestCase):

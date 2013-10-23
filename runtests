@@ -1,1 +1,1 @@
-sniffer -x app/ -x --with-yanc
+sniffer -x contasdoape/ -x --with-yanc

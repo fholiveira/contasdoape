@@ -1,5 +1,5 @@
+from contasdoape.models.Despesa import Despesa
 from unittest import TestCase
-from models.Despesa import Despesa
 from datetime import datetime
 
 class TestDespesa(TestCase):
