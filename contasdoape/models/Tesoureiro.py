@@ -1,6 +1,6 @@
 from .MesFiscal import MesFiscal
-from datetime import datetime
 from calendar import monthrange
+from datetime import datetime
 
 class Tesoureiro():
     def obter_mes_fiscal(self, data):
