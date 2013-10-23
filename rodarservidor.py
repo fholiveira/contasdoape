@@ -1,4 +1,2 @@
-#!/usr/bin/python
-
 from contasdoape import app
 app.run(debug=True)
