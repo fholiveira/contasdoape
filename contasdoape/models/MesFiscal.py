@@ -5,17 +5,12 @@ from .Despesa import Despesa
 
 class MesFiscal():
     def __init__(self, data_inicio, data_fim):
-        self._validar_parametros_de_construcao(data_inicio, data_fim)
+        params = {'data_inicio' : data_inicio, 'data_fim' : data_fim }
+        for key, value in params.items():
+            if not value: raise ValueError(key)
 
         self.data_inicio = data_inicio
         self.data_fim = data_fim
-
-    def _validar_parametros_de_construcao(self, data_inicio, data_fim):
-        if not data_inicio or not isinstance(data_inicio, datetime):
-            raise ValueError("data_inicio")
-        
-        if not data_fim or not isinstance(data_fim, datetime):
-            raise ValueError("data_fim")
 
     def listar_despesas(self):
         return DespesaRepository().listar_despesas_do_periodo(self.data_inicio, self.data_fim)

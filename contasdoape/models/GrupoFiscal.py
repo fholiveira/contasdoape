@@ -4,7 +4,7 @@ from .Despesa import Despesa
 
 class GrupoFiscal():
     def __init__(self, periodo):
-        if not periodo or not isinstance(periodo, tuple):
+        if not periodo:
             raise ValueError('periodo')
 
         self._autores = self._carregar_autores(periodo)

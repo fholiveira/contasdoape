@@ -9,21 +9,14 @@ class Despesa(Document):
 
     def __init__(self, valor, nome, data, *args, **kwargs):
         Document.__init__(self, args, kwargs)
-        self._validar_parametros_de_construcao(valor, nome, data)
-
+      
+        params = {'valor' : valor, 'nome' : nome, 'data' : data}
+        for key, value in params.items():
+            if not value: raise ValueError(key)
+        
         self.nome = nome
         self.valor = valor
         self.data = data
-
-    def _validar_parametros_de_construcao(self, valor, nome, data):
-        if not valor and not isinstance(valor, float):
-            raise ValueError("valor")
-
-        if not nome and not isinstance(nome, str):
-            raise ValueError("nome")
-
-        if not data and not isinstance(data, datetime):
-            raise ValueError("data")
 
     def to_dict(self):
         return  {'valor' : 'R$ ' + str(self.valor), 

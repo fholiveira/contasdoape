@@ -23,13 +23,13 @@ class TestMesfiscal(TestCase):
 
     def test_nao_deve_existir_sem_data_inicial_valida(self):
         with self.assertRaises(ValueError) as error:
-            MesFiscal("Data inicial", datetime(2013, 11, 10))
+            MesFiscal(None, datetime(2013, 11, 10))
 
         self.assertEqual("data_inicio", str(error.exception))
 
     def test_nao_deve_existir_sem_data_fim_valida(self):
         with self.assertRaises(ValueError) as error:
-            MesFiscal(datetime(2013, 11, 10), "sasasdasf f")
+            MesFiscal(datetime(2013, 11, 10), None) 
 
         self.assertEqual("data_fim", str(error.exception))
 

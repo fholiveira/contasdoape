@@ -16,7 +16,7 @@ class TestGrupoFiscal(TestCase):
     
     def test_nao_deve_criar_sem_dicionario_de_autores(self):
         with self.assertRaises(ValueError) as error:
-            GrupoFiscal(2)
+            GrupoFiscal(None)
 
         self.assertEqual('periodo', str(error.exception))
 
