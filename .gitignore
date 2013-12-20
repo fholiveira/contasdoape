@@ -7,6 +7,9 @@ site/
 producao.cfg
 .venv
 
+#Frontend
+bower_components/
+
 # C extensions
 *.so
 

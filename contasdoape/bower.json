@@ -1,0 +1,19 @@
+{
+  "name": "contasdoape",
+  "version": "0.0.1",
+  "homepage": "https://github.com/fholiveira/contasdoape",
+  "authors": [
+    "Fernando Oliveira <fernando@fholiveira.com>"
+  ],
+  "description": "App para ajudara gerenciaras contas de apartamentos compartilhados",
+  "main": "rodarservidor.py",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
