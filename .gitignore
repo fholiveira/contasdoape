@@ -8,7 +8,7 @@ producao.cfg
 .venv
 
 #Frontend
-bower_components/
+contasdoape/static/components/
 
 # C extensions
 *.so
