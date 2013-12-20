@@ -5,6 +5,7 @@
 #Virtualenv
 site/
 producao.cfg
+.venv
 
 # C extensions
 *.so
