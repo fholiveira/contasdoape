@@ -18,7 +18,7 @@ def nova_despesa():
     
     return redirect(url_for('listar_despesas'))
 
-@app.route('/', methods=['GET'])
+@app.route('/despesas', methods=['GET'])
 def listar_despesas():
     ano = request.args.get('ano') or datetime.now().year
     mes = request.args.get('mes') or datetime.now().month
