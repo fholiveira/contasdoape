@@ -1,4 +1,5 @@
 from flask import render_template, request, redirect, url_for
+from flask.ext.login import login_required
 from contasdoape.models.Tesoureiro import Tesoureiro
 from contasdoape.models.Despesa import Despesa
 from contasdoape.models.Caixa import Caixa
@@ -6,10 +7,12 @@ from datetime import datetime
 from contasdoape import app
 
 @app.route('/despesas/nova', methods=['GET'])
+@login_required
 def home():
     return render_template('novadespesa.html')
 
 @app.route('/despesas/nova', methods=['POST'])
+@login_required
 def nova_despesa():
     Caixa().lancar_despesa(data = request.form['data'],
                            autor = request.form['autor'],
@@ -19,6 +22,7 @@ def nova_despesa():
     return redirect(url_for('listar_despesas'))
 
 @app.route('/despesas', methods=['GET'])
+@login_required
 def listar_despesas():
     ano = request.args.get('ano') or datetime.now().year
     mes = request.args.get('mes') or datetime.now().month
