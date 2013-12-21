@@ -1,0 +1,30 @@
+html, body {
+    background-color: #1C2533;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+.faixa-padrao {
+    color: #FFE;
+    padding: 2.5em;
+}
+
+.faixa-padrao a {
+    margin: 1.5em;
+}
+
+.faixa-padrao h4, 
+.faixa-padrao h3 {
+    margin-left: .2em;
+}
+
+.faixa-destaque {
+    padding: 2.5em;
+    background-color: #EAf1f1;
+}
+
+.faixa-destaque h2 i {
+    margin-right: 0.3em;
+}

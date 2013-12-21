@@ -10,7 +10,7 @@ def load_user(userid):
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('home.html')
 
 @app.route('/login')
 def login():
