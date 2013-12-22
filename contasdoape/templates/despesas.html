@@ -34,16 +34,11 @@
                   <td>{{ despesa.descricao }}</td>
                </tr>
             {% endfor %}
-            
           </tbody>
      </table>
 
-    <div class="container row">
-        <form class="col-xs-6"  action="/sumario" method="get">
-            <button type="submit" id=sumario" class="btn btn-primary btn-lg">Sumário</button>
-        </form>
-          
-        <form class="col-xs-6" action="/despesas/nova" method="get">
+    <div class="container row">         
+        <form action="/despesas/nova" method="get">
             <button type="submit" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
         </form>
     </div>

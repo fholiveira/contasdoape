@@ -1,48 +1,38 @@
 {% extends "logado.html" %}
 
 {% block content %}
+    <h1 class="text-center">Sumário</h1>
 
-<h1 class="text-center">Sumário</h1>
+    <div class="row">
+        <h4 class="pull-right">Ano fiscal <strong>{{ ano }}</strong></h4>
+    </div>
 
-<div class="row">
-    <h4 class="pull-right">Ano fiscal <strong>{{ ano }}</strong></h4>
-</div>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Mês</th>
-            <th>Total</th>
-            {% for pessoa in pessoas %}
-                <th>{{ pessoa }}</th>
-            {% endfor %} 
-            <th>Devedor</th>           
-            <th>Valor</th>           
-        </tr>
-    </thead>
-    <tbody>
-        {% for mes in meses %}
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-		    <a href="/despesas?mes={{ meses.index(mes) + 1 }}&ano={{ ano }}">
-			{{ mes.nome }}
-		    </a>
-		</td>
-                <td>R$ {{ mes.total }}</td>
+                <th>Mês</th>
+                <th>Total</th>
                 {% for pessoa in pessoas %}
-                    <td>R$ {{ mes[pessoa] if mes[pessoa] else '0.00' }}</td>
-                {% endfor %}   
-                <td>{{ mes.devedor }}</td>
-                <td>R$ {{ mes.valor_divida }}</td>
+                    <th>{{ pessoa }}</th>
+                {% endfor %} 
+                <th>Devedor</th>           
+                <th>Valor</th>           
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<div class="container row">
-   <form class="col-xs-6"  action="/" method="get">
-       <button type="submit" id=voltar" class="btn btn-primary btn-lg">Voltar</button>
-   </form>
-</div>
-
+        </thead>
+        <tbody>
+            {% for mes in meses %}
+                <tr>
+                    <td>
+		                <a href="/despesas?mes={{ meses.index(mes) + 1 }}&ano={{ ano }}">{{ mes.nome }}</a>
+		            </td>
+                    <td>R$ {{ mes.total }}</td>
+                        {% for pessoa in pessoas %}
+                            <td>R$ {{ mes[pessoa] if mes[pessoa] else '0.00' }}</td>
+                        {% endfor %}   
+                    <td>{{ mes.devedor }}</td>
+                    <td>R$ {{ mes.valor_divida }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
