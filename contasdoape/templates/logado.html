@@ -6,18 +6,10 @@
 
 {% block menu %}
     <nav class="navbar navbar-default" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Contas do apê</a>
+				<a class="navbar-brand">Contas do apê</a>
 			</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/sumario">Sumário</a></li>
@@ -39,15 +31,6 @@
 		</nav>
 {% endblock %}
 
-{% block rodape %}
-    <div class="container container-full"> </div>
-{% endblock %}
-
 {% block javascript %}
-<script>
-    $(document).ready(function () {
-        link = 'ul.nav > li a[href^="' + window.location.pathname + '"]'        
-        $(link).parent().addClass('active');
-    });
-</script>
+    <script src="../static/js/menu.js"></script>
 {% endblock %}

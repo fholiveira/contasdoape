@@ -36,6 +36,7 @@ def authorized():
 
     session = facebook.get_auth_session(data=data)
     me = session.get('me').json()
+    print (me['username'])
     usuario = UsuarioRepository().carregar_ou_criar(me['id'], me['username'], me['name'])
     login_user(usuario)
     return redirect(url_for('sumario'))

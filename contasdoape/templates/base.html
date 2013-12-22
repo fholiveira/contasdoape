@@ -17,29 +17,22 @@
     <link href="../static/components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../static/css/site.css" rel="stylesheet">
     {% block css %}{% endblock %}
-
   </head>
 
   <body>
-<div id="wrap">
-    {% block menu %}{% endblock %}    
-
-    
+    <div id="wrap">
+        {% block menu %}{% endblock %}      
         <div class="container container-full">
-                {% block content %}
-                {% endblock %}
+            {% block content %}{% endblock %}
         </div>
     </div> 
 
     <footer>
         {% block rodape %}{% endblock %}
     </footer>    
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+
     <script src="../static/components/jquery/jquery.js"></script>
     <script src="../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
     {% block javascript %}{% endblock %}
-
   </body>
 </html>
