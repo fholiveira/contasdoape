@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, session 
 from flask.ext.login import login_user, logout_user, login_required
 from contasdoape.models.UsuarioRepository import UsuarioRepository
 from contasdoape import app, login_manager, facebook
@@ -36,9 +36,6 @@ def authorized():
 
     session = facebook.get_auth_session(data=data)
     me = session.get('me').json()
-
-    usuario = UsuarioRepository().carregar_ou_criar(me['username'], me['id'])
-    print(usuario.nome)
+    usuario = UsuarioRepository().carregar_ou_criar(me['id'], me['username'], me['name'])
     login_user(usuario)
-
     return redirect(url_for('sumario'))

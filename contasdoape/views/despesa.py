@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from flask.ext.login import login_required
+from flask.ext.login import login_required, current_user
 from contasdoape.models.Tesoureiro import Tesoureiro
 from contasdoape.models.Despesa import Despesa
 from contasdoape.models.Caixa import Caixa
@@ -9,7 +9,7 @@ from contasdoape import app
 @app.route('/despesas/nova', methods=['GET'])
 @login_required
 def home():
-    return render_template('novadespesa.html')
+    return render_template('novadespesa.html', usuario = current_user)
 
 @app.route('/despesas/nova', methods=['POST'])
 @login_required
@@ -31,6 +31,7 @@ def listar_despesas():
     despesas = mes_fiscal.listar_despesas()
 
     return render_template('despesas.html',
+                           usuario = current_user,
                            despesas = [d.to_dict() for d in despesas], 
                            data_inicio = mes_fiscal.data_inicio.strftime('%d/%m/%Y'), 
                            data_fim = mes_fiscal.data_fim.strftime('%d/%m/%Y'),

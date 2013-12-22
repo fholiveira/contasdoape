@@ -2,3 +2,26 @@
   margin: 0 auto;
   width: 100%;
 }
+
+html, body {
+    background-color: #E3E3ED;
+}
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -2em;
+  padding-bottom: 3em;
+}
+
+footer {
+    height: 2em;
+    background-color: #1C2533;
+}

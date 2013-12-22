@@ -21,12 +21,19 @@
   </head>
 
   <body>
+<div id="wrap">
+    {% block menu %}{% endblock %}    
 
-    <div class="container container-full">
-            {% block content %}
-            {% endblock %}
+    
+        <div class="container container-full">
+                {% block content %}
+                {% endblock %}
+        </div>
     </div> 
 
+    <footer>
+        {% block rodape %}{% endblock %}
+    </footer>    
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
