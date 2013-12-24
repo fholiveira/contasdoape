@@ -1,14 +1,14 @@
-from mongoengine import Document, StringField, FloatField, DateTimeField
+from mongoengine import Document, EmbeddedDocument, StringField, FloatField, DateTimeField
 from datetime import datetime
 
-class Despesa(Document):
+class Despesa(EmbeddedDocument):
     nome = StringField(required = True)
     descricao = StringField(required = False)
     valor = FloatField(required = True)
     data = DateTimeField(required = True)
 
     def __init__(self, valor, nome, data, *args, **kwargs):
-        Document.__init__(self, args, kwargs)
+        EmbeddedDocument.__init__(self)
       
         params = {'valor' : valor, 'nome' : nome, 'data' : data}
         for key, value in params.items():

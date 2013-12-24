@@ -1,7 +1,7 @@
-from .Usuario import Usuario
+from contasdoape.models.Usuario import Usuario
 
-class UsuarioRepository():
-    def carregar_ou_criar(self, facebook_id, username, nome):
+class ControleDeAcesso():
+    def obter_usuario(self, facebook_id, username, nome):
         usuario = Usuario.objects(facebook_id = facebook_id).first()
 
         if not usuario:
@@ -10,5 +10,5 @@ class UsuarioRepository():
 
         return usuario
 
-    def carregar(id):
+    def carregar_usuario(id):
         return Usuario.objects(facebook_id = id).first()
