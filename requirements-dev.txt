@@ -7,3 +7,4 @@ pyinotify==0.9.4
 rauth==0.6.2
 selenium==2.39.0
 sniffer==0.3.2
+yanc==0.2.4
