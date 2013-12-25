@@ -4,7 +4,7 @@ from contasdoape.models.Tesoureiro import Tesoureiro
 from contasdoape.models.Despesa import Despesa
 from contasdoape.models.Caixa import Caixa
 from datetime import datetime
-from contasdoape import app
+from contasdoape.web import app
 
 @app.route('/despesas/nova', methods=['GET'])
 @login_required

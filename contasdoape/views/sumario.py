@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 from flask.ext.login import login_required, current_user
 from contasdoape.models.Tesoureiro import Tesoureiro
 from datetime import datetime
-from contasdoape import app
+from contasdoape.web import app
 
 @app.route('/sumario', methods=['GET'])
 @login_required

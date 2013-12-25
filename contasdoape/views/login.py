@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, session 
 from flask.ext.login import login_user, logout_user, login_required
 from contasdoape.models.UsuarioRepository import UsuarioRepository
-from contasdoape import app, login_manager, facebook
+from contasdoape.web import app, login_manager, facebook
 from contasdoape.models.Usuario import Usuario
 
 @login_manager.user_loader

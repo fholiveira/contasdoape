@@ -8,7 +8,7 @@ class Ape(Document):
     nome = StringField(required = True)
     membros = ListField(ReferenceField(Usuario))
     data_criacao = DateTimeField(required = True)
-    despesas = ListField(EmbeddedDocumentField(Despesas))
+    despesas = ListField(EmbeddedDocumentField(Despesa))
     
     def __init__(self, *args, **kwargs):
         Document.__init__(self, args, kwargs)

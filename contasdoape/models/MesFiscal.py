@@ -4,7 +4,7 @@ from datetime import datetime
 class MesFiscal():
     def __init__(self, ape, data_inicio, data_fim):
         params = {'data_inicio' : data_inicio, 
-                  'data_fim' : data_fim 
+                  'data_fim' : data_fim, 
                   'ape' : ape}
 
         for key, value in params.items():
@@ -15,8 +15,8 @@ class MesFiscal():
         self.ape = ape
 
     def listar_despesas(self):
-        return [despesa in ape.despesas 
-                    if despesa.data >= self.data_inicio and
+        return [despesa for despesa in self.ape.despesas
+                    if despesa.data >= self.data_inicio and 
                        despesa.data <= self.data_fim]
 
     def calcular_saldo(self):

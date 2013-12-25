@@ -1,2 +1,2 @@
-from contasdoape import app
+from contasdoape.web import app
 app.run(debug=True)
