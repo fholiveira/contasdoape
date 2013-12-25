@@ -11,7 +11,7 @@ class Ape(Document):
     despesas = ListField(EmbeddedDocumentField(Despesa))
     
     def __init__(self, *args, **kwargs):
-        Document.__init__(self, args, kwargs)
+        Document.__init__(self, *args, **kwargs)
         self.data_criacao = datetime.now()
 
     def incluir_despesa(self, despesa):

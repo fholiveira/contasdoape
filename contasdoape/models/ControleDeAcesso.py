@@ -10,5 +10,5 @@ class ControleDeAcesso():
 
         return usuario
 
-    def carregar_usuario(id):
+    def carregar_usuario(self, id):
         return Usuario.objects(facebook_id = id).first()

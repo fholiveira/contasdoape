@@ -15,7 +15,7 @@ def home():
 @login_required
 def nova_despesa():
     Caixa().lancar_despesa(data = request.form['data'],
-                           autor = request.form['autor'],
+                           autor = current_user,
                            valor = request.form['valor'],
                            descricao = request.form['descricao'])
     
