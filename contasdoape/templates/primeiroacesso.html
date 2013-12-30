@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link href="../static/css/menu.css" rel="stylesheet">
+{% endblock %}
+
+{% block menu %}
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand">Contas do apê</a>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <h1>Bem vindo, {{ usuario.nome }}!</h1>
+
+    <div class="texto-ajuda">
+        <p>Legal, agora você já pode usar o Contas do apê. Agora você tem duas opções: criar um apartamento e convidar seus colegas ou esperar até algum deles fazer isto...</p>
+
+        <p>Acontece que, se um de seus colegas já criou o apartamento, ele esqueceu de te convidar. Caso ninguém tenha criado o apê ainda, então você pode começar a fazer isto agora mesmo. </p>
+
+        <p>Então, o que vai ser?</p>
+
+        <div class="row botoes-ajuda">
+            <div class="col-xs-12 col-md-6 col-lg-offset-2 col-lg-4">
+                <a href="/criarape" class="btn btn-lg btn-primary pull-center" role="button">Vou criar o apê agora mesmo</a>
+            </div>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <a href="http://www.facebook.com" class="btn btn-lg btn-primary pull-center" role="button">Vou falar com meus colegas no Facebook</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

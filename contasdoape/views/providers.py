@@ -29,7 +29,6 @@ class Facebook:
 
         me = self._facebook.get_auth_session(data = data).get('me').json()
         usuario = ControleDeAcesso().obter_usuario(me['id'], 
-                                                   me['username'], 
                                                    me['name'])
     
         return usuario

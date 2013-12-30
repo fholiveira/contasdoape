@@ -32,4 +32,4 @@ def passo(context, usuario, senha):
 @then('devo ser direcionado a página de criação de apartamento')
 def passo(context):
     url = context.browser.current_url 
-    assert url == context.url('/primeiros_passos')
+    assert url.startswith(context.url('/primeiroacesso'))

@@ -13,5 +13,5 @@ Funcionalidade: Login
         Então devo ser direcionado a página de criação de apartamento
 
     Exemplos: usuários
-        | usuário                      | senha  |
-        | 100007365847543@facebook.com | 123456 |
+        | usuário                            | senha  |
+        | barbara_iprrihk_da_silva@tfbnw.net | 123456 |

@@ -20,3 +20,20 @@ footer {
   margin: 0 auto;
   width: 100%;
 }
+
+.texto-ajuda {
+    margin: 2em 1em 2em 1em;
+}
+
+.texto-ajuda p {
+    font-size: 1.2em;
+}
+
+.botoes-ajuda {
+    margin: 2em 0 2em 0;
+    text-align: center;
+}
+.botoes-ajuda a {
+    margin: 1em;
+}
+
