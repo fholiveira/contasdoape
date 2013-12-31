@@ -16,14 +16,23 @@ def index():
 
 @app.route('/login')
 def login():
-    facebook = Facebook(url_for('authorized', _external = True))
-    return redirect(facebook.login_url())
+    provider = Facebook(url_for('authorized', _external = True))
+    return redirect(provider.login_url())
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/logoutall')
+@login_required
+def logout_all():
+    if not app.config.get('DEBUG'):
+        redirect(url_for('logout'))
+
+    provider = Facebook(url_for('authorized', _external = True))
+    return redirect(provider.logout(url_for('index', _external=True)))
 
 @app.route("/primeiroacesso")
 @login_required
@@ -32,8 +41,8 @@ def primeiro_acesso():
 
 @app.route('/authorized')
 def authorized():
-    facebook = Facebook(url_for('authorized', _external = True))
-    usuario = facebook.logar(request.args)
+    provider = Facebook(url_for('authorized', _external = True))
+    usuario = provider.logar(request.args)
 
     login_user(usuario)
 
