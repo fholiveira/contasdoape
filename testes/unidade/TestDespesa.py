@@ -36,7 +36,7 @@ class TestDespesa(TestCase):
                     'descricao' : 'Compras na farmácia',
                     'id' : 25 }
 
-        usuario = Usuario(1, 'jose.silva', 'José da Silva')
+        usuario = Usuario(1, 'José da Silva')
         despesa = Despesa(usuario, 15.32, datetime(1992, 5, 10))
         despesa.descricao = 'Compras na farmácia'
         despesa.id = 25
