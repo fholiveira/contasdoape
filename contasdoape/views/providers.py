@@ -1,5 +1,5 @@
-from rauth.service import OAuth2Service
 from contasdoape.models.ControleDeAcesso import ControleDeAcesso
+from rauth.service import OAuth2Service
 from contasdoape.web import app
 from flask import session
 

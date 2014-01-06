@@ -1,9 +1,9 @@
-from flask import render_template, request, redirect, url_for, session 
 from flask.ext.login import login_user, logout_user, login_required, current_user
+from flask import render_template, request, redirect, url_for, session 
 from contasdoape.models.ControleDeAcesso import ControleDeAcesso
 from contasdoape.models.Condominio import Condominio
-from contasdoape.models.Usuario import Usuario
 from contasdoape.views.providers import Facebook
+from contasdoape.models.Usuario import Usuario
 from contasdoape.web import app, login_manager
 
 @login_manager.user_loader
@@ -33,11 +33,6 @@ def logout_all():
 
     provider = Facebook(url_for('authorized', _external = True))
     return redirect(provider.logout(url_for('index', _external=True)))
-
-@app.route("/primeiroacesso")
-@login_required
-def primeiro_acesso():
-    return render_template('primeiroacesso.html', usuario = current_user)
 
 @app.route('/authorized')
 def authorized():
