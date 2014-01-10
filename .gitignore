@@ -10,6 +10,9 @@ producao.cfg
 #Frontend
 contasdoape/static/components/
 
+#CoffeeScript
+contasdoape/static/coffee/*.js
+
 # C extensions
 *.so
 
