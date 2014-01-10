@@ -1,5 +1,20 @@
 {% extends "logado.html" %}
 
+{% block css %}
+    <link href="/static/components/bootstrap-tokenfield/assets/tokenfield-typeahead.css" type="text/css" rel="stylesheet">
+    <link href="/static/components/bootstrap-tokenfield/bootstrap-tokenfield/bootstrap-tokenfield.css" type="text/css" rel="stylesheet">   
+{% endblock %}
+
 {% block content %}
-<h1>Convidar amigos</h1>
+    <div id="fb-root" data-app-id="183808491810583"></div>
+    
+    <h1>Convidar amigos</h1>
+
+    <input id="fb-friendlist" type="text" class="form-control input-lg">
+{% endblock %}
+
+{% block javascript %}
+    <script src="/static/components/typeahead.js/dist/typeahead.min.js"></script> 
+    <script src="/static/coffee/bootstrap-tokenfield.js"></script>
+    <script src="../static/coffee/load-facebook-sdk.js"></script>
 {% endblock %}
