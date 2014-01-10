@@ -6,7 +6,7 @@ class Condominio:
 
     def criar_ape(self, usuario):
         ape = Ape()
-        ape.members.append(usuario)
+        ape.membros.append(usuario)
         ape.save()
 
         return ape

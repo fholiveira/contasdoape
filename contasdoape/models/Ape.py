@@ -5,7 +5,7 @@ from contasdoape.models.Despesa import Despesa
 from datetime import datetime
 
 class Ape(Document):
-    nome = StringField(required = True)
+    nome = StringField()
     membros = ListField(ReferenceField(Usuario))
     data_criacao = DateTimeField(required = True)
     despesas = ListField(EmbeddedDocumentField(Despesa))
