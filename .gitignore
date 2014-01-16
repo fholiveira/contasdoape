@@ -4,8 +4,10 @@
 
 #Virtualenv
 site/
-producao.cfg
 .venv
+
+#config
+contasdoape/config/producao.yaml
 
 #Frontend
 contasdoape/static/components/
