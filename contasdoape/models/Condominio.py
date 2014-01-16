@@ -2,7 +2,7 @@ from contasdoape.models.Ape import Ape
 
 class Condominio:
     def obter_ape(self, usuario):
-        return Ape.objects(membros__contains = usuario).first()
+        return Ape.objects(membros__contains = usuario.id).first()
 
     def criar_ape(self, usuario):
         ape = Ape()
@@ -10,6 +10,6 @@ class Condominio:
         ape.save()
 
         return ape
-    
+
     def tem_ape(self, usuario):
         return self.obter_ape(usuario) is not None

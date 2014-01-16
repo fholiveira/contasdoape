@@ -1,14 +1,26 @@
 class FacebookFriendPicker
-  constructor: (caixadetexto) ->
-    @caixadetexto = caixadetexto
+  constructor: (botaosalvar) ->
+    @botaosalvar = botaosalvar
         
     @init()
 
   init: ->
+    $(@botaosalvar).click @salvarLista
     @loadFriendList()
-  
+
+  salvarLista: (e) ->
+    e.preventDefault()
+    
+    $.ajax({
+      type: "POST"
+      url: "/salvaramigos"
+      success: -> window.location.href = '/'
+      contentType: "application/json; charset=utf-8"
+      data: JSON.stringify($('#fb-friendlist').tokenfield('getTokens'))
+    })
+
   defineTokens: (friends) ->
-    @caixadetexto.tokenfield({
+    $('#fb-friendlist').tokenfield({
       allowDuplicates: false
       typeahead: {
         valueKey: 'label'
@@ -17,18 +29,10 @@ class FacebookFriendPicker
       }
     })
 
-  getNamesOfFriends: (friendList) ->
-    names = []
-
-    for friend in friendList 
-      names.push(friend.label)
-
-    return names
-
   loadFriendList: ->
     friends = []
    
-    FB.api '/me/friends/?fields=name', (response) =>    
+    FB.api '/me/friends/?fields=name', (response) =>
       for friend, i in response.data
         friends.push({
           value: friend.id
@@ -47,7 +51,7 @@ window.fbAsyncInit = ->
 
   FB.getLoginStatus (response) ->
     if response.status == 'connected'
-      new FacebookFriendPicker $('#fb-friendlist')
+      new FacebookFriendPicker '#salvar_convites'
 
 $ ->
   id = 'facebook-jssdk'

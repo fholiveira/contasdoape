@@ -6,11 +6,19 @@
 {% endblock %}
 
 {% block content %}
-    <div id="fb-root" data-app-id="183808491810583"></div>
+    <div id="fb-root" data-app-id="{{ config.FB_CLIENT_ID }}"></div>
     
     <h1>Convidar amigos</h1>
 
-    <input id="fb-friendlist" type="text" class="form-control input-lg">
+    <div class="texto-ajuda">
+	<p>Seu apê está criado! Agora só falta você dizer com quem você o divide... Digite abaixo o nome dos amigos com os quais você divide o apê e quando eles acessarem o Contas do apê poderão interagor com seu apartamento.</p>
+
+	<input id="fb-friendlist" type="text" class="form-control input-lg">
+
+	<div class="botoes-ajuda">
+	    <a id="salvar_convites" href="/" class="btn btn-lg btn-primary pull-right" role="button">Salvar</a>	
+	</div>
+    </div>
 {% endblock %}
 
 {% block javascript %}

@@ -6,8 +6,9 @@ class ControleDeAcesso():
 
         if not usuario:
             usuario = Usuario(facebook_id, nome)
-        
-        usuario.save()
+            usuario.save()
+            print('Criei!')
+
         return usuario
 
     def carregar_usuario(self, id):

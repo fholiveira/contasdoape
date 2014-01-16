@@ -1,14 +1,14 @@
-from mongoengine import Document, StringField, ReferenceField
+from mongoengine import Document, StringField, ReferenceField, ObjectIdField
 
 class Usuario(Document):
     nome = StringField(required = True)
     facebook_id = StringField(required = True)
-    
+
     def __init__(self, facebook_id, nome,  *args, **kwargs):
-        Document.__init__(self, args, kwargs)
+        Document.__init__(self, *args, **kwargs)
         self.nome = nome
         self.facebook_id = facebook_id
-    
+
     def get_image_url(self):
         return 'https://graph.facebook.com/' + self.facebook_id + '/picture'
 

@@ -1,4 +1,5 @@
-from flask.ext.login import login_user, logout_user, login_required, current_user
+from flask.ext.login import (login_user, logout_user, login_required, 
+                             current_user, AnonymousUserMixin)
 from flask import render_template, request, redirect, url_for, session 
 from contasdoape.models.ControleDeAcesso import ControleDeAcesso
 from contasdoape.models.Condominio import Condominio
@@ -12,6 +13,9 @@ def load_user(userid):
 
 @app.route('/')
 def index():
+    if current_user.is_anonymous:
+        return render_template('home.html')
+
     return render_template('home.html')
 
 @app.route('/login')
@@ -38,7 +42,7 @@ def logout_all():
 def authorized():
     provider = Facebook(url_for('authorized', _external = True))
     usuario = provider.logar(request.args)
-
+    
     login_user(usuario)
 
     if not Condominio().tem_ape(usuario):
