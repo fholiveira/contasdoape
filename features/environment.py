@@ -2,7 +2,7 @@ from selenium import webdriver
 from mongoengine import connect
 
 def url(relative_url = ''):
-    return 'http://localhost:5005' + relative_url
+    return 'http://devhost.com:5005' + relative_url
 
 def before_all(context):
     context.database = connect('contasdoape-test')

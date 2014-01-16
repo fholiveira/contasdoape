@@ -6,12 +6,12 @@ def step_impl(context):
 
 @step('eu clicar no botão de login')
 def step_impl1(context):
-    context.browser.get(context.url())
     context.browser.find_element_by_id('logar').click()
 
 @step('eu devo ser redirecionado para a página de login do Facebook')
 def step_impl2(context):
     url = context.browser.current_url
+    print (url)
     assert url.startswith('https://www.facebook.com/login.php')
 
 @step('que eu sou um novo usuário')

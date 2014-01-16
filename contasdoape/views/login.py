@@ -30,13 +30,15 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/logoutall')
-@login_required
 def logout_all():
     if not app.config.get('DEBUG'):
         redirect(url_for('logout'))
 
-    provider = Facebook(url_for('authorized', _external = True))
-    return redirect(provider.logout(url_for('index', _external=True)))
+    try:
+        provider = Facebook(url_for('authorized', _external = True))
+        return redirect(provider.logout(url_for('index', _external=True)))
+    except:
+        return redirect('/')
 
 @app.route('/authorized')
 def authorized():
