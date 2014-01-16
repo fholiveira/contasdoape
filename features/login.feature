@@ -14,8 +14,8 @@ Funcionalidade: Login
         Então devo ser direcionado a página de criação de apartamento
 
     Exemplos: usuários
-        | usuário                            | senha  |
-        | barbara_iprrihk_da_silva@tfbnw.net | 123456 |
+        | usuário                            | senha   |
+        | adrian_fqrabxr_veidt@tfbnw.net     | 123@abc |
     
     Esquema do Cenário: Direcionar novo usuário ao Facebook
         Dado que eu sou um novo usuário
@@ -24,5 +24,5 @@ Funcionalidade: Login
         Então devo ser redirecionado ao Facebook
 
     Exemplos: usuários
-        | usuário                            | senha  |
-        | barbara_iprrihk_da_silva@tfbnw.net | 123456 |
+        | usuário                            | senha   |
+        | dan_udodmuj_dreiberg@tfbnw.net     | 123@abc |

@@ -10,5 +10,5 @@ Funcionalidade: Criar apê
         Então eu devo ser redirecionado a página de convidar amigos
 
     Exemplos: usuários
-        | usuário                            | senha  |
-        | barbara_iprrihk_da_silva@tfbnw.net | 123456 |
+        | usuário                            | senha   |
+        | edward_wenibkj_blake@tfbnw.net    | 123@abc |
