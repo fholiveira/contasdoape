@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ "$#" == 2 && $1 == '--env' ]] ; then 
+  export CONTASDOAPE_ENV="$2" 
+fi
+
+honcho start
