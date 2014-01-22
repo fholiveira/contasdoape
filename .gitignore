@@ -7,7 +7,7 @@ site/
 .venv
 
 #config
-contasdoape/config/producao.yaml
+contasdoape/config/secret.yaml
 
 #Frontend
 contasdoape/static/components/
