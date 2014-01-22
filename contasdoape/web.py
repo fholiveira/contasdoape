@@ -20,7 +20,14 @@ load_envs()
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-connect(app.config['DB_NAME'])
+if app.config.get('MONGO', None):
+    connect(app.config['MONGO'])
+else:
+    connect(app.config['MONGO_DATABASE'],
+        username=app.config['MONGO_USERNAME'],
+        password=app.config['MONGO_PASSWORD'],
+        host=app.config['MONGO_HOST'],
+        port=app.config['MONGO_PORT'])
 
 from contasdoape.views import ape
 from contasdoape.views import login
