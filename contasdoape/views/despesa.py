@@ -19,7 +19,7 @@ def nova_despesa():
     usuario = ControleDeAcesso().carregar_usuario(current_user.facebook_id)
 
     despesa = Despesa(autor=usuario,
-                      valor=float(request.form['valor'].repplace(',', '.')),
+                      valor=float(request.form['valor'].replace(',', '.')),
                       data=datetime.strptime(request.form['data'], '%Y-%m-%d'))
 
     despesa.descricao = request.form['descricao']
