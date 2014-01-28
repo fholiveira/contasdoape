@@ -3,9 +3,12 @@ from calendar import monthrange
 from datetime import datetime
 
 class Tesoureiro():
+    def __init__(self, ape):
+        self.ape = ape
+
     def obter_mes_fiscal(self, data):
         data_inicio, data_fim = self._calcular_periodo(data)
-        return MesFiscal(data_inicio, data_fim)
+        return MesFiscal(self.ape, data_inicio, data_fim)
     
     def _calcular_periodo(self, data):
         days = monthrange(data.year, data.month)

@@ -16,7 +16,7 @@ def index():
     if current_user.is_anonymous:
         return render_template('home.html')
 
-    return render_template('home.html')
+    return redirect(url_for('listar_despesas')) 
 
 @app.route('/login')
 def login():

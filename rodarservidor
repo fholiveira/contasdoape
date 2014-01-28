@@ -1,7 +1,11 @@
-#!/bin/bash
+from os import environ
+from sys import argv
 
-if [[ "$#" == 2 && $1 == '--env' ]] ; then 
-  export CONTASDOAPE_ENV="$2" 
-fi
+if len(argv) == 3 and argv[1] == '--env':
+    environ['CONTASDOAPE_ENV'] = argv[2].upper() 
+else:
+    environ['CONTASDOAPE_ENV'] = 'DEVELOPMENT'
 
-honcho start
+from contasdoape.web import app
+app.run()
+
