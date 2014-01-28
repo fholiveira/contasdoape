@@ -14,6 +14,7 @@ contasdoape/static/components/
 
 #CoffeeScript
 contasdoape/static/coffee/*.js
+contasdoape/static/coffee/*.map
 
 # C extensions
 *.so
