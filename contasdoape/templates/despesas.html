@@ -7,18 +7,7 @@
 {% block content %}
     <h1 class="text-center">{{ mes }}</h1>
 
-    <div class="row">
-        <h4 class="pull-right">Total: <strong>R$ {{ total }}</strong></h4>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-6">
-            <h4>{{ data_inicio }}</h4>
-        </div>
-        <div class="col-xs-6">
-            <h4 class="pull-right">{{ data_fim }}</h4>
-        </div>
-    </div>
+    <h4 class="text-center">De {{ data_inicio }} à {{ data_fim }}</h4>
     
     <ul class="lista-despesas">
         {% for despesa in despesas %}
@@ -31,9 +20,9 @@
         {% endfor %}
     </ul>
 
-    <div class="container row">         
-        <form action="/despesas/nova" method="get">
-            <button type="submit" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
-        </form>
-    </div>
+    <h4 class="pull-right total">Total: <strong>R$ {{ total }}</strong></h4>
+
+    <form class="botao-rodape" action="/despesas/nova" method="get">
+        <button type="submit" id="novadespesa" class="btn btn-primary btn-lg pull-right">Nova despesa</button>
+    </form>
 {% endblock %}

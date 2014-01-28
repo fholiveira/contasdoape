@@ -1,6 +1,8 @@
 ul.lista-despesas {
-   list-style-type: none; 
-   padding: .5em;
+    list-style-type: none; 
+    padding: .5em;
+    clear: both;
+    margin-bottom: 0;
 }
 
 ul.lista-despesas > li {
@@ -31,27 +33,48 @@ ul.lista-despesas > li > p {
     font-size: 1em;
 }
 
+.total {
+    font-size: 1.2em;
+    margin: 7px;
+    margin-bottom: 1em;
+}
+
+.botao-rodape {
+    margin: 7px;
+    float: right;
+    clear: both;
+}
+
 @media(min-width: 768px){
     ul.lista-despesas > li > span {
-	font-size: 1.2em;
+	    font-size: 1.2em;
     }
+
     ul.lista-despesas > li > p {
         margin: .6em;
-	font-size: 1.1em;
+	    font-size: 1.1em;
+    }
+    
+    .total {
+        font-size: 1.2em;
     }
 }
 
 @media(min-width: 992px){
     ul.lista-despesas > li > span {
-	font-size: 1.5em;
-	margin: .5em;
+	    font-size: 1.5em;
+	    margin: .5em;
     }
     ul.lista-despesas > li > p {
         margindd: .5em;
-	font-size: 1.3em;
+	    font-size: 1.3em;
     }
 
     #wrap div.container {
         width: 992px;
+    }
+
+    .total {
+        font-size: 1.5em;
     }
 }
