@@ -1,0 +1,57 @@
+ul.lista-despesas {
+   list-style-type: none; 
+   padding: .5em;
+}
+
+ul.lista-despesas > li {
+    background-color: #FEFEFE;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: .5em 0;
+    height: 50px;
+}
+
+ul.lista-despesas > li > p,
+ul.lista-despesas > li > img {
+    float: left;
+}
+
+ul.lista-despesas > li > span {
+    font-size: 1.2em;
+    margin: .8em;
+    float: left;
+}
+
+ul.lista-despesas > li > span.valor {
+    float: right;
+}
+
+ul.lista-despesas > li > p {
+    margin: .7em 1.5em;
+    font-size: 1em;
+}
+
+@media(min-width: 768px){
+    ul.lista-despesas > li > span {
+	font-size: 1.2em;
+    }
+    ul.lista-despesas > li > p {
+        margin: .6em 2em;
+	font-size: 1.1em;
+    }
+}
+
+@media(min-width: 992px){
+    ul.lista-despesas > li > span {
+	font-size: 1.5em;
+	margin: .5em;
+    }
+    ul.lista-despesas > li > p {
+        margindd: .5em 3em;
+	font-size: 1.3em;
+    }
+
+    #wrap div.container {
+        width: 992px;
+    }
+}

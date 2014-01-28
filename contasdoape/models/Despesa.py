@@ -10,7 +10,7 @@ class Despesa(EmbeddedDocument):
     descricao = StringField()
 
     def __init__(self, autor, valor, data, *args, **kwargs):
-        EmbeddedDocument.__init__(self)
+        EmbeddedDocument.__init__(self, *args, **kwargs)
       
         params = {'valor' : valor, 'autor' : autor, 'data' : data}
         for key, value in params.items():
@@ -26,6 +26,5 @@ class Despesa(EmbeddedDocument):
     def to_dict(self):
         return  {'valor' : 'R$ ' + str(self.valor), 
                  'data' : self.data.strftime('%d/%m/%Y'), 
-                 'autor' : self.autor.nome,
-                 'descricao' : self.descricao,
-                 'id' : self.id }
+                 'autor' : self.autor,
+                 'descricao' : self.descricao}

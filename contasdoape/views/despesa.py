@@ -19,7 +19,7 @@ def nova_despesa():
     usuario = ControleDeAcesso().carregar_usuario(current_user.facebook_id)
 
     despesa = Despesa(autor=usuario,
-                      valor=float(request.form['valor']),
+                      valor=float(request.form['valor'].repplace(',', '.')),
                       data=datetime.strptime(request.form['data'], '%Y-%m-%d'))
 
     despesa.descricao = request.form['descricao']
@@ -41,7 +41,7 @@ def listar_despesas():
 
     return render_template('despesas.html',
                            usuario = current_user,
-                           despesas = despesas, 
+                           despesas = [despesa.to_dict() for despesa in despesas], 
                            data_inicio = mes_fiscal.data_inicio.strftime('%d/%m/%Y'), 
                            data_fim = mes_fiscal.data_fim.strftime('%d/%m/%Y'),
                            mes = mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),

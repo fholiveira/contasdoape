@@ -1,5 +1,9 @@
 {% extends "logado.html" %}
 
+{% block css %}
+    <link href="../static/css/despesas.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <form role="form" action="/despesas/nova" method="post">
         <h1>Lançamento de despesa</h1>

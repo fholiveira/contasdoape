@@ -1,5 +1,9 @@
 {% extends "logado.html" %}
 
+{% block css %}
+    <link href="../static/css/despesas.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <h1 class="text-center">{{ mes }}</h1>
 
@@ -15,27 +19,17 @@
             <h4 class="pull-right">{{ data_fim }}</h4>
         </div>
     </div>
-
-    <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Autor</th>
-              <th>Valor</th>
-              <th>Descrição</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for despesa in despesas %}
-              <tr>
-                  <td>{{ despesa.data }}</td>
-                  <td>{{ despesa.autor }}</td>
-                  <td>{{ despesa.valor }}</td>
-                  <td>{{ despesa.descricao }}</td>
-               </tr>
-            {% endfor %}
-          </tbody>
-     </table>
+    
+    <ul class="lista-despesas">
+        {% for despesa in despesas %}
+            <li>
+              <img src="{{ despesa.autor.get_image_url() }}"></img>
+              <span>{{ despesa.data }}</span>
+              <p>{{ despesa.descricao }}</p>
+              <span class="valor">{{ despesa.valor }}</span>
+            </li>
+        {% endfor %}
+    </ul>
 
     <div class="container row">         
         <form action="/despesas/nova" method="get">

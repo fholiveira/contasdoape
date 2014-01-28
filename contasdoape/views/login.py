@@ -13,7 +13,7 @@ def load_user(userid):
 
 @app.route('/')
 def index():
-    if current_user.is_anonymous:
+    if current_user.is_anonymous():
         return render_template('home.html')
 
     return redirect(url_for('listar_despesas')) 
@@ -50,4 +50,4 @@ def authorized():
     if not Condominio().tem_ape(usuario):
         return redirect(url_for('primeiro_acesso'))
 
-    return redirect(url_for('sumario'))
+    return redirect(url_for('index'))
