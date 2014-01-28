@@ -40,9 +40,11 @@ def listar_despesas():
     despesas = mes_fiscal.listar_despesas()
 
     return render_template('despesas.html',
+                           ano=ano,
+                           mes=mes,
                            usuario = current_user,
                            despesas = [despesa.to_dict() for despesa in despesas], 
                            data_inicio = mes_fiscal.data_inicio.strftime('%d/%m/%Y'), 
                            data_fim = mes_fiscal.data_fim.strftime('%d/%m/%Y'),
-                           mes = mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),
+                           titulo = mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),
                            total = mes_fiscal.calcular_saldo())
