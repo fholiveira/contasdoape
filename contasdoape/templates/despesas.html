@@ -23,10 +23,10 @@
     <ul class="lista-despesas">
         {% for despesa in despesas %}
             <li>
+              <span class="valor">{{ despesa.valor }}</span>
               <img src="{{ despesa.autor.get_image_url() }}"></img>
               <span>{{ despesa.data }}</span>
               <p>{{ despesa.descricao }}</p>
-              <span class="valor">{{ despesa.valor }}</span>
             </li>
         {% endfor %}
     </ul>

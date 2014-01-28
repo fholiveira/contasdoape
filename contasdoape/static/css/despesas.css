@@ -8,7 +8,7 @@ ul.lista-despesas > li {
     border-radius: 5px;
     overflow: hidden;
     margin: .5em 0;
-    height: 50px;
+    min-height: 50px;
 }
 
 ul.lista-despesas > li > p,
@@ -27,7 +27,7 @@ ul.lista-despesas > li > span.valor {
 }
 
 ul.lista-despesas > li > p {
-    margin: .7em 1.5em;
+    margin: .7em;
     font-size: 1em;
 }
 
@@ -36,7 +36,7 @@ ul.lista-despesas > li > p {
 	font-size: 1.2em;
     }
     ul.lista-despesas > li > p {
-        margin: .6em 2em;
+        margin: .6em;
 	font-size: 1.1em;
     }
 }
@@ -47,7 +47,7 @@ ul.lista-despesas > li > p {
 	margin: .5em;
     }
     ul.lista-despesas > li > p {
-        margindd: .5em 3em;
+        margindd: .5em;
 	font-size: 1.3em;
     }
 
