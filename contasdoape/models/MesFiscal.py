@@ -41,7 +41,7 @@ class MesFiscal():
         autores = self.gastos_por_pessoa()
 
         sumario = { 'nome' : self.nome_do_mes(),
-                    'total' : '%.2f' % self.calcular_saldo()}
+                    'total' : 'R$ {0:.2f}'.format(self.calcular_saldo())}
 
         sumario.update(autores)
 

@@ -12,9 +12,8 @@ def sumario():
     ape = Condominio().obter_ape(current_user)
    
     meses = Tesoureiro(ape).listar_meses(int(ano))
-    print(meses)
+    
     return render_template('sumario.html',
                            usuario = current_user,
-                           pessoas = ['Erlan', 'Fernando'], 
                            ano = ano,
-                           meses = [mes.obter_sumario() for mes in meses])
+                           meses = [(mes.nome_do_mes(), mes.calcular_saldo()) for mes in meses])

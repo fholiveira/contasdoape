@@ -1,38 +1,21 @@
 {% extends "logado.html" %}
 
+{% block css %}
+    <link href="../static/css/sumario.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <h1 class="text-center">Sumário</h1>
+    <h4 class="text-center">Ano fiscal <strong>{{ ano }}</strong></h4>
 
-    <div class="row">
-        <h4 class="pull-right">Ano fiscal <strong>{{ ano }}</strong></h4>
-    </div>
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Mês</th>
-                <th>Total</th>
-                {% for pessoa in pessoas %}
-                    <th>{{ pessoa }}</th>
-                {% endfor %} 
-                <th>Devedor</th>           
-                <th>Valor</th>           
-            </tr>
-        </thead>
-        <tbody>
-            {% for mes in meses %}
-                <tr>
-                    <td>
-		                <a href="/despesas?mes={{ meses.index(mes) + 1 }}&ano={{ ano }}">{{ mes.nome }}</a>
-		            </td>
-                    <td>R$ {{ mes.total }}</td>
-                        {% for pessoa in pessoas %}
-                            <td>R$ {{ mes[pessoa] if mes[pessoa] else '0.00' }}</td>
-                        {% endfor %}   
-                    <td>{{ mes.devedor }}</td>
-                    <td>R$ {{ mes.valor_divida }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <ul class="lista">
+        {% for mes, valor in meses %}
+            <li>
+                <a href="/despesas?mes={{ meses.index((mes, valor)) + 1 }}&ano={{ ano }}">
+                    <span class="esquerda">{{ mes }}</span>
+                    <span class="direita">{{ 'R$ %.2f' % valor }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

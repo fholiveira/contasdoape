@@ -52,7 +52,7 @@ ul.lista-despesas > li > p {
 
     ul.lista-despesas > li > p {
         margin: .6em;
-	    font-size: 1.1em;
+	font-size: 1.1em;
     }
     
     .total {
@@ -62,12 +62,12 @@ ul.lista-despesas > li > p {
 
 @media(min-width: 992px){
     ul.lista-despesas > li > span {
-	    font-size: 1.5em;
-	    margin: .5em;
+	font-size: 1.5em;
+	margin: .5em;
     }
     ul.lista-despesas > li > p {
         margindd: .5em;
-	    font-size: 1.3em;
+	font-size: 1.3em;
     }
 
     #wrap div.container {

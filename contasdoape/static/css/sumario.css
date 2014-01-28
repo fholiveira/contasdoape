@@ -1,0 +1,42 @@
+ul.lista {
+    list-style-type: none; 
+    padding: .5em;
+    clear: both;
+    margin-bottom: 0;
+}
+
+ul.lista > li {
+    background-color: #FEFEFE;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: .5em 0;
+    min-height: 50px;
+}
+
+ul.lista span {
+    font-size: 1.2em;
+    margin: .8em;
+}
+
+span.esquerda {
+    float: left;
+}
+
+span.direita {
+    float: right;
+}
+
+@media(min-width: 768px){
+    ul.lista span {
+	font-size: 1.333em;
+    }
+}
+
+@media(min-width: 992px){
+    ul.lista span {
+	font-size: 1.5em;
+    }
+    #wrap div.container {
+        width: 992px;
+    }
+}
