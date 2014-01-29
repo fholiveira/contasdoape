@@ -1,7 +1,7 @@
 {% extends "logado.html" %}
 
 {% block css %}
-    <link href="../static/css/despesas.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/despesas.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -26,7 +26,7 @@
        class="btn btn-primary btn-lg botao-direita"
        href="/despesas/nova">Nova despesa</a>
 
-    <a href="/despesas/relatorio?mes={{ mes }}&ano={{ ano }}" 
+    <a href="/relatorio/{{ ano }}/{{ mes }}" 
        class="btn btn-primary btn-lg botao-esquerda"
        type="submit" id="relatorio">Relatório</a>
 {% endblock %}

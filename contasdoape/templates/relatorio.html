@@ -1,0 +1,21 @@
+{% extends "logado.html" %}
+
+{% block css %}
+    <link href="{{ url_for('static', filename='css/relatorio.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Relatório</h1>
+
+    <h4 class="text-center">{{ nome_mes }} de {{ ano }}</h4>
+
+    <ul class="devedores">
+        {% for divida in dividas %}
+            <li>
+                <img src="{{ divida.usuario.get_image_url() }}" alt="{{ divida.usuario.nome }}">
+                <p>Total gasto:<span> {{ '%.2f' % divida.despesas }}</span></p>
+                <p>Deve para mim:<span> {{ '%.2f' % divida.divida }}</span></p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link href="../static/css/menu.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/menu.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block menu %}

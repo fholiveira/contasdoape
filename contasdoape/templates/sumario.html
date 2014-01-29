@@ -1,7 +1,7 @@
 {% extends "logado.html" %}
 
 {% block css %}
-    <link href="../static/css/sumario.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/sumario.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}

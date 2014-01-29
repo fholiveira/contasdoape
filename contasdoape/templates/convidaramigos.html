@@ -1,8 +1,8 @@
 {% extends "logado.html" %}
 
 {% block css %}
-    <link href="/static/components/bootstrap-tokenfield/assets/tokenfield-typeahead.css" type="text/css" rel="stylesheet">
-    <link href="/static/components/bootstrap-tokenfield/bootstrap-tokenfield/bootstrap-tokenfield.css" type="text/css" rel="stylesheet">   
+    <link href="{{ url_for('static', filename='components/bootstrap-tokenfield/assets/tokenfield-typeahead.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='components/bootstrap-tokenfield/bootstrap-tokenfield/bootstrap-tokenfield.css') }}" type="text/css" rel="stylesheet">   
 {% endblock %}
 
 {% block content %}

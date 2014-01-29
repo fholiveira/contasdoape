@@ -4,8 +4,8 @@ from flask.ext.login import login_required, current_user
 from contasdoape.models.Condominio import Condominio
 from contasdoape.models.Tesoureiro import Tesoureiro
 from contasdoape.models.Despesa import Despesa
-from datetime import datetime
 from contasdoape.web import app
+from datetime import datetime
 
 @app.route('/despesas/nova', methods=['GET'])
 @login_required

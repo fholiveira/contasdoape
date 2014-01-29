@@ -1,5 +1,6 @@
 from contasdoape.models.Despesa import Despesa 
 from datetime import datetime
+from itertools import groupby
 
 class MesFiscal():
     def __init__(self, ape, data_inicio, data_fim):
@@ -30,12 +31,15 @@ class MesFiscal():
         
         return meses[self.data_inicio.month]
 
-    def gastos_por_pessoa(self):
-        despesas = self.listar_despesas()
-        lista = {}
+    def obter_despesas(self, autor=None):
+        despesas_do_mes = self.listar_despesas()
+        despesas_por_autor = groupby(despesas_do_mes, 
+                                     lambda despesa : despesa.autor)
+        if autor:
+            return next(despesas for usuario, despesas in despesas_por_autor 
+                        if usuario == autor )
 
-        for despesa in despesas:
-            lista[despesa.autor.nome] += despesa.valor
+        return despesas_por_autor
 
     def obter_sumario(self):
         autores = self.gastos_por_pessoa()
