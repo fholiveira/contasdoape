@@ -15,7 +15,7 @@
 {% block content %}
     <h1>Bem vindo, {{ g.usuario.nome }}!</h1>
 
-    <div class="texto-ajuda">
+    <section class="texto-ajuda">
         <p>Olhá só que legal, tem um pessoal que já te convidou pra dividir o apê com eles:</p>
 
         <ul class="patota">
@@ -28,7 +28,7 @@
         </ul>
 
         <p>E aí, vai querer entrar na patota?</p>
-    </div>
+    </section>
 
     <form action="/aceitar-convite" method="post">
         <button id="dividir_ape" type="submit" class="btn btn-lg btn-primary botao-esquerda">Ok, vou entrar na divisão</button>
