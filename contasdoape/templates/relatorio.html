@@ -17,8 +17,8 @@
                     <li>
                         <img src="{{ devedor.usuario.get_image_url() }}" alt="{{ devedor.usuario.nome }}">
 			<div class="despesas">
-			    <p>Total gasto:<span> {{ 'R$ %.2f' % devedor.despesas }}</span></p>
-			    <p>Valor a pagar:<span> {{ 'R$ %.2f' % devedor.divida }}</span></p>
+			    <p>Total gasto:<strong> {{ 'R$ %.2f' % devedor.despesas }}</strong></p>
+			    <p>Valor a pagar:<strong> {{ 'R$ %.2f' % devedor.divida }}</strong></p>
 			</div>
                     </li>
                 {% endfor %}
@@ -34,8 +34,8 @@
                     <li>
                         <img src="{{ credor.usuario.get_image_url() }}" alt="{{ credor.usuario.nome }}">
 			<div class="despesas">
-			    <p>Total gasto:<span> {{ 'R$ %.2f' % credor.despesas }}</span></p>
-			    <p>Valor a pagar:<span> {{ 'R$ %.2f' % credor.divida }}</span></p>
+			    <p>Total gasto:<strong> {{ 'R$ %.2f' % credor.despesas }}</strong></p>
+			    <p>Valor a pagar:<strong> {{ 'R$ %.2f' % credor.divida }}</strong></p>
 			</div>
                     </li>
                 {% endfor %}

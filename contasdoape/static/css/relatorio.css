@@ -28,7 +28,7 @@ section > ul > li > div > p {
     font-size: 1.2em;
 }
 
-section > ul > li > div > p > span {
+section > ul > li > div > p > strong {
     font-size: 1em;
     font-weight: bold;
 }
