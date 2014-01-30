@@ -9,18 +9,16 @@ from datetime import datetime
 @app.route('/relatorio/<ano>/<mes>', methods=['GET'])
 @login_required
 def relatorio(ano, mes):
-    ape = Condominio().obter_ape(current_user)
+    ape = Condominio(current_user).obter_ape()
 
     tesoureiro = Tesoureiro(ape)
     mes_fiscal = tesoureiro.obter_mes_fiscal(datetime(int(ano), int(mes), 1))
 
-    divida = tesoureiro.calcular_divida(mes_fiscal, current_user) 
-
-    print (divida)
+    pessoas = tesoureiro.calcular_divida(mes_fiscal, current_user) 
 
     return render_template('relatorio.html',
-                           dividas=divida,
+                           devedores=[pessoa for pessoa in pessoas if pessoa['divida'] > 0],
+                           credores=[pessoa for pessoa in pessoas if pessoa['divida'] < 0],
                            nome_mes=mes_fiscal.nome_do_mes(),
                            ano=ano,
-                           mes=mes,
-                           usuario=current_user)
+                           mes=mes)

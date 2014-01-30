@@ -22,12 +22,12 @@ class Tesoureiro():
 
     def calcular_divida(self, mes_fiscal, usuario):
         pessoas = list(mes_fiscal.obter_despesas())
-        despesas_usuario = next(despesas for autor, despesas in pessoas if autor.id == usuario.id)
+        despesas_usuario = mes_fiscal.obter_despesas(autor=usuario) 
         valor_gasto = sum(despesa.valor for despesa in despesas_usuario)
 
         return [self._calcular_divida(valor_gasto, autor, despesas)
                     for autor, despesas in pessoas
-                        if autor != usuario]
+                        if autor.id != usuario.id]
 
     def calcular_divida_relativa(self, mes_fiscal, usuario, amigo):
         valor = sum(depesa.valor for despesa in mes_fiscal.obter_despesas(autor=usuario))

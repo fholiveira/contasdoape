@@ -4,23 +4,48 @@ from contasdoape.web import app, login_manager
 from contasdoape.models.Condominio import Condominio
 from contasdoape.models.ControleDeAcesso import ControleDeAcesso
 
-@app.route("/primeiroacesso")
+@app.route("/criar-ape")
 @login_required
-def primeiro_acesso():
-    return render_template('primeiroacesso.html', usuario = current_user)
+def criar_ape():
+    if Condominio(current_user).tem_ape():
+        redirect(url_for('index'))
 
-@app.route("/convidaramigos")
+    return render_template('criar-ape.html')
+
+@app.route("/dividir-ape")
+@login_required
+def dividir_ape():
+    condominio = Condominio(current_user)
+
+    if condominio.tem_ape() or not condominio.eh_convidado():
+        redirect(url_for('index'))
+    
+    ape = condominio.obter_ape()
+
+    return render_template('dividir-ape.html', usuarios=list(ape.membros))
+
+@app.route("/aceitar-convite", methods=['POST'])
+@login_required
+def aceitar_convite():
+    condominio = Condominio(current_user)
+
+    if not condominio.tem_ape() and condominio.eh_convidado():
+        condominio.aceitar_convite()
+
+    return redirect(url_for('index'))
+
+@app.route("/convidar-amigos")
 @login_required
 def convidar_amigos():
-    condominio = Condominio()
     usuario = ControleDeAcesso().carregar_usuario(current_user.facebook_id)
-    print(usuario.id)
-    if not condominio.tem_ape(usuario):
-        condominio.criar_ape(usuario)
+    condominio = Condominio(usuario)
 
-    return render_template('convidaramigos.html', usuario = current_user)
+    if not condominio.tem_ape():
+        condominio.criar_ape()
 
-@app.route('/salvaramigos', methods=['POST'])
+    return render_template('convidar-amigos.html')
+
+@app.route('/salvar-amigos', methods=['POST'])
 @login_required
 def salvar_amigos():
     ids = [amigo['value'] for amigo in request.json]
@@ -28,7 +53,7 @@ def salvar_amigos():
     if not ids:
         return 'Ok', 200
    
-    ape = Condominio().obter_ape(current_user)
+    ape = Condominio(current_user).obter_ape()
     ape.adicionar_convidados(ids)
 
     return 'Ok', 200

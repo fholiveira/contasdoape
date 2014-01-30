@@ -37,7 +37,7 @@ class MesFiscal():
                                      lambda despesa : despesa.autor)
         if autor:
             return next(despesas for usuario, despesas in despesas_por_autor 
-                        if usuario == autor )
+                        if usuario.id == autor.id )
 
         return despesas_por_autor
 

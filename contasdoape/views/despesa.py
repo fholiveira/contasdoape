@@ -10,12 +10,12 @@ from datetime import datetime
 @app.route('/despesas/nova', methods=['GET'])
 @login_required
 def home():
-    return render_template('novadespesa.html', usuario = current_user)
+    return render_template('nova-despesa.html', usuario = current_user)
 
 @app.route('/despesas/nova', methods=['POST'])
 @login_required
 def nova_despesa():
-    ape = Condominio().obter_ape(current_user)
+    ape = Condominio(current_user).obter_ape()
     usuario = ControleDeAcesso().carregar_usuario(current_user.facebook_id)
 
     despesa = Despesa(autor=usuario,
@@ -34,7 +34,7 @@ def listar_despesas():
     ano = request.args.get('ano') or datetime.now().year
     mes = request.args.get('mes') or datetime.now().month
 
-    ape = Condominio().obter_ape(current_user)
+    ape = Condominio(current_user).obter_ape()
 
     mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(datetime(year=int(ano), month=int(mes), day=1))
     despesas = mes_fiscal.listar_despesas()

@@ -1,6 +1,6 @@
 from flask.ext.login import (login_user, logout_user, login_required, 
                              current_user, AnonymousUserMixin)
-from flask import render_template, request, redirect, url_for, session 
+from flask import g, render_template, request, redirect, url_for, session 
 from contasdoape.models.ControleDeAcesso import ControleDeAcesso
 from contasdoape.models.Condominio import Condominio
 from contasdoape.views.providers import Facebook
@@ -9,14 +9,17 @@ from contasdoape.web import app, login_manager
 
 @login_manager.user_loader
 def load_user(userid):
-    return ControleDeAcesso().carregar_usuario(userid)
+    usuario = ControleDeAcesso().carregar_usuario(userid) 
+    g.usuario = usuario
+
+    return usuario    
 
 @app.route('/')
 def index():
-    if current_user.is_anonymous():
-        return render_template('home.html')
+    if current_user.get_id():
+        return redirect(url_for('listar_despesas')) 
 
-    return redirect(url_for('listar_despesas')) 
+    return render_template('home.html')
 
 @app.route('/login')
 def login():
@@ -36,18 +39,22 @@ def logout_all():
 
     try:
         provider = Facebook(url_for('authorized', _external = True))
-        return redirect(provider.logout(url_for('index', _external=True)))
+        return redirect(provider.logout(url_for('logout', _external=True)))
     except:
-        return redirect('/')
+        return redirect('logout')
 
 @app.route('/authorized')
 def authorized():
     provider = Facebook(url_for('authorized', _external = True))
     usuario = provider.logar(request.args)
-    
+    condominio = Condominio(usuario)
+
     login_user(usuario)
 
-    if not Condominio().tem_ape(usuario):
-        return redirect(url_for('primeiro_acesso'))
+    if not condominio.tem_ape():
+        if condominio.eh_convidado():
+            return redirect(url_for('dividir_ape'))
+
+        return redirect(url_for('criar_ape'))
 
     return redirect(url_for('index'))

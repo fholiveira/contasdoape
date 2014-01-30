@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="row faixa-padrao" >
+<section class="row faixa-padrao" >
     <h1>Contas do apê</h1>
     <h3>Organizando as contas de quem divide apartamento</h3>
-</div>
+</section>
 
-<div class="row faixa-destaque">
+<section class="row faixa-destaque">
     <div class="col-lg-4 col-md-4">
         <h2><i class="fa fa-usd"></i>Divida as contas</h2>
         <p>Dividir apartamento é ótimo! Mas cuidado, não controlar os gastos pode dar muita confusão. Anote as despesas aqui que a gente ajuda você a se organizar</p>
@@ -26,9 +26,9 @@
         <h2><i class="fa fa-facebook-square"></i>Tudo conectado</h2>
         <p>Nós nos integramos com o Facebook. Fica bem mais fácil de dizer com quem você divide o apê - não precisa de cadastros!</p>
     </div>
-</div>
+</section>
 
-<div class="row faixa-padrao">
+<section class="row faixa-padrao">
     <div class="col-lg-8 col-md-8">
         <h2>Gostou da ideia?</h2>
         <h4>Faça login e comece a usar</h4>
@@ -37,5 +37,5 @@
     <div class="col-lg-4 col-md-4 text-center">
         <a id="logar" class="btn btn-social btn-lg btn-facebook" href="{{ url_for('login') }}"><i class="fa fa-facebook"></i>Login com o Facebook</a>
     </div>
-</div>
+</section>
 {% endblock %}

@@ -9,11 +9,10 @@ from contasdoape.web import app
 @login_required
 def sumario():
     ano = request.args.get('ano') or datetime.now().year
-    ape = Condominio().obter_ape(current_user)
+    ape = Condominio(current_user).obter_ape()
    
     meses = Tesoureiro(ape).listar_meses(int(ano))
     
     return render_template('sumario.html',
-                           usuario = current_user,
                            ano = ano,
                            meses = [(mes.nome_do_mes(), mes.calcular_saldo()) for mes in meses])

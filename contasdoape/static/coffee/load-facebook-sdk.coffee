@@ -13,7 +13,7 @@ class FacebookFriendPicker
     
     $.ajax({
       type: "POST"
-      url: "/salvaramigos"
+      url: "/salvar-amigos"
       success: -> window.location.href = '/'
       contentType: "application/json; charset=utf-8"
       data: JSON.stringify($('#fb-friendlist').tokenfield('getTokens'))
