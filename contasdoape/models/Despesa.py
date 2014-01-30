@@ -22,9 +22,3 @@ class Despesa(EmbeddedDocument):
         self.autor = autor
         self.valor = valor
         self.data = data
-
-    def to_dict(self):
-        return  {'valor' : 'R$ {0:.2f}'.format(self.valor), 
-                 'data' : self.data.strftime('%d/%m/%Y'), 
-                 'autor' : self.autor,
-                 'descricao' : self.descricao}

@@ -1,0 +1,34 @@
+section > ul {
+    list-style-type: none;
+    margin: 1em;
+    overflow: overlay;
+    padding: 0;
+}
+
+section > ul > li {
+    float: left;
+    background-color: aliceblue;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: .5em;
+}
+
+section > ul > li > div.despesas {
+    margin: .5em 1em; 
+    float: left;
+}
+
+section > ul > li > img {
+    width: 64px; 
+    float: left;
+}
+
+section > ul > li > div > p {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+section > ul > li > div > p > span {
+    font-size: 1em;
+    font-weight: bold;
+}

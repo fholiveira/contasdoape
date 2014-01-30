@@ -32,9 +32,9 @@
         {% block rodape %}{% endblock %}
     </footer>    
 
-    <script src="../static/components/jquery/jquery.js"></script>
-    <script src="../static/components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../static/coffee/menu.js"></script>
+    <script src="{{ url_for('static', filename='components/jquery/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='coffee/menu.js') }}"></script>
     {% block javascript %}{% endblock %}
   </body>
 </html>

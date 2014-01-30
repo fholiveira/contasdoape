@@ -7,20 +7,20 @@
 {% block content %}
     <h1 class="text-center">{{ titulo }}</h1>
 
-    <h4 class="text-center">De {{ data_inicio }} à {{ data_fim }}</h4>
+    <h4 class="text-center">De {{ data_inicio.strftime('%d/%m/%Y') }} à {{ data_fim.strftime('%d/%m/%Y') }}</h4>
     
     <ul class="lista-despesas">
         {% for despesa in despesas %}
             <li>
-              <span class="valor">{{ despesa.valor }}</span>
+              <span class="valor">{{ 'R$ %.2f' % despesa.valor }}</span>
               <img src="{{ despesa.autor.get_image_url() }}"></img>
-              <span>{{ despesa.data }}</span>
+              <span>{{ despesa.data.strftime('%d/%m/%Y') }}</span>
               <p>{{ despesa.descricao }}</p>
             </li>
         {% endfor %}
     </ul>
 
-    <h4 class="pull-right total">Total: <strong>R$ {{ total }}</strong></h4>
+    <h4 class="pull-right total">Total: <strong>R$ {{ '%.2f' % total }}</strong></h4>
 
     <a type="submit" id="novadespesa" 
        class="btn btn-primary btn-lg botao-direita"

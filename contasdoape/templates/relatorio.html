@@ -11,13 +11,15 @@
     
     {% if devedores|length > 0 %}
         <section class="devedores">
-            <h1 class="titulo">Pessoas que devem pra mim</h1>
+            <h3 class="titulo">Pessoas que devem pra mim</h3>
             <ul class="devedores">
                 {% for devedor in devedores %}
                     <li>
                         <img src="{{ devedor.usuario.get_image_url() }}" alt="{{ devedor.usuario.nome }}">
-                        <p>Total gasto:<span> {{ '%.2f' % devedor.despesas }}</span></p>
-                        <p>Valor a pagar:<span> {{ '%.2f' % devedor.divida }}</span></p>
+			<div class="despesas">
+			    <p>Total gasto:<span> {{ 'R$ %.2f' % devedor.despesas }}</span></p>
+			    <p>Valor a pagar:<span> {{ 'R$ %.2f' % devedor.divida }}</span></p>
+			</div>
                     </li>
                 {% endfor %}
             </ul>
@@ -26,13 +28,15 @@
 
     {% if credores|length > 0 %}
         <section class="credores">
-            <h1 class="titulo">Pessoas para quem eu devo</h1>
+            <h3 class="titulo">Pessoas para quem eu devo</h3>
             <ul class="credores">
                 {% for credor in credores %}
                     <li>
                         <img src="{{ credor.usuario.get_image_url() }}" alt="{{ credor.usuario.nome }}">
-                        <p>Total gasto:<span> {{ '%.2f' % credor.despesas }}</span></p>
-                        <p>Valor a pagar:<span> {{ '%.2f' % credor.divida }}</span></p>
+			<div class="despesas">
+			    <p>Total gasto:<span> {{ 'R$ %.2f' % credor.despesas }}</span></p>
+			    <p>Valor a pagar:<span> {{ 'R$ %.2f' % credor.divida }}</span></p>
+			</div>
                     </li>
                 {% endfor %}
             </ul>
