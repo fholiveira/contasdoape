@@ -7,4 +7,4 @@ def passo(context):
 @step('eu devo ser redirecionado a página de convidar amigos')
 def passo(context):
     url = context.browser.current_url 
-    assert url.startswith(context.url('/convidaramigos'))
+    assert url.startswith(context.url('/convidar-amigos'))

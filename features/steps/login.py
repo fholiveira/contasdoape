@@ -6,6 +6,7 @@ def step_impl(context):
 
 @step('eu clicar no botão de login')
 def step_impl1(context):
+    context.browser.get(context.url('/'))
     context.browser.find_element_by_id('logar').click()
 
 @step('eu devo ser redirecionado para a página de login do Facebook')
@@ -31,7 +32,7 @@ def passo(context, usuario, senha):
 @step('devo ser direcionado a página de criação de apartamento')
 def passo(context):
     url = context.browser.current_url 
-    assert url.startswith(context.url('/primeiroacesso'))
+    assert url.startswith(context.url('/criar-ape'))
 
 @step("eu clicar no botão 'Vou falar com meus colegas no Facebook'")
 def passo(context):

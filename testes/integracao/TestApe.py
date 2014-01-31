@@ -15,26 +15,26 @@ class TestApe(TestCase):
         Ape.objects.delete()
 
     def test_deve_criar_apartamento(self):
-        Condominio().criar_ape(self.usuario)
+        Condominio(self.usuario).criar_ape()
         ape = Ape.objects().first()
         
         self.assertIsNotNone(ape)
 
     def test_deve_obter_ape(self):
-        novo_ape = Condominio().criar_ape(self.usuario)
-        ape = Condominio().obter_ape(self.usuario)
+        novo_ape = Condominio(self.usuario).criar_ape()
+        ape = Condominio(self.usuario).obter_ape()
 
         self.assertEquals(novo_ape.id, ape.id)
     
     def test_deve_associar_usuario_ao_criar_o_ape(self):
-        Condominio().criar_ape(self.usuario)
+        Condominio(self.usuario).criar_ape()
         ape = Ape.objects().first()
         
         self.assertEquals(self.usuario.id, ape.membros[0].id)
 
 
     def test_deve_convidar_amigos(self):
-        ape = Condominio().criar_ape(self.usuario)
+        ape = Condominio(self.usuario).criar_ape()
         convidados = [ '111111', '222222' ]
 
         ape.adicionar_convidados(convidados)
