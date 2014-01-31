@@ -7,7 +7,7 @@ ul {
 
 ul > li {
     float: left;
-    background-color: aliceblue;
+    background-color: #FEFEFE;
     border-radius: 5px;
     overflow: hidden;
     margin: .5em;

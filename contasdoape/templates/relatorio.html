@@ -9,33 +9,20 @@
 
     <h4 class="text-center">{{ nome_mes }} de {{ ano }}</h4>
     
-    {% if devedores|length > 0 %}
+    {% if relatorio.contas|length > 0 %}
         <section class="devedores">
-            <h3 class="titulo">Pessoas que devem pra mim</h3>
+            <h3 class="titulo">{{ 'Pessoas para quem eu devo' if relatorio.devedor else 'Pessoas que devem pra mim' }}</h3>
             <ul class="devedores">
-                {% for devedor in devedores %}
+                {% for amigo, despesa in relatorio.contas.items() %}
                     <li>
-                        <img src="{{ devedor.usuario.get_image_url() }}" alt="{{ devedor.usuario.nome }}">
+                        <img src="{{ amigo.get_image_url() }}" alt="{{ amigo.nome }}">
 			<div class="despesas">
-			    <p>Total gasto:<strong> {{ 'R$ %.2f' % devedor.despesas }}</strong></p>
-			    <p>Valor a pagar:<strong> {{ 'R$ %.2f' % devedor.divida }}</strong></p>
-			</div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
-
-    {% if credores|length > 0 %}
-        <section class="credores">
-            <h3 class="titulo">Pessoas para quem eu devo</h3>
-            <ul class="credores">
-                {% for credor in credores %}
-                    <li>
-                        <img src="{{ credor.usuario.get_image_url() }}" alt="{{ credor.usuario.nome }}">
-			<div class="despesas">
-			    <p>Total gasto:<strong> {{ 'R$ %.2f' % credor.despesas }}</strong></p>
-			    <p>Valor a pagar:<strong> {{ 'R$ %.2f' % credor.divida }}</strong></p>
+			    <p>Valor gasto: <strong>{{ 'R$ %.2f' % despesa }}</strong></p>
+			    {% if relatorio.devedor %}
+                                <p>Dívida: <strong>{{ 'R$ %.2f' % (despesa - relatorio.valor_gasto) }}</strong></p>
+			    {% else %}
+                                <p>Dívida: <strong>{{ 'R$ %.2f' % (relatorio.valor_gasto - despesa) }}</strong></p>
+			    {% endif %}
 			</div>
                     </li>
                 {% endfor %}

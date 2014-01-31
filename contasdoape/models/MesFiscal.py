@@ -32,20 +32,19 @@ class MesFiscal():
         return meses[self.data_inicio.month]
 
     def obter_despesas(self, autor=None):
-        despesas_do_mes = self.listar_despesas()
-        despesas_por_autor = groupby(despesas_do_mes, 
-                                     lambda despesa : despesa.autor)
+        despesas_por_autor = groupby(self.listar_despesas(), lambda d : d.autor)
+
         if autor:
-            return next(list(despesas) for usuario, despesas in despesas_por_autor 
+            return next(list(despesas) for usuario, despesas in despesas_por_autor
                         if usuario.id == autor.id )
 
-        return [(autor, list(despesas)) for autor, despesas in despesas_por_autor]
+        return { autor : list(despesas) for autor, despesas in despesas_por_autor }
 
     def obter_sumario(self):
         autores = self.gastos_por_pessoa()
 
         sumario = { 'nome' : self.nome_do_mes(),
-                    'total' : 'R$ {0:.2f}'.format(self.calcular_saldo())}
+                    'total' : self.calcular_saldo() }
 
         sumario.update(autores)
 

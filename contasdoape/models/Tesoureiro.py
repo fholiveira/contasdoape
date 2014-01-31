@@ -21,21 +21,21 @@ class Tesoureiro():
         return [self.obter_mes_fiscal(data.replace(month = mes)) for mes in meses]
 
     def calcular_divida(self, mes_fiscal, usuario):
-        pessoas = list(mes_fiscal.obter_despesas())
-        despesas_usuario = mes_fiscal.obter_despesas(autor=usuario) 
-        valor_gasto = sum(despesa.valor for despesa in despesas_usuario)
+        gastos_por_pessoa = { pessoa : sum(d.valor for d in despesas)
+                                for pessoa, despesas in mes_fiscal.obter_despesas().items() }
 
-        return [self._calcular_divida(valor_gasto, autor, despesas)
-                    for autor, despesas in pessoas
-                        if autor.id != usuario.id]
+        total = sum(gasto for pessoa, gasto in gastos_por_pessoa.items())
+        valor_medio = total / len(gastos_por_pessoa)
+        valor_gasto = next((g for p, g in gastos_por_pessoa.items() if p.id == usuario.id), 0) 
 
-    def calcular_divida_relativa(self, mes_fiscal, usuario, amigo):
-        valor = sum(depesa.valor for despesa in mes_fiscal.obter_despesas(autor=usuario))
-        despesas_amigo = mes_fiscal.obter_despesas(autor=amigo)
-        return self._calcular_divida(valor, amigo, despesas_amigo)
-
-    def _calcular_divida(self, valor_base, autor, despesas):
-        valor_gasto = sum(despesa.valor for despesa in despesas)
-        return {'usuario': autor, 
-                'despesas': valor_gasto,
-                'divida': valor_base - valor_gasto}
+        if valor_gasto > valor_medio:
+            gastos_por_pessoa = { pessoa : gastos for pessoa, gastos in gastos_por_pessoa.items() 
+                                    if gastos < valor_medio }
+        elif valor_gasto < valor_medio:
+            gastos_por_pessoa = { pessoa : gastos for pessoa, gastos in gastos_por_pessoa.items() 
+                                    if gastos > valor_medio }
+        return {'devedor' : valor_gasto < valor_medio,
+                'valor_gasto' : valor_gasto,
+                'valor_medio' : valor_medio,
+                'valor_total' : total,
+                'contas' : gastos_por_pessoa }

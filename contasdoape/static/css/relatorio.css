@@ -1,16 +1,22 @@
+h3 {
+    font-size: 1.6em;
+}
+
 section > ul {
     list-style-type: none;
-    margin: 1em;
+    margin: .5em;
     overflow: overlay;
     padding: 0;
 }
 
 section > ul > li {
     float: left;
-    background-color: aliceblue;
+    background-color: #FEFEFE;
     border-radius: 5px;
     overflow: hidden;
-    margin: .5em;
+    min-width: 275px;
+    max-width: 450px;
+    width: 100%;
 }
 
 section > ul > li > div.despesas {
@@ -31,4 +37,20 @@ section > ul > li > div > p {
 section > ul > li > div > p > strong {
     font-size: 1em;
     font-weight: bold;
+}
+
+@media(min-width: 350px) {
+    h3 {
+        font-size: 1.7em;
+    }
+}
+
+@media(min-width: 500px) {
+    section > ul {
+        margin: 1em;
+    }
+
+    section > ul > li {
+        margin: .5em;
+    }
 }
