@@ -19,13 +19,15 @@ def step_impl2(context):
 def passo(context):
     context.browser.get(context.url('/logoutall'))
 
-@step('eu fizer login com {usuario} e {senha}')
-def passo(context, usuario, senha):
+@step('eu fizer login como o {nome}')
+def passo(context, nome):
+    heroi = context.usuarios[nome]
+
     context.browser.get(context.url())
     context.browser.find_element_by_id('logar').click()
 
-    context.browser.find_element_by_id('email').send_keys(usuario)
-    context.browser.find_element_by_id('pass').send_keys(senha)
+    context.browser.find_element_by_id('email').send_keys(heroi['email'])
+    context.browser.find_element_by_id('pass').send_keys(heroi['senha'])
 
     context.browser.find_element_by_name('login').click()
 
