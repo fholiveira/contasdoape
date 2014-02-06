@@ -17,11 +17,11 @@
                     <li>
                         <img src="{{ amigo.get_image_url() }}" alt="{{ amigo.nome }}">
 			<div class="despesas">
-			    <p>Valor gasto: <strong>{{ 'R$ %.2f' % despesa }}</strong></p>
+			    <p>Gastou: <strong>{{ 'R$ %.2f' % despesa }}</strong></p>
 			    {% if relatorio.devedor %}
-                                <p>Dívida: <strong>{{ 'R$ %.2f' % (despesa - relatorio.valor_gasto) }}</strong></p>
+                                <p>Eu devo: <strong>{{ 'R$ %.2f' % (despesa - relatorio.valor_medio) }}</strong></p>
 			    {% else %}
-                                <p>Dívida: <strong>{{ 'R$ %.2f' % (relatorio.valor_gasto - despesa) }}</strong></p>
+                                <p>Me deve: <strong>{{ 'R$ %.2f' % (relatorio.valor_medio - despesa) }}</strong></p>
 			    {% endif %}
 			</div>
                     </li>
