@@ -26,7 +26,9 @@
        class="btn btn-primary btn-lg botao-direita"
        href="/despesas/nova">Nova despesa</a>
 
-    <a href="/relatorio/{{ ano }}/{{ mes }}" 
-       class="btn btn-primary btn-lg botao-esquerda"
-       type="submit" id="relatorio">Relatório</a>
+    {% if despesas|count > 0 %}
+      <a href="/relatorio/{{ ano }}/{{ mes }}" 
+         class="btn btn-primary btn-lg botao-esquerda"
+         type="submit" id="relatorio">Relatório</a>
+    {% endif %}
 {% endblock %}
