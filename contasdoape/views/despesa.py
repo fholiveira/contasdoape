@@ -18,9 +18,15 @@ def nova_despesa():
     ape = Condominio(current_user).obter_ape()
     usuario = ControleDeAcesso().carregar_usuario(current_user.facebook_id)
 
+    data = None
+    try:
+        data = datetime.strptime(request.form['data'], '%Y-%m-%d')
+    except:
+        data = datetime.strptime(request.form['data'], '%d/%m/%Y')
+
     despesa = Despesa(autor=usuario,
                       valor=float(request.form['valor'].replace(',', '.')),
-                      data=datetime.strptime(request.form['data'], '%Y-%m-%d'))
+                      data=data)
 
     despesa.descricao = request.form['descricao']
 
