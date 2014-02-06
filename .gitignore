@@ -9,9 +9,6 @@ site/
 #config
 contasdoape/config/secret.yaml
 
-#Frontend
-contasdoape/static/components/
-
 #CoffeeScript
 contasdoape/static/coffee/*.js
 contasdoape/static/coffee/*.map
