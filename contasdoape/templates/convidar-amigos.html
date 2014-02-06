@@ -1,8 +1,8 @@
 {% extends "logado.html" %}
 
 {% block css %}
-    <link href="{{ url_for('static', filename='components/bootstrap-tokenfield/assets/tokenfield-typeahead.css') }}" type="text/css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='components/bootstrap-tokenfield/bootstrap-tokenfield/bootstrap-tokenfield.css') }}" type="text/css" rel="stylesheet">   
+    <link href="{{ url_for('static', filename='components/css/tokenfield-typeahead.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='components/css/bootstrap-tokenfield.css') }}" type="text/css" rel="stylesheet">   
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="/static/components/typeahead.js/dist/typeahead.min.js"></script> 
-    <script src="/static/coffee/bootstrap-tokenfield.js"></script>
-    <script src="../static/coffee/load-facebook-sdk.js"></script>
+    <script src="{{ url_for('static', filename='components/js/typeahead.min.js') }}"></script> 
+    <script src="{{ url_for('static', filename='components/js/bootstrap-tokenfield.js') }}"></script>
+    <script src="{{ url_for('static', filename='coffee/convidar-amigos.js') }}"></script>
 {% endblock %}

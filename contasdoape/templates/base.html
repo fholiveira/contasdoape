@@ -13,8 +13,8 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{ url_for('static', filename='components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='components/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='components/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/site.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/menu.css') }}" rel="stylesheet">
     {% block css %}{% endblock %}
@@ -32,8 +32,8 @@
         {% block rodape %}{% endblock %}
     </footer>    
 
-    <script src="{{ url_for('static', filename='components/jquery/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='components/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='components/js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='coffee/menu.js') }}"></script>
     {% block javascript %}{% endblock %}
   </body>
