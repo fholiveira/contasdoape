@@ -36,10 +36,21 @@ footer {
     margin: 2em 0 2em 0;
     text-align: center;
 }
+
 .botoes-ajuda a {
     margin: 1em;
 }
 
+form input.error, 
+form textarea.error {
+  border-color: red;
+}
+
+form label.error {
+  margin: .4em;
+  color: red;
+  font-weight: normal;
+}
 
 @media(min-width: 320px) {
     .container-full {      

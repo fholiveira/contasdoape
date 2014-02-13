@@ -10,16 +10,21 @@
       
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="date" class="form-control" id="data" name="data" placeholder="mm/dd/aaaa">
+            <input type="date" class="form-control" id="data" name="data" placeholder="mm/dd/aaaa" required>
         </div>
         <div class="form-group">
             <label for="valor">Valor</label>
-            <input type="text" class="form-control" id="valor" name="valor" placeholder="00,00">
+            <input type="text" class="form-control" id="valor" name="valor" placeholder="00,00" required>
         </div>
         <div class="form-group">
             <label for="descricao">Descrição</label>
-            <textarea class="form-control" id="descricao" name="descricao"></textarea>
+            <textarea class="form-control" id="descricao" name="descricao" required></textarea>
         </div>
         <button type="submit" id="lancar" name="lancar" class="btn btn-primary btn-lg btn-block">Lançar</button>
     </form>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static', filename='components/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='coffee/nova-despesa.js') }}"></script>
 {% endblock %}
