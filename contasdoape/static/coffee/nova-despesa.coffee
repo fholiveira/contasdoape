@@ -19,7 +19,7 @@ $(document).ready ->
       ehData: 'Você deve informar uma data válida'
 
   $('#valor').rules 'add',
-    regex: '^[0-9]+(\.|,)[0-9]+$',
+    regex: '^([0-9]+(\.|,)[0-9]|[0-9]+)+$'
     messages:
       required: 'Você deve informar o valor da despesa',
       regex: 'Você deve informar um valor válido'

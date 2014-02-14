@@ -1,6 +1,7 @@
 from behave import *
 
 @step('clicar no botão "Vou criar o apê agora mesmo"')
+@step('clico no botão "Vou criar o apê agora mesmo"')
 def passo(context):
     context.browser.find_element_by_id('criar_ape').click()
     

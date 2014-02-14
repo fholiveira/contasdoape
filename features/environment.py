@@ -9,9 +9,14 @@ def before_all(context):
     context.database = connect('contasdoape-test')
     context.usuarios = usuarios    
     context.url = url
-    context.browser = webdriver.Chrome()
 
-def after_all(context):
+def before_feature(context, feature):
+    if 'firefox' in feature.tags:
+        context.browser = webdriver.Firefox()
+    else:
+        context.browser = webdriver.Chrome()
+
+def after_feature(context, feature):
     context.browser.close()
 
 def before_scenario(context, scenario):
