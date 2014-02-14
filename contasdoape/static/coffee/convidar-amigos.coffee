@@ -6,7 +6,13 @@ class FacebookFriendPicker
 
   init: ->
     $(@botaosalvar).click @salvarLista
+    $('#fb-friendlist').on 'afterCreateToken', @afterCreateToken
     @loadFriendList()
+
+  afterCreateToken: (dados) =>
+    if not isFinite(dados.token.value) or dados.token.value == dados.token.label
+      $('#fb-friendlist').data('bs.tokenfield').$input.val ''
+      $(dados.relatedTarget).remove()
 
   salvarLista: (e) ->
     e.preventDefault()
