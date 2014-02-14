@@ -1,0 +1,1 @@
+node_modules/.bin/gulp --require coffee-script/register

@@ -1,0 +1,33 @@
+{
+  "name": "contasdoape",
+  "version": "0.0.1",
+  "description": "App que te ajuda quem divide apartamento a organizar as contas",
+  "main": "./rodar_servidor",
+  "dependencies": {
+    "gulp": "~3.5.2",
+    "gulp-coffee": "~1.4.1",
+    "gulp-uglify": "~0.2.1",
+    "gulp-util": "~2.2.14"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.1"
+  },
+  "scripts": {
+    "test": "./rodar_testes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fholiveira/contasdoape.git"
+  },
+  "keywords": [
+    "contasdoape",
+    "finance",
+    "apartment"
+  ],
+  "author": "Fernando Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fholiveira/contasdoape/issues"
+  },
+  "homepage": "https://github.com/fholiveira/contasdoape"
+}

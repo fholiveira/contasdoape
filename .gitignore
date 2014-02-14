@@ -6,6 +6,9 @@
 site/
 .venv
 
+#node
+node_modules/
+
 #config
 contasdoape/config/secret.yaml
 
