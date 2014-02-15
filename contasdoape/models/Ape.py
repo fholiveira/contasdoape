@@ -2,6 +2,7 @@ from mongoengine import Document, StringField, DateTimeField
 from mongoengine import ReferenceField, ListField, EmbeddedDocumentField
 from contasdoape.models.Usuario import Usuario
 from contasdoape.models.Despesa import Despesa
+from bson.objectid import ObjectId
 from datetime import datetime
 
 class Ape(Document):
@@ -16,6 +17,7 @@ class Ape(Document):
         self.data_criacao = datetime.now()
 
     def incluir_despesa(self, despesa):
+        despesa.id = ObjectId()
         self.despesas.append(despesa)
         self.save()
 
@@ -23,4 +25,7 @@ class Ape(Document):
         ids = [fb_id for fb_id in ids_convidados if fb_id]
         self.convidados.extend(ids)
         self.save()
-
+    
+    def remover_despesa(self, despesa):
+        self.despesas.remove(despesa)
+        self.save()

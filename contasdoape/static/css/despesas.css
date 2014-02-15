@@ -5,7 +5,7 @@ ul.lista-despesas {
     margin-bottom: 0;
 }
 
-ul.lista-despesas > li {
+.despesa {
     background-color: #FEFEFE;
     border-radius: 5px;
     overflow: hidden;
@@ -13,22 +13,31 @@ ul.lista-despesas > li {
     min-height: 50px;
 }
 
-ul.lista-despesas > li > p,
-ul.lista-despesas > li > img {
+.modal .despesa {
+  background-color: #EEE;
+}
+
+.despesa > p,
+.despesa > img {
     float: left;
 }
 
-ul.lista-despesas > li > span {
+.despesa > span {
     font-size: 1.2em;
     margin: .8em;
     float: left;
 }
 
-ul.lista-despesas > li > span.valor {
+.despesa > span.direita {
     float: right;
 }
 
-ul.lista-despesas > li > p {
+.despesa > span.direita a {
+    cursor: pointer;
+    margin-left: .4em;
+}
+
+.despesa > p {
     margin: .7em;
     font-size: 1em;
 }
@@ -37,6 +46,11 @@ ul.lista-despesas > li > p {
     font-size: 1.4em;
     margin: 7px;
     margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin-bottom: .7em;
 }
 
 a.btn {
@@ -63,22 +77,28 @@ a.btn {
 }
 
 @media(min-width: 768px){
-    ul.lista-despesas > li > span {
+    .despesa > span {
 	    font-size: 1.2em;
     }
 
-    ul.lista-despesas > li > p {
+    .despesa > p {
         margin: .6em;
 	font-size: 1.1em;
+    }
+
+    h3 {
+      font-size: 1.8em;
+      margin-bottom: .5em;
     }
 }
 
 @media(min-width: 992px){
-    ul.lista-despesas > li > span {
+    .despesa > span {
 	font-size: 1.5em;
 	margin: .5em;
     }
-    ul.lista-despesas > li > p {
+    
+    .despesa > p {
         margindd: .5em;
 	font-size: 1.3em;
     }

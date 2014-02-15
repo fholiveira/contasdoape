@@ -20,6 +20,16 @@ class MesFiscal():
                     if despesa.data >= self.data_inicio and 
                        despesa.data <= self.data_fim]
 
+    def remover_despesa(self, usuario, id_despesa):
+        print(id_despesa)
+        print([d.id for d in self.ape.despesas])
+        despesa = next(d for d in self.ape.despesas if str(d.id) == id_despesa)
+        
+        if usuario.id != despesa.autor.id:
+            raise Exception('Um usuário só pode excluir despesas que ele mesmo criou.')
+
+        self.ape.remover_despesa(despesa)
+
     def calcular_saldo(self):
         despesas = self.listar_despesas()
         return sum(d.valor for d in despesas)

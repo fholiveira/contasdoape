@@ -1,34 +1,67 @@
 {% extends "logado.html" %}
 
 {% block css %}
-    <link href="{{ url_for('static', filename='css/despesas.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/despesas.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">{{ titulo }}</h1>
+  <h1 class="text-center">{{ titulo }}</h1>
 
-    <h4 class="text-center">De {{ data_inicio.strftime('%d/%m/%Y') }} à {{ data_fim.strftime('%d/%m/%Y') }}</h4>
-    
-    <ul class="lista-despesas">
-        {% for despesa in despesas %}
-            <li>
-              <span class="valor">{{ 'R$ %.2f' % despesa.valor }}</span>
-              <img src="{{ despesa.autor.get_image_url() }}"></img>
-              <span>{{ despesa.data.strftime('%d/%m/%Y') }}</span>
-              <p>{{ despesa.descricao }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+  <h4 class="text-center">De {{ data_inicio.strftime('%d/%m/%Y') }} à {{ data_fim.strftime('%d/%m/%Y') }}</h4>
 
-    <h4 class="pull-right total">Total: <strong>R$ {{ '%.2f' % total }}</strong></h4>
+  <ul class="lista-despesas">
+    {% for despesa in despesas %}
+    <li class="despesa" data-id="{{ despesa.id }}">
+        <span class="direita">
+          <span class="valor">{{ 'R$ %.2f' % despesa.valor }}</span>
+          {% if despesa.autor.id == g.usuario.id %}
+            <a class="remover glyphicon glyphicon-remove" data-toggle="modal"></a>
+          {% endif %}
+        </span>
+        <img src="{{ despesa.autor.get_image_url() }}"></img>
+        <span class="data">{{ despesa.data.strftime('%d/%m/%Y') }}</span>
+        <p class="descricao">{{ despesa.descricao }}</p>
+      </li>
+    {% endfor %}
+  </ul>
 
-    <a type="submit" id="novadespesa" 
-       class="btn btn-primary btn-lg botao-direita"
-       href="/despesas/nova">Nova despesa</a>
+  <h4 class="pull-right total">Total: <strong>R$ {{ '%.2f' % total }}</strong></h4>
 
-    {% if despesas|count > 0 %}
-      <a href="/relatorio/{{ ano }}/{{ mes }}" 
-         class="btn btn-primary btn-lg botao-esquerda"
-         type="submit" id="relatorio">Relatório</a>
-    {% endif %}
+  <a type="submit" id="novadespesa" 
+     class="btn btn-primary btn-lg botao-direita"
+     href="/despesas/nova">Nova despesa</a>
+
+  {% if despesas|count > 0 %}
+    <a href="/relatorio/{{ ano }}/{{ mes }}" 
+      class="btn btn-primary btn-lg botao-esquerda"
+      type="submit" id="relatorio">Relatório</a>
+  {% endif %}
+
+  <div class="modal fade" id="excluir_despesa" tabindex="-1" role="dialog" aria-labelledby="Excluir despesa" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Excluir despesa</h4>
+        </div>
+        <div class="modal-body">
+          <h3>Tem certeza que quer excluir a despesa abaixo?</h3>
+	  <div id="despesa_a_excluir" class="despesa">
+            <span class="valor direita"></span>
+            <img src="{{ g.usuario.get_image_url() }}"></img>
+            <span class="data"></span>
+            <p class="descricao"></p>
+	  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+          <button id="confirmar_exclusao" type="button" class="btn btn-primary">Sim, pode excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static', filename='coffee/despesas.js') }}"></script>
 {% endblock %}

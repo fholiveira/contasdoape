@@ -34,6 +34,16 @@ def nova_despesa():
 
     return redirect(url_for('listar_despesas'))
 
+@app.route('/despesas/excluir/<id>', methods=['POST'])
+@login_required
+def excluir_despesa(id):
+    ape = Condominio(current_user).obter_ape()
+
+    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(datetime.now())
+    despesas = mes_fiscal.remover_despesa(current_user, id)
+    
+    return 'Ok', 200
+
 @app.route('/despesas', methods=['GET'])
 @login_required
 def listar_despesas():

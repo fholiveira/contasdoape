@@ -1,9 +1,10 @@
-from mongoengine import Document, EmbeddedDocument, StringField
+from mongoengine import Document, EmbeddedDocument, StringField, ObjectIdField
 from mongoengine import ReferenceField, FloatField, DateTimeField
 from contasdoape.models.Usuario import Usuario
 from datetime import datetime
 
 class Despesa(EmbeddedDocument):
+    id = ObjectIdField(required = True)
     autor = ReferenceField(Usuario)
     valor = FloatField(required = True)
     data = DateTimeField(required = True)
@@ -18,7 +19,7 @@ class Despesa(EmbeddedDocument):
             
         if valor <= 0: 
             raise ValueError('valor')
-        
+       
         self.autor = autor
         self.valor = valor
         self.data = data
