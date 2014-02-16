@@ -21,8 +21,6 @@ class MesFiscal():
                        despesa.data <= self.data_fim]
 
     def remover_despesa(self, usuario, id_despesa):
-        print(id_despesa)
-        print([d.id for d in self.ape.despesas])
         despesa = next(d for d in self.ape.despesas if str(d.id) == id_despesa)
         
         if usuario.id != despesa.autor.id:
@@ -49,13 +47,3 @@ class MesFiscal():
                         if usuario.id == autor.id )
 
         return { autor : list(despesas) for autor, despesas in despesas_por_autor }
-
-    def obter_sumario(self):
-        autores = self.gastos_por_pessoa()
-
-        sumario = { 'nome' : self.nome_do_mes(),
-                    'total' : self.calcular_saldo() }
-
-        sumario.update(autores)
-
-        return sumario
