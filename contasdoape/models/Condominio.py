@@ -1,5 +1,4 @@
 from contasdoape.models.Ape import Ape
-from contasdoape.models.Usuario import Usuario
 
 class Condominio:
     def __init__(self, usuario):
@@ -26,6 +25,6 @@ class Condominio:
 
     def aceitar_convite(self):
         ape = self.obter_ape()
-        ape.membros.append(Usuario.objects(id=self.usuario.id).first())
+        ape.membros.append(self.usuario)
         ape.convidados.remove(self.usuario.facebook_id)
         ape.save()
