@@ -22,7 +22,9 @@ class Ape(Document):
         self.save()
 
     def adicionar_convidados(self, ids_convidados):
-        ids = [fb_id for fb_id in ids_convidados if fb_id]
+        ids = [fb_id for fb_id in ids_convidados 
+                if fb_id and fb_id not in self.convidados]
+        
         self.convidados.extend(ids)
         self.save()
     
