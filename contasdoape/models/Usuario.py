@@ -6,6 +6,13 @@ class Usuario(Document):
 
     def __init__(self, facebook_id, nome,  *args, **kwargs):
         Document.__init__(self, *args, **kwargs)
+
+        if not nome: 
+            raise ValueError('nome')
+
+        if not facebook_id:
+            raise ValueError('facebook_id')
+
         self.nome = nome
         self.facebook_id = facebook_id
 
