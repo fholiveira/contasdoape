@@ -11,7 +11,7 @@
 
   <ul class="lista-despesas">
     {% for despesa in despesas %}
-    <li class="despesa" data-id="{{ despesa.id }}">
+      <li class="despesa" data-id="{{ despesa.id }}">
         <span class="direita">
           <span class="valor">{{ 'R$ %.2f' % despesa.valor }}</span>
           {% if despesa.autor.id == g.usuario.id %}
@@ -28,13 +28,13 @@
   <h4 class="pull-right total">Total: <strong>R$ {{ '%.2f' % total }}</strong></h4>
 
   <a type="submit" id="novadespesa" 
-     class="btn btn-primary btn-lg botao-direita"
-     href="/despesas/nova">Nova despesa</a>
+    class="btn btn-primary btn-lg botao-direita"
+    href="/despesas/nova">Nova despesa</a>
 
   {% if despesas|count > 0 %}
     <a href="/relatorio/{{ ano }}/{{ mes }}" 
-      class="btn btn-primary btn-lg botao-esquerda"
-      type="submit" id="relatorio">Relatório</a>
+       class="btn btn-primary btn-lg botao-esquerda"
+       type="submit" id="relatorio">Relatório</a>
   {% endif %}
 
   <div class="modal fade" id="excluir_despesa" tabindex="-1" role="dialog" aria-labelledby="Excluir despesa" aria-hidden="true">
@@ -46,12 +46,12 @@
         </div>
         <div class="modal-body">
           <h3>Tem certeza que quer excluir a despesa abaixo?</h3>
-	  <div id="despesa_a_excluir" class="despesa">
+          <div id="despesa_a_excluir" class="despesa">
             <span class="valor direita"></span>
             <img src="{{ g.usuario.get_image_url() }}"></img>
             <span class="data"></span>
             <p class="descricao"></p>
-	  </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
@@ -63,5 +63,5 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="{{ url_for('static', filename='coffee/despesas.js') }}"></script>
+  <script src="{{ url_for('static', filename='coffee/despesas.js') }}"></script>
 {% endblock %}

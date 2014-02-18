@@ -1,38 +1,38 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link href="{{ url_for('static', filename='css/dividir-ape.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/dividir-ape.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block menu %}
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand">Contas do apê</a>
-        </div>
-    </nav>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand">Contas do apê</a>
+    </div>
+  </nav>
 {% endblock %}
 
 {% block content %}
-    <h1>Bem vindo, {{ g.usuario.nome }}!</h1>
+  <h1>Bem vindo, {{ g.usuario.nome }}!</h1>
 
-    <section class="texto-ajuda">
-        <p>Olhá só que legal, tem um pessoal que já te convidou pra dividir o apê com eles:</p>
+  <section class="texto-ajuda">
+    <p>Olhá só que legal, tem um pessoal que já te convidou pra dividir o apê com eles:</p>
 
-        <ul class="patota">
-            {% for usuario in usuarios %}
-                <li>
-                    <img src="{{ usuario.get_image_url() }}" alt="{{ usuario.nome }}">
-                    <span>{{ usuario.nome }}</span>
-                </li>
-            {% endfor %}
-        </ul>
+    <ul class="patota">
+      {% for usuario in usuarios %}
+        <li>
+          <img src="{{ usuario.get_image_url() }}" alt="{{ usuario.nome }}">
+          <span>{{ usuario.nome }}</span>
+        </li>
+      {% endfor %}
+    </ul>
 
-        <p>E aí, vai querer entrar na patota?</p>
-    </section>
+    <p>E aí, vai querer entrar na patota?</p>
+  </section>
 
-    <form action="/aceitar-convite" method="post">
-        <button id="dividir_ape" type="submit" class="btn btn-lg btn-primary botao-esquerda">Ok, vou entrar na divisão</button>
-    </form>
+  <form action="/aceitar-convite" method="post">
+    <button id="dividir_ape" type="submit" class="btn btn-lg btn-primary botao-esquerda">Ok, vou entrar na divisão</button>
+  </form>
 
-    <a id="criar_ape" href="/criar-ape" class="btn btn-lg btn-primary botao-direita">Não... acho melhor criar meu próprio apê</a>
+  <a id="criar_ape" href="/criar-ape" class="btn btn-lg btn-primary botao-direita">Não... acho melhor criar meu próprio apê</a>
 {% endblock %}

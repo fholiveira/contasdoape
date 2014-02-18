@@ -1,32 +1,32 @@
 {% extends "logado.html" %}
 
 {% block css %}
-    <link href="{{ url_for('static', filename='css/relatorio.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/relatorio.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Relatório</h1>
+  <h1 class="text-center">Relatório</h1>
 
-    <h4 class="text-center">{{ nome_mes }} de {{ ano }}</h4>
-    
-    {% if contas|length > 0 %}
-        <section class="devedores">
-            <h3 class="titulo">{{ 'Pessoas para quem eu devo' if devedor else 'Pessoas que devem pra mim' }}</h3>
-            <ul class="devedores">
-                {% for amigo, despesa in contas.items() %}
-                    <li>
-                        <img src="{{ amigo.get_image_url() }}" alt="{{ amigo.nome }}">
-			<div class="despesas">
-			    <p>Gastou: <strong>{{ 'R$ %.2f' % despesa }}</strong></p>
-			    {% if devedor %}
-                                <p>Eu devo: <strong>{{ 'R$ %.2f' % (despesa - valor_medio) }}</strong></p>
-			    {% else %}
-                                <p>Me deve: <strong>{{ 'R$ %.2f' % (valor_medio - despesa) }}</strong></p>
-			    {% endif %}
-			</div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+  <h4 class="text-center">{{ nome_mes }} de {{ ano }}</h4>
+
+  {% if contas|length > 0 %}
+    <section class="devedores">
+      <h3 class="titulo">{{ 'Pessoas para quem eu devo' if devedor else 'Pessoas que devem pra mim' }}</h3>
+      <ul class="devedores">
+        {% for amigo, despesa in contas.items() %}
+          <li>
+            <img src="{{ amigo.get_image_url() }}" alt="{{ amigo.nome }}">
+            <div class="despesas">
+              <p>Gastou: <strong>{{ 'R$ %.2f' % despesa }}</strong></p>
+              {% if devedor %}
+                <p>Eu devo: <strong>{{ 'R$ %.2f' % (despesa - valor_medio) }}</strong></p>
+              {% else %}
+                <p>Me deve: <strong>{{ 'R$ %.2f' % (valor_medio - despesa) }}</strong></p>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
 {% endblock %}
