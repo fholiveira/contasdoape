@@ -18,7 +18,7 @@ class Despesas
     do window.location.reload
 
   _questionarExclusao: (evento, dados) =>
-    despesa = $($(evento.target).parents('li'))
+    despesa = $($(evento.target).parents 'li')
 
     @despesaAExcluir.data 'id', despesa.data 'id'
 
@@ -26,7 +26,7 @@ class Despesas
     @_copiar despesa, @despesaAExcluir, '.data'
     @_copiar despesa, @despesaAExcluir, '.descricao'
 
-    @modal.modal()
+    do @modal.modal
 
   _copiar: (origem, destino, selector) ->
     destino.find(selector).text origem.find(selector).text()

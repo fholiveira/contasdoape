@@ -1,51 +1,46 @@
 class FacebookFriendPicker
   constructor: (botaosalvar) ->
     @botaosalvar = botaosalvar
-        
-    @init()
+    do @init
 
   init: ->
     $(@botaosalvar).click @salvarLista
     $('#fb-friendlist').on 'afterCreateToken', @afterCreateToken
-    @loadFriendList()
+    do @loadFriendList
 
   afterCreateToken: (dados) =>
     if not isFinite(dados.token.value) or dados.token.value == dados.token.label
       $('#fb-friendlist').data('bs.tokenfield').$input.val ''
-      $(dados.relatedTarget).remove()
+      do $(dados.relatedTarget).remove
 
   salvarLista: (e) ->
-    e.preventDefault()
+    do e.preventDefault
     
-    $.ajax({
+    $.ajax
       type: "POST"
       url: "/salvar-amigos"
       success: -> window.location.href = '/'
       contentType: "application/json; charset=utf-8"
-      data: JSON.stringify($('#fb-friendlist').tokenfield('getTokens'))
-    })
+      data: JSON.stringify($('#fb-friendlist').tokenfield 'getTokens')
 
   defineTokens: (friends) ->
-    $('#fb-friendlist').tokenfield({
+    $('#fb-friendlist').tokenfield
       allowDuplicates: false
-      typeahead: {
+      typeahead:
         valueKey: 'label'
         local: friends
         name: 'Friends'
-      }
-    })
 
   loadFriendList: ->
     friends = []
    
     FB.api '/me/friends/?fields=name', (response) =>
       for friend, i in response.data
-        friends.push({
+        friends.push
           value: friend.id
           label: friend.name
-        })
     
-      @defineTokens(friends)
+      do @defineTokens friends
 
 window.fbAsyncInit = ->
   FB.init
