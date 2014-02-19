@@ -14,14 +14,10 @@ def relatorio(ano, mes):
     tesoureiro = Tesoureiro(ape)
     mes_fiscal = tesoureiro.obter_mes_fiscal(datetime(int(ano), int(mes), 1))
 
-    divida = tesoureiro.calcular_divida(mes_fiscal, current_user) 
+    relatorio = tesoureiro.gerar_relatorio(mes_fiscal, current_user) 
 
     return render_template('relatorio.html',
-                           valor_gasto=divida.valor_gasto_pelo_usuario(),
-                           valor_medio=divida.valor_medio(),
-                           valor_total=divida.valor_total(),
-                           contas=divida.divida_relativa(),
-                           devedor=divida.usuario_esta_devendo(),
+                           relatorio=relatorio,
                            nome_mes=mes_fiscal.nome_do_mes(),
                            ano=ano,
                            mes=mes)

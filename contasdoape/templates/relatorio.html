@@ -9,19 +9,21 @@
 
   <h4 class="text-center">{{ nome_mes }} de {{ ano }}</h4>
 
-  {% if contas|length > 0 %}
+  {% set devedores = relatorio.divida_relativa() %}
+
+  {% if devedores|length > 0 %}
     <section class="devedores">
-      <h3 class="titulo">{{ 'Pessoas para quem eu devo' if devedor else 'Pessoas que devem pra mim' }}</h3>
+      <h3 class="titulo">{{ 'Pessoas para quem eu devo' if relatorio.usuario_esta_devendo() else 'Pessoas que devem pra mim' }}</h3>
       <ul class="devedores">
-        {% for amigo, despesa in contas.items() %}
+        {% for amigo, divida in devedores.items() %}
           <li>
             <img src="{{ amigo.get_image_url() }}" alt="{{ amigo.nome }}">
             <div class="despesas">
-              <p>Gastou: <strong>{{ 'R$ %.2f' % despesa }}</strong></p>
-              {% if devedor %}
-                <p>Eu devo: <strong>{{ 'R$ %.2f' % (despesa - valor_medio) }}</strong></p>
+              <p>Gastou: <strong>{{ 'R$ %.2f' % divida.total_gasto }}</strong></p>
+              {% if relatorio.usuario_esta_devendo() %}
+                <p>Eu devo: <strong>{{ 'R$ %.2f' % divida.saldo }}</strong></p>
               {% else %}
-                <p>Me deve: <strong>{{ 'R$ %.2f' % (valor_medio - despesa) }}</strong></p>
+                <p>Me deve: <strong>{{ 'R$ %.2f' % divida.saldo }}</strong></p>
               {% endif %}
             </div>
           </li>

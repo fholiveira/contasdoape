@@ -21,5 +21,5 @@ class Tesoureiro():
         meses = range(1, 13)
         return [self.obter_mes_fiscal(data.replace(month = mes)) for mes in meses]
 
-    def calcular_divida(self, mes_fiscal, usuario):
+    def gerar_relatorio(self, mes_fiscal, usuario): 
         return Relatorio(mes_fiscal.obter_despesas(), usuario)
