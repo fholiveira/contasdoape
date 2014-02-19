@@ -1,1 +1,1 @@
-nosetests testes/ && behave features/
+nosetests --with-yanc testes/ && behave features/
