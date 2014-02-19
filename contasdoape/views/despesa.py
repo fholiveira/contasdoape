@@ -44,23 +44,23 @@ def excluir_despesa(id):
     
     return 'Ok', 200
 
-@app.route('/despesas', methods=['GET'])
+@app.route('/despesas', defaults={'ano': None, 'mes': None}, methods=['GET'])
+@app.route('/despesas/<int:ano>/<int:mes>', methods=['GET'])
 @login_required
-def listar_despesas():
-    ano = request.args.get('ano') or datetime.now().year
-    mes = request.args.get('mes') or datetime.now().month
+def listar_despesas(ano, mes):
+    data = datetime(year=ano if ano else datetime.now().year,
+                    month=mes if mes else datetime.now().month,
+                    day=1)
 
     ape = Condominio(current_user).obter_ape()
-
-    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(datetime(year=int(ano), month=int(mes), day=1))
+    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(data)
     despesas = mes_fiscal.listar_despesas()
 
     return render_template('despesas.html',
-                           ano=ano,
-                           mes=mes,
-                           usuario = current_user,
-                           despesas = despesas, 
-                           data_inicio = mes_fiscal.data_inicio, 
-                           data_fim = mes_fiscal.data_fim,
-                           titulo = mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),
-                           total = mes_fiscal.calcular_saldo())
+                           ano=data.year,
+                           mes=data.month,
+                           despesas=despesas, 
+                           data_inicio=mes_fiscal.data_inicio, 
+                           data_fim=mes_fiscal.data_fim,
+                           titulo=mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),
+                           total=mes_fiscal.calcular_saldo())
