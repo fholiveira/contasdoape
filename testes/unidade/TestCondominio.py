@@ -14,8 +14,10 @@ class TestCondominio(TestCase):
     def deve_incluir_usuario_como_membro_ao_aceitar_o_convite(self):
         usuario = Usuario(1, 'joão')
         with patch('contasdoape.models.Ape.Ape.save') as objeto:
-            ape = Condominio(usuario).aceitar_convite()
-            self.assertIn(usuario, ape.membros)
+            with patch('contasdoape.models.ControleDeAcesso.ControleDeAcesso.carregar_usuario') as objeto2:
+                objeto2.return_value = usuario
+                ape = Condominio(usuario).aceitar_convite()
+                self.assertIn(usuario, ape.membros)
             
     def deve_excluir_usuario_da_lista_de_convidados_ao_aceitar_o_convite(self):
         usuario = Usuario(1, 'joão')

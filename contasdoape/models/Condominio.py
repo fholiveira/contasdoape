@@ -1,3 +1,4 @@
+from contasdoape.models.ControleDeAcesso import ControleDeAcesso
 from contasdoape.models.Ape import Ape
 
 class Condominio:
@@ -25,6 +26,6 @@ class Condominio:
 
     def aceitar_convite(self):
         ape = self.obter_ape()
-        ape.membros.append(self.usuario)
+        ape.membros.append(ControleDeAcesso().carregar_usuario(self.usuario.facebook_id))
         ape.convidados.remove(self.usuario.facebook_id)
         ape.save()
