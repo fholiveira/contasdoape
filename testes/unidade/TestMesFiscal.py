@@ -11,8 +11,8 @@ class TestMesfiscal(TestCase):
 
     def setUp(self):
         self.ape = Ape()
-        self.usuario = Usuario(1, 'jose.silva', 'José da Silva', id = ObjectId())
-        self.usuario2 = Usuario(2, 'pedro.pereira', 'Pedro Pereira', id = ObjectId())
+        self.usuario = Usuario(1, 'José da Silva', id = ObjectId())
+        self.usuario2 = Usuario(2, 'Pedro Pereira', id = ObjectId())
         self.ape.despesas = [Despesa(self.usuario, 20, datetime(2013, 10, 15), id = ObjectId()), 
                              Despesa(self.usuario, 30, datetime(2013, 10, 16), id = ObjectId()),
                              Despesa(self.usuario2, 80, datetime(2013, 10, 17), id = ObjectId()),
@@ -70,7 +70,7 @@ class TestMesfiscal(TestCase):
             self.mes_fiscal.remover_despesa(self.usuario2, id)
 
     def test_deve_excluir_despesa(self):
-        usuario = Usuario(1, 'mario.andrade', 'Mário de Andrade', id = ObjectId())
+        usuario = Usuario(1, 'Mário de Andrade', id = ObjectId())
         despesa = Despesa(usuario, 10, datetime.now(), id = ObjectId())
         
         self.ape.despesas.append(despesa)

@@ -1,5 +1,5 @@
 from contasdoape.models.MesFiscal import MesFiscal
-from contasdoape.models.Divida import Divida
+from contasdoape.models.Relatorio import Relatorio
 from calendar import monthrange
 from datetime import datetime
 from itertools import groupby
@@ -22,4 +22,4 @@ class Tesoureiro():
         return [self.obter_mes_fiscal(data.replace(month = mes)) for mes in meses]
 
     def calcular_divida(self, mes_fiscal, usuario):
-        return Divida(mes_fiscal.obter_despesas(), usuario)
+        return Relatorio(mes_fiscal.obter_despesas(), usuario)

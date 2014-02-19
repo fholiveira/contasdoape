@@ -17,11 +17,11 @@ def relatorio(ano, mes):
     divida = tesoureiro.calcular_divida(mes_fiscal, current_user) 
 
     return render_template('relatorio.html',
-                           valor_gasto=divida.valor_gasto(),
+                           valor_gasto=divida.valor_gasto_pelo_usuario(),
                            valor_medio=divida.valor_medio(),
                            valor_total=divida.valor_total(),
                            contas=divida.divida_relativa(),
-                           devedor=divida.valor_gasto() < divida.valor_medio(),
+                           devedor=divida.usuario_esta_devendo(),
                            nome_mes=mes_fiscal.nome_do_mes(),
                            ano=ano,
                            mes=mes)
