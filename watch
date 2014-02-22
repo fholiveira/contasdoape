@@ -1,1 +1,2 @@
-node_modules/.bin/gulp $@ --require coffee-script/register
+DIR=`dirname $0`
+${DIR}/node_modules/.bin/gulp $@ --require coffee-script/register
