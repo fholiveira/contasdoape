@@ -2,8 +2,8 @@
 
 *~
 
-#Virtualenv
-site/
+#Python Virtual Environments
+.web/
 .venv
 
 #node
