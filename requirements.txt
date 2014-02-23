@@ -1,6 +1,6 @@
 Flask==0.10.1
-Flask-Environments==0.1
 Flask-Login==0.2.7
+PyYAML==3.10
 gunicorn==18.0
 mongoengine==0.8.6
 rauth==0.6.2
