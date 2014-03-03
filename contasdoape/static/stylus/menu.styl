@@ -1,0 +1,68 @@
+.navbar
+  border-radius: 0
+
+.navbar-default
+  background-color: #1c2533
+  border-color: #192e56
+
+  .navbar-brand
+    color: #ecf0f1
+
+    &:hover
+    &:focus
+      color: #ecf0f1
+ 
+  .navbar-nav
+    & > li > a
+      color: #ecf0f1
+
+      &:hover,
+      &:focus 
+        color: #ecf0f1
+
+    & > .active > a, 
+    & > .active > a:hover, 
+    & > .active > a:focus 
+      color: #ecf0f1
+      background-color: #192e56
+
+    & > .open > a, 
+    & > .open > a:hover, 
+    & > .open > a:focus 
+      color: #ecf0f1
+      background-color: #192e56
+
+    & > .dropdown 
+      & > a .caret 
+        border-top-color: #ecf0f1
+        border-bottom-color: #ecf0f1
+
+      & > a:hover .caret,
+      & > a:focus .caret 
+        border-top-color: #ecf0f1
+        border-bottom-color: #ecf0f1
+
+    & > .open > a .caret, 
+    & > .open > a:hover .caret, 
+    & > .open > a:focus .caret 
+      border-top-color: #ecf0f1
+      border-bottom-color: #ecf0f1
+
+  .navbar-toggle 
+    border-color: #192e56
+
+    &:hover,
+    &:focus 
+      background-color: #192e56
+
+    .icon-bar 
+      background-color: #ecf0f1
+
+@media (max-width: 767px) 
+  .navbar-default .navbar-nav .open .dropdown-menu
+    & > li > a 
+      color: #ecf0f1
+
+    & > li > a:hover,
+    & > li > a:focus 
+      color: #ecf0f1

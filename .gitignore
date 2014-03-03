@@ -13,8 +13,8 @@ node_modules/
 contasdoape/config/secret.yaml
 
 #CoffeeScript
-contasdoape/static/coffee/*.js
-contasdoape/static/coffee/*.map
+contasdoape/static/css/
+contasdoape/static/js/
 
 # C extensions
 *.so

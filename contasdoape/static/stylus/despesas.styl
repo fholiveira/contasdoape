@@ -1,0 +1,89 @@
+ul.lista-despesas
+  list-style-type: none; 
+  padding: .5em;
+  clear: both;
+  margin-bottom: 0;
+
+.despesa
+  background-color: #FEFEFE;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: .5em 0;
+  min-height: 50px;
+
+  & > p,
+  & > img
+    float: left;
+
+  & > span
+    font-size: 1.2em;
+    margin: .8em;
+    float: left;
+
+  & > span.direita
+    float: right;
+
+  & > span.direita a
+    cursor: pointer;
+    margin-left: .4em;
+
+  & > p
+    margin: .7em;
+    font-size: 1em;
+
+.modal .despesa
+  background-color: #EEE;
+
+.total
+  font-size: 1.4em;
+  margin: 7px;
+  margin-bottom: 1em;
+
+h3
+  font-size: 1.5em;
+  margin-bottom: .7em;
+
+a.btn
+  margin: 7px;
+  width: 100%;
+
+.botao-direita
+  clear: both;
+
+
+@media(min-width: 500px)
+  .botao-esquerda
+    float: left;
+
+  .botao-direita
+    float: right; 
+
+  a.btn
+    width: 150px;
+
+@media(min-width: 768px)
+  .despesa > span
+    font-size: 1.2em;
+
+  .despesa > p
+    margin: .6em;
+  font-size: 1.1em;
+
+  h3
+    font-size: 1.8em;
+    margin-bottom: .5em;
+
+@media(min-width: 992px)
+  .despesa > span
+    font-size: 1.5em;
+    margin: .5em;
+
+  .despesa > p
+    margindd: .5em;
+    font-size: 1.3em;
+
+  #wrap div.container
+    width: 992px;
+
+  .total
+    font-size: 1.5em;
