@@ -19,7 +19,7 @@ gulp.task 'compile stylus', ->
     .pipe gulp.dest './contasdoape/static/css'
 
 gulp.task 'watch', ->
-  gulp.watch './contasdoape/static/stylus/*.styl', ['compile stylus']
+  gulp.watch './contasdoape/static/stylus/**/*.styl', ['compile stylus']
   gulp.watch './contasdoape/static/coffee/*.coffee', ['compile coffee']
 
 gulp.task 'deploy', ->

@@ -12,6 +12,12 @@ def criar_ape():
 
     return render_template('criar-ape.jinja')
 
+@app.route("/ape")
+@login_required
+def ape():
+    ape = Condominio(current_user).obter_ape()
+    return render_template('ape.jinja', ape=ape)    
+
 @app.route("/dividir-ape")
 @login_required
 def dividir_ape():

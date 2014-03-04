@@ -20,9 +20,9 @@
 
     <ul class="patota">
       {% for usuario in usuarios %}
-        <li>
+        <li class="pessoa">
           <img src="{{ usuario.get_image_url() }}" alt="{{ usuario.nome }}">
-          <span>{{ usuario.nome }}</span>
+          <p>{{ usuario.nome }}</p>
         </li>
       {% endfor %}
     </ul>

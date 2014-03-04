@@ -1,22 +1,7 @@
-ul
-  list-style-type: none  
-  margin: 1em  
-  overflow: overlay  
-  padding: 0  
+@require 'modulos/lista-pessoas'
 
-  li
-    float: left  
-    background-color: #FEFEFE  
-    border-radius: 5px  
-    overflow: hidden  
-    margin: .5em  
-
-  li > span  
-    font-size: 1.5em  
-    margin: 0 .5em  
-
-  & + p  
-    clear: both  
+.patota
+  @extends ul.lista-pessoas
 
 .btn  
   margin: 7px  
@@ -30,4 +15,4 @@ ul
     float: right   
 
   .btn  
-    width: 360px  
+    width: 360px

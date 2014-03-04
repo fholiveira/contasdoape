@@ -1,0 +1,39 @@
+{% extends "logado.jinja" %}
+
+{% block css %}
+  <link href="{{ url_for('static', filename='css/ape.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <h1>Informações sobre o apê</h1>
+
+  <section>
+    <h3>Moradores</h3>
+    <ul class="membros">
+      {% for membro in ape.membros %}
+        <li class="pessoa">
+          <img src="{{ membro.get_image_url() }}" alt="{{ membro.nome }}">
+          <p>{{ membro.nome }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+  
+  {% if ape.convidados|length > 0 %}
+    <section>
+      <h3>Convidados</h3>
+      <ul class="convidados">
+        {% for convidado in ape.convidados %}
+          <li class="pessoa" data-id="{{ convidado }}">
+            <img src="" alt="">
+            <p></p>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+{% endblock %}
+
+{% block javascript %}
+  <script src="{{ url_for('static', filename='js/ape.js') }}"></script>
+{% endblock %}
