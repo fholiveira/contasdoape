@@ -10,7 +10,7 @@ def criar_ape():
     if Condominio(current_user).tem_ape():
         redirect(url_for('index'))
 
-    return render_template('criar-ape.html')
+    return render_template('criar-ape.jinja')
 
 @app.route("/dividir-ape")
 @login_required
@@ -22,7 +22,7 @@ def dividir_ape():
     
     ape = condominio.obter_ape()
 
-    return render_template('dividir-ape.html', usuarios=list(ape.membros))
+    return render_template('dividir-ape.jinja', usuarios=list(ape.membros))
 
 @app.route("/aceitar-convite", methods=['POST'])
 @login_required
@@ -43,7 +43,7 @@ def convidar_amigos():
     if not condominio.tem_ape():
         condominio.criar_ape()
 
-    return render_template('convidar-amigos.html')
+    return render_template('convidar-amigos.jinja')
 
 @app.route('/salvar-amigos', methods=['POST'])
 @login_required

@@ -19,7 +19,7 @@ def index():
     if current_user.get_id():
         return redirect(url_for('listar_despesas')) 
 
-    return render_template('home.html')
+    return render_template('home.jinja')
 
 @app.route('/login')
 def login():

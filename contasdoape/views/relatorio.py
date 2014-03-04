@@ -19,7 +19,7 @@ def relatorio(ano, mes):
     mes_fiscal = tesoureiro.obter_mes_fiscal(data)
     relatorio = tesoureiro.gerar_relatorio(mes_fiscal, current_user) 
 
-    return render_template('relatorio.html',
+    return render_template('relatorio.jinja',
                            ano=data.year,
                            mes=data.month,
                            relatorio=relatorio,

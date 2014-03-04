@@ -10,7 +10,7 @@ from datetime import datetime
 @app.route('/despesas/nova', methods=['GET'])
 @login_required
 def home():
-    return render_template('nova-despesa.html', usuario = current_user)
+    return render_template('nova-despesa.jinja', usuario = current_user)
 
 @app.route('/despesas/nova', methods=['POST'])
 @login_required
@@ -56,7 +56,7 @@ def listar_despesas(ano, mes):
     mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(data)
     despesas = mes_fiscal.listar_despesas()
 
-    return render_template('despesas.html',
+    return render_template('despesas.jinja',
                            ano=data.year,
                            mes=data.month,
                            despesas=despesas, 

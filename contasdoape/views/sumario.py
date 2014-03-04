@@ -12,6 +12,6 @@ def sumario(ano):
     ape = Condominio(current_user).obter_ape()
     meses = Tesoureiro(ape).listar_meses(ano if ano else datetime.now().year)
     
-    return render_template('sumario.html',
+    return render_template('sumario.jinja',
                            ano=ano if ano else datetime.now().year,
                            meses=[(mes.nome_do_mes(), mes.calcular_saldo()) for mes in meses])
