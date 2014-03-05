@@ -1,13 +1,14 @@
 from mongoengine import Document, StringField, ReferenceField, ObjectIdField
 
-class Usuario(Document):
-    nome = StringField(required = True)
-    facebook_id = StringField(required = True)
 
-    def __init__(self, facebook_id, nome,  *args, **kwargs):
+class Usuario(Document):
+    nome = StringField(required=True)
+    facebook_id = StringField(required=True)
+
+    def __init__(self, facebook_id, nome, *args, **kwargs):
         Document.__init__(self, *args, **kwargs)
 
-        if not nome: 
+        if not nome:
             raise ValueError('nome')
 
         if not facebook_id:

@@ -7,23 +7,24 @@ from unittest.mock import patch
 from unittest import TestCase
 from datetime import datetime
 
+
 class TestMesfiscal(TestCase):
 
     def setUp(self):
         self.ape = Ape()
-        self.usuario = Usuario(1, 'José da Silva', id = ObjectId())
-        self.usuario2 = Usuario(2, 'Pedro Pereira', id = ObjectId())
-        self.ape.despesas = [Despesa(self.usuario, 20, datetime(2013, 10, 15), id = ObjectId()), 
-                             Despesa(self.usuario, 30, datetime(2013, 10, 16), id = ObjectId()),
-                             Despesa(self.usuario2, 80, datetime(2013, 10, 17), id = ObjectId()),
-                             Despesa(self.usuario, 50, datetime(2013, 12, 16), id = ObjectId())]
+        self.usuario = Usuario(1, 'José da Silva', id=ObjectId())
+        self.usuario2 = Usuario(2, 'Pedro Pereira', id=ObjectId())
+        self.ape.despesas = [Despesa(self.usuario, 20, datetime(2013, 10, 15), id=ObjectId()),
+                             Despesa(self.usuario, 30, datetime(2013, 10, 16), id=ObjectId()),
+                             Despesa(self.usuario2, 80, datetime(2013, 10, 17), id=ObjectId()),
+                             Despesa(self.usuario, 50, datetime(2013, 12, 16), id=ObjectId())]
 
-        self.mes_fiscal = MesFiscal(self.ape, 
-                                    datetime(2013,10,10), 
-                                    datetime(2013,11,10))
+        self.mes_fiscal = MesFiscal(self.ape,
+                                    datetime(2013, 10, 10),
+                                    datetime(2013, 11, 10))
 
-        self.ape.save = lambda: None 
-    
+        self.ape.save = lambda: None
+
     def test_deve_conter_data_inicio(self):
         self.assertTrue(hasattr(self.mes_fiscal, "data_inicio"))
 
@@ -38,7 +39,7 @@ class TestMesfiscal(TestCase):
 
     def test_nao_deve_existir_sem_data_fim_valida(self):
         with self.assertRaises(ValueError) as error:
-            MesFiscal(self.ape, datetime(2013, 11, 10), None) 
+            MesFiscal(self.ape, datetime(2013, 11, 10), None)
 
         self.assertEqual("data_fim", str(error.exception))
 
@@ -70,9 +71,9 @@ class TestMesfiscal(TestCase):
             self.mes_fiscal.remover_despesa(self.usuario2, id)
 
     def test_deve_excluir_despesa(self):
-        usuario = Usuario(1, 'Mário de Andrade', id = ObjectId())
-        despesa = Despesa(usuario, 10, datetime.now(), id = ObjectId())
-        
+        usuario = Usuario(1, 'Mário de Andrade', id=ObjectId())
+        despesa = Despesa(usuario, 10, datetime.now(), id=ObjectId())
+
         self.ape.despesas.append(despesa)
 
         self.mes_fiscal.remover_despesa(usuario, str(despesa.id))

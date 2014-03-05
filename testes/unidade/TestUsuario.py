@@ -1,6 +1,7 @@
 from contasdoape.models.Usuario import Usuario
 from unittest import TestCase
 
+
 class TestDespesa(TestCase):
 
     def test_deve_conter_nome(self):

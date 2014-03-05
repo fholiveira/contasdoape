@@ -3,11 +3,12 @@ from contasdoape.models.Usuario import Usuario
 from unittest import TestCase
 from datetime import datetime
 
+
 class TestDespesa(TestCase):
 
     def setUp(self):
         self.despesa = Despesa(Usuario(1, 'José'), 10.50, datetime.now())
-    
+
     def test_deve_conter_descricao(self):
         self.assertTrue(hasattr(self.despesa, 'descricao'))
 

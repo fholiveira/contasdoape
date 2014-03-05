@@ -1,11 +1,11 @@
 from os import environ
 from sys import argv
 
+
 if len(argv) == 3 and argv[1] == '--env':
-    environ['CONTASDOAPE_ENV'] = argv[2].upper() 
+    environ['CONTASDOAPE_ENV'] = argv[2].upper()
 else:
     environ['CONTASDOAPE_ENV'] = 'DEVELOPMENT'
 
 from contasdoape.web import app
 app.run()
-

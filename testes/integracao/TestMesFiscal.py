@@ -7,8 +7,9 @@ from mongoengine import connect
 from unittest import TestCase
 from datetime import datetime
 
+
 class TestMesFiscal(TestCase):
-   
+
     @classmethod
     def setUpClass(cls):
         cls.conexao = connect('contasdoape-test')
@@ -22,10 +23,10 @@ class TestMesFiscal(TestCase):
         ape = Ape()
         ape.membros.append(usuario)
         ape.membros.append(usuario2)
-        ape.despesas = [Despesa(usuario, 20, datetime(2013, 10, 15), id = ObjectId()), 
-                        Despesa(usuario, 30, datetime(2013, 10, 16), id = ObjectId()),
-                        Despesa(usuario2, 80, datetime(2013, 10, 17), id = ObjectId()),
-                        Despesa(usuario, 50, datetime(2013, 12, 16), id = ObjectId())]
+        ape.despesas = [Despesa(usuario, 20, datetime(2013, 10, 15), id=ObjectId()),
+                        Despesa(usuario, 30, datetime(2013, 10, 16), id=ObjectId()),
+                        Despesa(usuario2, 80, datetime(2013, 10, 17), id=ObjectId()),
+                        Despesa(usuario, 50, datetime(2013, 12, 16), id=ObjectId())]
         ape.save()
 
         return ape
@@ -33,13 +34,12 @@ class TestMesFiscal(TestCase):
     def setUp(self):
         Usuario.objects().delete()
         Ape.objects.delete()
-        
-        self.ape = self._criar_ape()
-        self.mes_fiscal = MesFiscal(self.ape, 
-                                    datetime(2013,10,10), 
-                                    datetime(2013,11,10))
 
-    
+        self.ape = self._criar_ape()
+        self.mes_fiscal = MesFiscal(self.ape,
+                                    datetime(2013, 10, 10),
+                                    datetime(2013, 11, 10))
+
     def test_deve_excluir_despesa(self):
         despesa = self.ape.despesas[0]
         self.mes_fiscal.remover_despesa(self.ape.membros[0], str(despesa.id))
@@ -48,4 +48,4 @@ class TestMesFiscal(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-       cls.conexao.drop_database('contasdoape-test')
+        cls.conexao.drop_database('contasdoape-test')

@@ -5,7 +5,9 @@ from unittest.mock import patch, Mock
 from unittest import TestCase
 from datetime import datetime
 
+
 class TestApe(TestCase):
+
     def setUp(self):
         self.ape = Ape()
         self.ape.convidados = ['999', '888', '777']

@@ -3,8 +3,9 @@ from contasdoape.models.Usuario import Usuario
 from mongoengine import connect
 from unittest import TestCase
 
+
 class TestControleDeAcesso(TestCase):
-   
+
     @classmethod
     def setUpClass(cls):
         cls.conexao = connect('contasdoape-test')
@@ -32,4 +33,4 @@ class TestControleDeAcesso(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-       cls.conexao.drop_database('contasdoape-test')
+        cls.conexao.drop_database('contasdoape-test')

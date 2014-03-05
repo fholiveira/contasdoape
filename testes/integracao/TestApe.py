@@ -4,8 +4,9 @@ from contasdoape.models.Ape import Ape
 from contasdoape.models.Condominio import Condominio
 from contasdoape.models.ControleDeAcesso import ControleDeAcesso
 
+
 class TestApe(TestCase):
-   
+
     @classmethod
     def setUpClass(cls):
         cls.conexao = connect('contasdoape-test')
@@ -16,7 +17,7 @@ class TestApe(TestCase):
 
     def test_deve_convidar_amigos(self):
         ape = Condominio(self.usuario).criar_ape()
-        convidados = [ '111111', '222222' ]
+        convidados = ['111111', '222222']
 
         ape.adicionar_convidados(convidados)
 
@@ -25,4 +26,4 @@ class TestApe(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-       cls.conexao.drop_database('contasdoape-test')
+        cls.conexao.drop_database('contasdoape-test')

@@ -7,10 +7,12 @@ from contasdoape.models.Despesa import Despesa
 from contasdoape.web import app
 from datetime import datetime
 
+
 @app.route('/despesas/nova', methods=['GET'])
 @login_required
 def home():
-    return render_template('nova-despesa.jinja', usuario = current_user)
+    return render_template('nova-despesa.jinja', usuario=current_user)
+
 
 @app.route('/despesas/nova', methods=['POST'])
 @login_required
@@ -34,6 +36,7 @@ def nova_despesa():
 
     return redirect(url_for('listar_despesas'))
 
+
 @app.route('/despesas/excluir/<id>', methods=['POST'])
 @login_required
 def excluir_despesa(id):
@@ -41,8 +44,9 @@ def excluir_despesa(id):
 
     mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(datetime.now())
     despesas = mes_fiscal.remover_despesa(current_user, id)
-    
+
     return 'Ok', 200
+
 
 @app.route('/despesas', defaults={'ano': None, 'mes': None}, methods=['GET'])
 @app.route('/despesas/<int:ano>/<int:mes>', methods=['GET'])
@@ -59,8 +63,8 @@ def listar_despesas(ano, mes):
     return render_template('despesas.jinja',
                            ano=data.year,
                            mes=data.month,
-                           despesas=despesas, 
-                           data_inicio=mes_fiscal.data_inicio, 
+                           despesas=despesas,
+                           data_inicio=mes_fiscal.data_inicio,
                            data_fim=mes_fiscal.data_fim,
                            titulo=mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),
                            total=mes_fiscal.calcular_saldo())

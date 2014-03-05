@@ -15,13 +15,13 @@ if app.config.get('MONGO', None):
     connect(app.config['MONGO'])
 else:
     connect(app.config['MONGO_DATABASE'],
-        username=app.config['MONGO_USERNAME'],
-        password=app.config['MONGO_PASSWORD'],
-        host=app.config['MONGO_HOST'],
-        port=app.config['MONGO_PORT'])
+            username=app.config['MONGO_USERNAME'],
+            password=app.config['MONGO_PASSWORD'],
+            host=app.config['MONGO_HOST'],
+            port=app.config['MONGO_PORT'])
 
 from contasdoape.views import ape
 from contasdoape.views import login
-from contasdoape.views import sumario 
+from contasdoape.views import sumario
 from contasdoape.views import despesa
-from contasdoape.views import relatorio 
+from contasdoape.views import relatorio

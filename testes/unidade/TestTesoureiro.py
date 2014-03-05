@@ -3,7 +3,9 @@ from contasdoape.models.Ape import Ape
 from unittest import TestCase
 from datetime import datetime
 
+
 class TestDespesa(TestCase):
+
     def test_obter_mes_fiscal_deve_calcular_o_periodo_do_mes(self):
         mes = Tesoureiro(Ape()).obter_mes_fiscal(datetime(2013, 10, 19))
 

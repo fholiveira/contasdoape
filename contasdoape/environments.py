@@ -1,6 +1,7 @@
 from os import environ
 import yaml
 
+
 class Environments():
     def __init__(self, app=None, var_name=None, default_env=None):
         self.app = app
@@ -35,7 +36,7 @@ class Environments():
             arquivo = yaml.load(arquivo)
 
         try:
-            conf = [arquivo[name] for name in self._possible_names() 
+            conf = [arquivo[name] for name in self._possible_names()
                     if name in arquivo][0]
 
             for key, value in conf.items():

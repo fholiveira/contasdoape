@@ -5,13 +5,14 @@ from contasdoape.models.Despesa import Despesa
 from bson.objectid import ObjectId
 from datetime import datetime
 
+
 class Ape(Document):
     nome = StringField()
     convidados = ListField(StringField())
     membros = ListField(ReferenceField(Usuario))
-    data_criacao = DateTimeField(required = True)
+    data_criacao = DateTimeField(required=True)
     despesas = ListField(EmbeddedDocumentField(Despesa))
-    
+
     def __init__(self, *args, **kwargs):
         Document.__init__(self, *args, **kwargs)
         self.data_criacao = datetime.now()
@@ -22,12 +23,12 @@ class Ape(Document):
         self.save()
 
     def adicionar_convidados(self, ids_convidados):
-        ids = [fb_id for fb_id in ids_convidados 
-                if fb_id and fb_id not in self.convidados]
-        
+        ids = [fb_id for fb_id in ids_convidados
+               if fb_id and fb_id not in self.convidados]
+
         self.convidados.extend(ids)
         self.save()
-    
+
     def remover_despesa(self, despesa):
         self.despesas.remove(despesa)
         self.save()

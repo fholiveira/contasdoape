@@ -4,12 +4,13 @@ from contasdoape.models.Ape import Ape
 from mongoengine import connect
 from unittest import TestCase
 
+
 class TestCondominio(TestCase):
-   
+
     @classmethod
     def setUpClass(cls):
         cls.conexao = connect('contasdoape-test')
-    
+
     def setUp(self):
         Ape.objects.delete()
         Usuario.objects.delete()
@@ -63,7 +64,7 @@ class TestCondominio(TestCase):
         Condominio(self.usuario).aceitar_convite()
 
         self.assertIn(self.usuario, Ape.objects().first().membros)
-        
+
     def test_deve_remover_usuario_da_lista_de_convidados_ao_aceitar_o_convite(self):
         ape = Ape()
         ape.convidados.append('1234')
@@ -75,4 +76,4 @@ class TestCondominio(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-       cls.conexao.drop_database('contasdoape-test')
+        cls.conexao.drop_database('contasdoape-test')
