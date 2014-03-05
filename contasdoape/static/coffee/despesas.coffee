@@ -32,4 +32,6 @@ class Despesas
     destino.find(selector).text origem.find(selector).text()
 
 $(document).ready ->
-  new Despesas $('#excluir_despesa'), $('#confirmar_exclusao'), $('#despesa_a_excluir')
+  new Despesas $('#excluir_despesa'),
+    $('#confirmar_exclusao'),
+    $('#despesa_a_excluir')

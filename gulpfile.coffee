@@ -1,4 +1,5 @@
 autoprefixer = require 'gulp-autoprefixer'
+coffeelint = require 'gulp-coffeelint'
 minifyCSS = require 'gulp-minify-css'
 plumber = require 'gulp-plumber'
 coffee = require 'gulp-coffee'
@@ -10,7 +11,9 @@ gulp = require 'gulp'
 gulp.task 'compile coffee', ->
   gulp.src 'contasdoape/static/coffee/*.coffee'
     .pipe do plumber
-    .pipe(coffee bare: true)
+    .pipe do coffeelint
+    .pipe do coffeelint.reporter
+    .pipe coffee { bare: true }
     .pipe gulp.dest 'contasdoape/static/js'
 
 gulp.task 'compile stylus', ->
@@ -26,7 +29,8 @@ gulp.task 'watch', ->
 
 gulp.task 'deploy', ->
   gulp.src('contasdoape/static/coffee/*.coffee')
-    .pipe coffee(bare: true)
+    .pipe do coffeelint
+    .pipe coffee { bare: true }
     .pipe do uglify
     .pipe gulp.dest 'contasdoape/static/js'
 

@@ -8,14 +8,14 @@ class FacebookFriendPicker
     $('#fb-friendlist').on 'afterCreateToken', @afterCreateToken
     do @loadFriendList
 
-  afterCreateToken: (dados) =>
+  afterCreateToken: (dados) ->
     if not isFinite(dados.token.value) or dados.token.value == dados.token.label
       $('#fb-friendlist').data('bs.tokenfield').$input.val ''
       do $(dados.relatedTarget).remove
 
   salvarLista: (e) ->
     do e.preventDefault
-    
+
     $.ajax
       type: "POST"
       url: "/salvar-amigos"
@@ -33,13 +33,13 @@ class FacebookFriendPicker
 
   loadFriendList: ->
     friends = []
-   
+
     FB.api '/me/friends/?fields=name', (response) =>
       for friend, i in response.data
         friends.push
           value: friend.id
           label: friend.name
-    
+
       do @defineTokens friends
 
 window.fbAsyncInit = ->
