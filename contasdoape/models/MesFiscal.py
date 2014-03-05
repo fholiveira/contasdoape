@@ -16,9 +16,11 @@ class MesFiscal():
         self.ape = ape
 
     def listar_despesas(self):
-        return [despesa for despesa in self.ape.despesas
-                    if despesa.data >= self.data_inicio and 
-                       despesa.data <= self.data_fim]
+        despesas = [despesa for despesa in self.ape.despesas
+                        if despesa.data >= self.data_inicio and 
+                           despesa.data <= self.data_fim]
+
+        return sorted(despesas, key=lambda despesa : despesa.data)
 
     def remover_despesa(self, usuario, id_despesa):
         despesa = next(d for d in self.ape.despesas if str(d.id) == id_despesa)
