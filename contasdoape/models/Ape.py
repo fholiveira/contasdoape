@@ -1,5 +1,5 @@
-from mongoengine import Document, StringField, DateTimeField
 from mongoengine import ReferenceField, ListField, EmbeddedDocumentField
+from mongoengine import Document, StringField, DateTimeField, IntField
 from contasdoape.models.Usuario import Usuario
 from contasdoape.models.Despesa import Despesa
 from bson.objectid import ObjectId
@@ -12,6 +12,7 @@ class Ape(Document):
     membros = ListField(ReferenceField(Usuario))
     data_criacao = DateTimeField(required=True)
     despesas = ListField(EmbeddedDocumentField(Despesa))
+    dia_do_acerto = IntField(required=True, default=1)
 
     def __init__(self, *args, **kwargs):
         Document.__init__(self, *args, **kwargs)

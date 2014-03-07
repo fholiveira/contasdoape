@@ -16,6 +16,10 @@ class MesFiscal():
         self.data_inicio = data_inicio
         self.data_fim = data_fim
         self.ape = ape
+        
+    def numero(self):
+        data = self.data_fim if self.data_fim.day >= 15 else self.data_inicio
+        return (data.month, data.year)
 
     def listar_despesas(self):
         despesas = [despesa for despesa in self.ape.despesas
@@ -41,7 +45,8 @@ class MesFiscal():
                  5: 'Maio', 6: 'Junho', 7: 'Julho', 8: 'Agosto',
                  9: 'Setembro', 10: 'Outubro', 11: 'Novembro', 12: 'Dezembro'}
 
-        return meses[self.data_inicio.month]
+        mes, _ = self.numero()
+        return meses[mes]
 
     def obter_despesas(self, autor=None):
         despesas_agrupadas = groupby(self.listar_despesas(), lambda d: d.autor)

@@ -52,17 +52,15 @@ def excluir_despesa(id):
 @app.route('/despesas/<int:ano>/<int:mes>', methods=['GET'])
 @login_required
 def listar_despesas(ano, mes):
-    data = datetime(year=ano if ano else datetime.now().year,
-                    month=mes if mes else datetime.now().month,
-                    day=1)
-
     ape = Condominio(current_user).obter_ape()
-    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(data)
+    hoje = datetime.now()
+
+    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(mes or hoje.month, ano or hoje.year)
     despesas = mes_fiscal.listar_despesas()
 
     return render_template('despesas.jinja',
-                           ano=data.year,
-                           mes=data.month,
+                           ano=ano or hoje.year,
+                           mes=mes or hoje.month,
                            despesas=despesas,
                            data_inicio=mes_fiscal.data_inicio,
                            data_fim=mes_fiscal.data_fim,

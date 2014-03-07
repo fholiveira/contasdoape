@@ -15,4 +15,4 @@ def sumario(ano):
 
     return render_template('sumario.jinja',
                            ano=ano if ano else datetime.now().year,
-                           meses=[(mes.nome_do_mes(), mes.calcular_saldo()) for mes in meses])
+                           meses=meses)
