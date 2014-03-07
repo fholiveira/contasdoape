@@ -1,6 +1,8 @@
-from selenium import webdriver
+from ThreadedServer import ThreadedServer
 from mongoengine import connect
+from selenium import webdriver
 from usuarios import usuarios
+from os import environ
 
 
 def url(relative_url=''):
@@ -8,6 +10,12 @@ def url(relative_url=''):
 
 
 def before_all(context):
+    environ['CONTASDOAPE_ENV'] = 'TESTING'
+    from contasdoape.web import app
+
+    context.server = ThreadedServer(app, host='devhost.com', port=5005)
+    context.server.start()
+
     context.database = connect('contasdoape-test')
     context.usuarios = usuarios
     context.url = url
@@ -26,3 +34,7 @@ def after_feature(context, feature):
 
 def before_scenario(context, scenario):
     context.database.drop_database('contasdoape-test')
+
+
+def after_all(context):
+    context.server.stop()
