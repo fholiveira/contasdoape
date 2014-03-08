@@ -17,7 +17,7 @@ def relatorio(ano, mes):
 
     ape = Condominio(current_user).obter_ape()
     tesoureiro = Tesoureiro(ape)
-    mes_fiscal = tesoureiro.obter_mes_fiscal(data)
+    mes_fiscal = tesoureiro.obter_mes_fiscal(data.month, data.year)
     relatorio = tesoureiro.gerar_relatorio(mes_fiscal, current_user)
 
     return render_template('relatorio.jinja',

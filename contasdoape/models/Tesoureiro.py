@@ -11,7 +11,9 @@ class Tesoureiro():
         self.ape = ape
 
     def obter_mes_fiscal(self, mes, ano):
-        data_inicio, data_fim = self._calcular_periodo(datetime(ano, mes, 15))
+        hoje = datetime.today()
+        dia = hoje.day if mes == hoje.month and ano == hoje.year else 15
+        data_inicio, data_fim = self._calcular_periodo(datetime(ano, mes, dia))
 
         return MesFiscal(self.ape, data_inicio, data_fim)
 
@@ -19,7 +21,6 @@ class Tesoureiro():
         _, ultimo = monthrange(ano, mes)
         dia = self.ape.dia_do_acerto if self.ape.dia_do_acerto < ultimo else ultimo
         return datetime(ano, mes, dia)
-
 
     def _calcular_periodo(self, data):
         data1 = self._calcular_data_fechamento(data.month, data.year)
