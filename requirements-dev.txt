@@ -11,3 +11,4 @@ sniffer==0.3.2
 yanc==0.2.4
 python-dateutil==2.2
 honcho==0.5.0
+wando-server==0.1.0
