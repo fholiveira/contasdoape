@@ -49,15 +49,13 @@ class MesFiscal():
         return meses[mes]
 
     def obter_despesas(self, autor=None):
-        despesas_agrupadas = groupby(self.listar_despesas(), lambda d: d.autor)
+        lista_despesas = self.listar_despesas()
+        despesas_por_autor = {} 
+        for membro in self.ape.membros:
+            despesas_por_autor[membro] = [d for d in lista_despesas if d.autor == membro]    
 
         if autor:
-            return next(list(despesas) for usuario, despesas in despesas_agrupadas
+            return next(list(despesas) for usuario, despesas in despesas_por_autor
                         if usuario.id == autor.id)
-
-        despesas_por_autor = {pessoa: list(despesas) for pessoa, despesas in despesas_agrupadas}
-        for pessoa in self.ape.membros:
-            if not pessoa in despesas_por_autor:
-                despesas_por_autor[pessoa] = []
 
         return despesas_por_autor
