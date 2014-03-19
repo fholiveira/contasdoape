@@ -41,8 +41,9 @@ def nova_despesa():
 @login_required
 def excluir_despesa(id):
     ape = Condominio(current_user).obter_ape()
+    hoje = datetime.now().date()
 
-    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(datetime.now())
+    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(hoje.month, hoje.year)
     despesas = mes_fiscal.remover_despesa(current_user, id)
 
     return 'Ok', 200
