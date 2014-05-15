@@ -14,6 +14,7 @@ class TestMesfiscal(TestCase):
         self.ape = Ape()
         self.usuario = Usuario(1, 'José da Silva', id=ObjectId())
         self.usuario2 = Usuario(2, 'Pedro Pereira', id=ObjectId())
+        self.ape.membros = [self.usuario, self.usuario2]
         self.ape.despesas = [Despesa(self.usuario, 20, datetime(2013, 10, 15), id=ObjectId()),
                              Despesa(self.usuario, 30, datetime(2013, 10, 16), id=ObjectId()),
                              Despesa(self.usuario2, 80, datetime(2013, 10, 17), id=ObjectId()),

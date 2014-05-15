@@ -55,7 +55,7 @@ class MesFiscal():
             despesas_por_autor[membro] = [d for d in lista_despesas if d.autor == membro]    
 
         if autor:
-            return next(list(despesas) for usuario, despesas in despesas_por_autor
+            return next(list(despesas) for usuario, despesas in despesas_por_autor.items()
                         if usuario.id == autor.id)
 
         return despesas_por_autor
