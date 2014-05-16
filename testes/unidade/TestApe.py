@@ -10,21 +10,22 @@ class TestApe(TestCase):
 
     def setUp(self):
         self.ape = Ape()
+        self.ape.membros = [Usuario('123456', 'José')]
         self.ape.convidados = ['999', '888', '777']
         self.ape.save = lambda: None
 
     def test_deve_definir_id_para_a_depesa_ao_inclui_la(self):
-        despesa = Despesa(Usuario(1, 'João'), 35, datetime.now())
+        despesa = Despesa(Usuario('1234', 'João'), 35, datetime.now())
         self.ape.incluir_despesa(despesa)
         self.assertIsNotNone(despesa.id)
 
     def test_deve_incluir_despesa(self):
-        despesa = Despesa(Usuario(1, 'João'), 35, datetime.now())
+        despesa = Despesa(Usuario('1234', 'João'), 35, datetime.now())
         self.ape.incluir_despesa(despesa)
         self.assertIn(despesa, self.ape.despesas)
 
     def test_deve_excluir_despesa(self):
-        despesa = Despesa(Usuario(1, 'João'), 35, datetime.now())
+        despesa = Despesa(Usuario('1234', 'João'), 35, datetime.now())
         self.ape.despesas.append(despesa)
         self.ape.remover_despesa(despesa)
         self.assertNotIn(despesa, self.ape.despesas)
@@ -37,9 +38,17 @@ class TestApe(TestCase):
     def test_nao_deve_duplicar_convidados(self):
         ids = ['111', '777', '222']
         self.ape.adicionar_convidados(ids)
-        self.assertCountEqual(['111', '222', '777', '888', '999'], self.ape.convidados)
+        self.assertCountEqual(['111', '222', '777', '888', '999'], 
+                              self.ape.convidados)
+
+    def test_nao_deve_adicionar_como_convidados_os_membros_do_ape(self):
+        ids = ['111', '123456', '222']
+        self.ape.adicionar_convidados(ids)
+        self.assertCountEqual(['111', '222', '777', '888', '999'], 
+                              self.ape.convidados)
 
     def test_deve_adicionar_convidados(self):
         ids = ['111', '222']
         self.ape.adicionar_convidados(ids)
-        self.assertCountEqual(['111', '222', '777', '888', '999'], self.ape.convidados)
+        self.assertCountEqual(['111', '222', '777', '888', '999'], 
+                              self.ape.convidados)

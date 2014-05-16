@@ -24,8 +24,10 @@ class Ape(Document):
         self.save()
 
     def adicionar_convidados(self, ids_convidados):
+        blacklist = self.convidados + [m.facebook_id for m in self.membros]
+
         ids = [fb_id for fb_id in ids_convidados
-               if fb_id and fb_id not in self.convidados]
+               if fb_id and fb_id not in blacklist]
 
         self.convidados.extend(ids)
         self.save()
