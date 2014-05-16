@@ -15,13 +15,18 @@ def load_user(userid):
 
     return usuario
 
-
 @app.route('/')
 def index():
     if current_user.get_id():
         return redirect(url_for('listar_despesas'))
 
     return render_template('home.jinja')
+
+
+@app.errorhandler(401)
+@app.errorhandler(403)
+def nao_autorizado(exception):
+    return redirect(url_for('index'))
 
 
 @app.route('/login')
