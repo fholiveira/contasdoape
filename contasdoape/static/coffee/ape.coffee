@@ -19,5 +19,31 @@ class Convidados
       $.get @url_base + $(convidado).data 'id'
       .done @preencher
 
+class DiaDoAcerto
+  constructor: (@botaoSalvar, @caixaDeTexto) ->
+    @botaoSalvar.click @salvar
+
+  salvar: =>
+    if @caixaDeTexto.valid()
+      $.post '/ape/mudar-dia-do-acerto', { dia: @caixaDeTexto.val() }
+        .done -> window.location.reload true
+
 convidados = new Convidados $('.convidados .pessoa')
 do convidados.obterDadosDosConvidados
+
+new DiaDoAcerto $('#alterar_dia'), $('#dia')
+
+$(document).ready ->
+  do $('form').validate
+
+  $.validator.addMethod 'between', (value, element, data) ->
+    @optional(element) || value >= data.start && value <= data.end
+
+  $('#dia').rules 'add',
+    required: true
+    digits: true
+    between: { start: 1, end: 31 }
+    messages:
+      required: 'Você deve informar o novo dia de acerto'
+      between: 'O dia deve estar entre 1 e 31'
+      digits: 'Por favor digite um dia'

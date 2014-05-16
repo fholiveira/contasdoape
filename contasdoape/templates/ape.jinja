@@ -32,8 +32,37 @@
       </ul>
     </section>
   {% endif %}
+
+  <section>
+    <h3>Dia do acerto</h3>
+    <div class="dia-do-acerto">
+      <p>{{ ape.dia_do_acerto }}</p>
+      <a data-toggle="modal" data-target="#alterar_dia_do_acerto">alterar</a>
+    </div>
+  </section>
+
+  <div class="modal fade" id="alterar_dia_do_acerto" tabindex="-1" role="dialog" aria-labelledby="Alterar dia do acerto" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Dia do acerto</h4>
+        </div>
+        <div class="modal-body">
+          <h3>Digite o novo dia do acerto</h3>
+          <form>
+            <input type="text" class="form-control" id="dia" name="dia" required>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="alterar_dia" type="button" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block javascript %}
+  <script src="{{ url_for('static', filename='components/js/jquery.validate.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/ape.js') }}"></script>
 {% endblock %}

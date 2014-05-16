@@ -21,6 +21,18 @@ def ape():
     return render_template('ape.jinja', ape=ape)
 
 
+@app.route("/ape/mudar-dia-do-acerto", methods=['POST'])
+@login_required
+def mudar_dia_do_acerto():
+    ape = Condominio(current_user).obter_ape()
+
+    dia = request.form['dia'] or ape.dia_do_acerto
+    ape.dia_do_acerto = dia
+    ape.save()
+
+    return 'Ok', 200
+
+
 @app.route("/dividir-ape")
 @login_required
 def dividir_ape():
