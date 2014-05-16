@@ -27,8 +27,8 @@ def passo(context):
 @step('o campo "{nome}" deve indicar um erro')
 def passo(context, nome):
     ids = {'data': 'data', 'valor': 'valor', 'descrição': 'descricao'}
-    elemento = context.browser.find_element_by_css_selector('#' + ids[nome] + '.error')
-    assert elemento
+    msg = context.browser.find_element_by_css_selector('#' + ids[nome] + '.error')
+    assert msg
 
 
 @step('preencho o campo "{nome}" com "{valor}"')
