@@ -6,6 +6,8 @@
 .web/
 .venv
 
+ghostdriver.log
+
 #node
 node_modules/
 

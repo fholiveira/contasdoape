@@ -25,7 +25,7 @@ def before_feature(context, feature):
     if 'firefox' in feature.tags:
         context.browser = webdriver.Firefox()
     else:
-        context.browser = webdriver.Chrome()
+        context.browser = webdriver.PhantomJS()
 
 
 def after_feature(context, feature):
