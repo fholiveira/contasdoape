@@ -1,3 +1,4 @@
+from hamcrest import *
 from behave import *
 
 
@@ -17,7 +18,7 @@ def step_impl1(context):
 @step('eu devo ser redirecionado para a página de login do Facebook')
 def step_impl2(context):
     url = context.browser.current_url
-    assert url.startswith('https://www.facebook.com/login.php')
+    assert_that(url, starts_with('https://www.facebook.com/login.php'))
 
 
 @step('eu fizer login como {nome}')
@@ -37,7 +38,7 @@ def passo(context, nome):
 @step('devo ser direcionado a página de criação de apartamento')
 def passo(context):
     url = context.browser.current_url
-    assert url.startswith(context.url('/criar-ape'))
+    assert_that(url, starts_with(context.url('/criar-ape')))
 
 
 @step("eu clicar no botão 'Vou falar com meus colegas no Facebook'")
@@ -48,4 +49,4 @@ def passo(context):
 @step('devo ser redirecionado ao Facebook')
 def passo(context):
     url = context.browser.current_url
-    assert url.startswith('https://www.facebook.com')
+    assert_that(url, starts_with('https://www.facebook.com'))

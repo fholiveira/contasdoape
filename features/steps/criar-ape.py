@@ -1,3 +1,4 @@
+from hamcrest import *
 from behave import *
 
 
@@ -10,4 +11,4 @@ def passo(context):
 @step('eu devo ser redirecionado a página de convidar amigos')
 def passo(context):
     url = context.browser.current_url
-    assert url.startswith(context.url('/convidar-amigos'))
+    assert_that(url, starts_with(context.url('/convidar-amigos')))

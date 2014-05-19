@@ -1,7 +1,8 @@
-from behave import *
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from hamcrest import *
+from behave import *
 
 
 def esperar(driver, elemento, tempo):
@@ -32,7 +33,7 @@ def passo(context, valor):
 
 @step('eu devo ver uma mensagem de erro')
 def passo(context):
-    assert esperar(context.browser, '#dia + .error', 2)
+    assert_that(esperar(context.browser, '#dia + .error', 2), not_none())
 
 @step('clico no botão "Salvar"')
 def passo(context):
@@ -42,4 +43,4 @@ def passo(context):
 @step('devo ver que dia do acerto agora é "{dia}"')
 def passo(context, dia):
     el = esperar(context.browser, '.dia-do-acerto > p', 2)
-    assert str(dia) == el.text
+    assert_that(str(dia), equal_to(el.text))

@@ -1,3 +1,4 @@
+from hamcrest import *
 from behave import *
 
 
@@ -28,7 +29,7 @@ def passo(context):
 def passo(context, nome):
     ids = {'data': 'data', 'valor': 'valor', 'descrição': 'descricao'}
     msg = context.browser.find_element_by_css_selector('#' + ids[nome] + '.error')
-    assert msg
+    assert_that(msg, not_none())
 
 
 @step('preencho o campo "{nome}" com "{valor}"')
@@ -42,4 +43,4 @@ def passo(context, nome, valor):
 @step('devo ser direcionado à página de despesas')
 def passo(context):
     url = context.browser.current_url
-    assert url.startswith(context.url('/despesas'))
+    assert_that(url, starts_with(context.url('/despesas')))
