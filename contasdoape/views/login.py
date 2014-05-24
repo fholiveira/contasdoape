@@ -3,9 +3,10 @@ from flask.ext.login import (login_user, logout_user, login_required,
 from flask import g, render_template, request, redirect, url_for, session
 from contasdoape.models.ControleDeAcesso import ControleDeAcesso
 from contasdoape.models.Condominio import Condominio
-from contasdoape.views.providers import Facebook
+from contasdoape.autenticacao import FacebookProvider
 from contasdoape.models.Usuario import Usuario
 from contasdoape.web import app, login_manager
+from flask import session
 
 
 @login_manager.user_loader
@@ -31,7 +32,11 @@ def nao_autorizado(exception):
 
 @app.route('/login')
 def login():
-    provider = Facebook(url_for('authorized', _external=True))
+    provider = FacebookProvider(url_for('authorized', _external=True), 
+                                   app.config['FB_CLIENT_ID'],
+                                   app.config['FB_CLIENT_SECRET'])
+
+    session['provider'] = provider.get_descriptor()
     return redirect(provider.login_url())
 
 
@@ -48,7 +53,8 @@ def logout_all():
         redirect(url_for('logout'))
 
     try:
-        provider = Facebook(url_for('authorized', _external=True))
+        provider = FacebookProvider.from_descriptor(session['provider'])
+
         return redirect(provider.logout(url_for('logout', _external=True)))
     except:
         return redirect('logout')
@@ -56,7 +62,8 @@ def logout_all():
 
 @app.route('/authorized')
 def authorized():
-    provider = Facebook(url_for('authorized', _external=True))
+    provider = FacebookProvider.from_descriptor(session['provider'])
+
     usuario = provider.logar(request.args)
     condominio = Condominio(usuario)
 
