@@ -23,8 +23,8 @@ class TestControleDeAcesso(TestCase):
         usuario = Usuario('12345678', 'Walter Kovacs')
         usuario.save()
 
-        self.assertEquals(usuario,
-                          ControleDeAcesso().obter_usuario('12345678', 'Walter Kovacs'))
+        obtido = ControleDeAcesso().obter_usuario('12345678', 'Walter Kovacs')
+        self.assertEquals(usuario, obtido)
 
     def test_deve_criar_usuario_ao_tentar_obter_um_usuario_inexistente(self):
         usuario = ControleDeAcesso().obter_usuario('12345678', 'Walter Kovacs')

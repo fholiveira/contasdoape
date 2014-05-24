@@ -20,4 +20,4 @@ else:
             host=app.config['MONGO_HOST'],
             port=app.config['MONGO_PORT'])
 
-from contasdoape.views import * 
+from contasdoape.views import *

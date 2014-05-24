@@ -16,7 +16,7 @@ class MesFiscal():
         self.data_inicio = data_inicio
         self.data_fim = data_fim
         self.ape = ape
-        
+
     def numero(self):
         data = self.data_fim if self.data_fim.day >= 15 else self.data_inicio
         return (data.month, data.year)
@@ -50,9 +50,9 @@ class MesFiscal():
 
     def obter_despesas(self, autor=None):
         lista_despesas = self.listar_despesas()
-        despesas_por_autor = {} 
+        despesas_por_autor = {}
         for membro in self.ape.membros:
-            despesas_por_autor[membro] = [d for d in lista_despesas if d.autor == membro]    
+            despesas_por_autor[membro] = [d for d in lista_despesas if d.autor == membro]
 
         if autor:
             return next(list(despesas) for usuario, despesas in despesas_por_autor.items()

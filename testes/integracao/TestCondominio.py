@@ -63,14 +63,15 @@ class TestCondominio(TestCase):
 
         self.assertIn(self.usuario, Ape.objects().first().membros)
 
-    def test_deve_remover_usuario_da_lista_de_convidados_ao_aceitar_o_convite(self):
+    def test_deve_remover_usuario_dos_convidados_ao_aceitar_convite(self):
         ape = Ape()
         ape.convidados.append('1234')
         ape.save()
 
         Condominio(self.usuario).aceitar_convite()
 
-        self.assertNotIn(self.usuario.facebook_id, Ape.objects().first().convidados)
+        self.assertNotIn(
+            self.usuario.facebook_id, Ape.objects().first().convidados)
 
     @classmethod
     def tearDownClass(cls):

@@ -6,4 +6,4 @@ from contasdoape.models.mes_fiscal import MesFiscal
 from contasdoape.models.relatorio import Relatorio
 from contasdoape.models.condominio import Condominio
 from contasdoape.models.tesoureiro import Tesoureiro
-from contasdoape.models.relatorio import Divida 
+from contasdoape.models.relatorio import Divida

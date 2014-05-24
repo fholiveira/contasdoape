@@ -36,17 +36,17 @@ class TestApe(TestCase):
     def test_nao_deve_duplicar_convidados(self):
         ids = ['111', '777', '222']
         self.ape.adicionar_convidados(ids)
-        self.assertCountEqual(['111', '222', '777', '888', '999'], 
+        self.assertCountEqual(['111', '222', '777', '888', '999'],
                               self.ape.convidados)
 
     def test_nao_deve_adicionar_como_convidados_os_membros_do_ape(self):
         ids = ['111', '123456', '222']
         self.ape.adicionar_convidados(ids)
-        self.assertCountEqual(['111', '222', '777', '888', '999'], 
+        self.assertCountEqual(['111', '222', '777', '888', '999'],
                               self.ape.convidados)
 
     def test_deve_adicionar_convidados(self):
         ids = ['111', '222']
         self.ape.adicionar_convidados(ids)
-        self.assertCountEqual(['111', '222', '777', '888', '999'], 
+        self.assertCountEqual(['111', '222', '777', '888', '999'],
                               self.ape.convidados)

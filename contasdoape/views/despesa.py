@@ -1,4 +1,4 @@
-from contasdoape.models import Condominio, Tesoureiro, Despesa, ControleDeAcesso 
+from contasdoape.models import Condominio, Tesoureiro, Despesa, ControleDeAcesso
 from flask import render_template, request, redirect, url_for
 from flask.ext.login import login_required, current_user
 from contasdoape.web import app
@@ -53,7 +53,8 @@ def listar_despesas(ano, mes):
     ape = Condominio(current_user).obter_ape()
     hoje = datetime.now()
 
-    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(mes or hoje.month, ano or hoje.year)
+    mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(mes or hoje.month,
+                                                  ano or hoje.year)
     despesas = mes_fiscal.listar_despesas()
 
     return render_template('despesas.jinja',

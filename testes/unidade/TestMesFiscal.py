@@ -6,7 +6,6 @@ from datetime import datetime
 
 
 class TestMesfiscal(TestCase):
-
     def setUp(self):
         self.ape = Ape()
         self.usuario = Usuario(1, 'José da Silva', id=ObjectId())
@@ -52,14 +51,15 @@ class TestMesfiscal(TestCase):
         self.assertEqual(130, self.mes_fiscal.calcular_saldo())
 
     def teste_deve_listar_despesas_de_um_autor(self):
-        self.assertEquals(self.ape.despesas[2], self.mes_fiscal.obter_despesas(self.usuario2)[0])
+        self.assertEquals(self.ape.despesas[2], 
+                          self.mes_fiscal.obter_despesas(self.usuario2)[0])
 
     def teste_deve_listar_despesas_por_autor(self):
         por_autor = self.mes_fiscal.obter_despesas()
         autores = [a for a, d in por_autor.items()]
         self.assertCountEqual([self.usuario, self.usuario2], autores)
 
-    def test_deve_disparar_exception_ao_tentar_remover_uma_despesa_que_nao_existe(self):
+    def test_deve_disparar_exception_ao_remover_despesa_inexistente(self):
         with self.assertRaises(StopIteration):
             self.mes_fiscal.remover_despesa(self.usuario, 'salcifufu')
 

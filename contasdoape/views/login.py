@@ -14,6 +14,7 @@ def load_user(userid):
 
     return usuario
 
+
 @app.route('/')
 def index():
     if current_user.get_id():
@@ -30,9 +31,9 @@ def nao_autorizado(exception):
 
 @app.route('/login')
 def login():
-    provider = FacebookProvider(url_for('authorized', _external=True), 
-                                   app.config['FB_CLIENT_ID'],
-                                   app.config['FB_CLIENT_SECRET'])
+    provider = FacebookProvider(url_for('authorized', _external=True),
+                                app.config['FB_CLIENT_ID'],
+                                app.config['FB_CLIENT_SECRET'])
 
     session['provider'] = provider.get_descriptor()
     return redirect(provider.login_url())

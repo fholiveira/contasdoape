@@ -7,7 +7,8 @@ from behave import *
 
 def esperar(driver, elemento, tempo):
     return WebDriverWait(driver, tempo).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, elemento)))
+        EC.visibility_of_element_located((By.CSS_SELECTOR, elemento)))
+
 
 @step('que eu estou na página de informações do apê')
 def passo(context):
@@ -34,6 +35,7 @@ def passo(context, valor):
 @step('eu devo ver uma mensagem de erro')
 def passo(context):
     assert_that(esperar(context.browser, '#dia + .error', 2), not_none())
+
 
 @step('clico no botão "Salvar"')
 def passo(context):

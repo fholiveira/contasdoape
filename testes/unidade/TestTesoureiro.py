@@ -16,7 +16,7 @@ class TestDespesa(TestCase):
         meses = Tesoureiro(Ape()).listar_meses(2013)
 
         self.assertEquals(12, len(meses))
-    
+
     def test_deve_obter_mes_fiscal_com_dia_de_acerto_inexistente_no_mes(self):
         ape = Ape(dia_do_acerto=30)
         mes = Tesoureiro(ape).obter_mes_fiscal(2, 2013)

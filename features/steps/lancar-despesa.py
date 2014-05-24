@@ -28,7 +28,8 @@ def passo(context):
 @step('o campo "{nome}" deve indicar um erro')
 def passo(context, nome):
     ids = {'data': 'data', 'valor': 'valor', 'descrição': 'descricao'}
-    msg = context.browser.find_element_by_css_selector('#' + ids[nome] + '.error')
+    msg = context.browser.find_element_by_css_selector(
+        '#' + ids[nome] + '.error')
     assert_that(msg, not_none())
 
 
