@@ -1,6 +1,4 @@
-from contasdoape.models.Despesa import Despesa
-from contasdoape.models.Usuario import Usuario
-from contasdoape.models.Ape import Ape
+from contasdoape.models import Despesa, Usuario, Ape
 from unittest.mock import patch, Mock
 from unittest import TestCase
 from datetime import datetime

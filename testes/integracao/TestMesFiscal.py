@@ -1,7 +1,4 @@
-from contasdoape.models.MesFiscal import MesFiscal
-from contasdoape.models.Despesa import Despesa
-from contasdoape.models.Usuario import Usuario
-from contasdoape.models.Ape import Ape
+from contasdoape.models import MesFiscal, Despesa, Usuario, Ape
 from bson.objectid import ObjectId
 from mongoengine import connect
 from unittest import TestCase

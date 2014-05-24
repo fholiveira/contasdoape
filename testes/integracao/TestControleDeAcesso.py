@@ -1,5 +1,4 @@
-from contasdoape.models.ControleDeAcesso import ControleDeAcesso
-from contasdoape.models.Usuario import Usuario
+from contasdoape.models import ControleDeAcesso, Usuario
 from mongoengine import connect
 from unittest import TestCase
 

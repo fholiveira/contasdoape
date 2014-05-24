@@ -1,7 +1,5 @@
+from contasdoape.models import Tesoureiro, Condominio, Ape
 from flask.ext.login import login_required, current_user
-from contasdoape.models.Tesoureiro import Tesoureiro
-from contasdoape.models.Condominio import Condominio
-from contasdoape.models.Ape import Ape
 from flask import render_template
 from contasdoape.web import app
 from datetime import datetime

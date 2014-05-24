@@ -1,4 +1,4 @@
-from contasdoape.models.Despesa import Despesa
+from contasdoape.models import Despesa
 from datetime import datetime
 from itertools import groupby
 

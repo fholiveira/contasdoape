@@ -1,5 +1,4 @@
-from contasdoape.models.MesFiscal import MesFiscal
-from contasdoape.models.Relatorio import Relatorio
+from contasdoape.models import MesFiscal, Relatorio
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange
 from datetime import datetime

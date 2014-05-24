@@ -1,4 +1,4 @@
-from contasdoape.models.Usuario import Usuario
+from contasdoape.models import Usuario
 from unittest import TestCase
 
 

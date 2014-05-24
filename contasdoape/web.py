@@ -1,8 +1,8 @@
-from mongoengine import connect
-from flask import Flask, abort, session
-from flask.ext.login import LoginManager
-from os import path, getcwd, environ, listdir
 from contasdoape.environments import Environments
+from os import path, getcwd, environ, listdir
+from flask.ext.login import LoginManager
+from flask import Flask, abort, session
+from mongoengine import connect
 
 app = Flask(__name__)
 
@@ -20,8 +20,4 @@ else:
             host=app.config['MONGO_HOST'],
             port=app.config['MONGO_PORT'])
 
-from contasdoape.views import ape
-from contasdoape.views import login
-from contasdoape.views import sumario
-from contasdoape.views import despesa
-from contasdoape.views import relatorio
+from contasdoape.views import * 

@@ -1,7 +1,6 @@
 from mongoengine import ReferenceField, ListField, EmbeddedDocumentField
 from mongoengine import Document, StringField, DateTimeField, IntField
-from contasdoape.models.Usuario import Usuario
-from contasdoape.models.Despesa import Despesa
+from contasdoape.models import Usuario, Despesa
 from bson.objectid import ObjectId
 from datetime import datetime
 

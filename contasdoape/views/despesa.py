@@ -1,9 +1,6 @@
-from contasdoape.models.ControleDeAcesso import ControleDeAcesso
+from contasdoape.models import Condominio, Tesoureiro, Despesa, ControleDeAcesso 
 from flask import render_template, request, redirect, url_for
 from flask.ext.login import login_required, current_user
-from contasdoape.models.Condominio import Condominio
-from contasdoape.models.Tesoureiro import Tesoureiro
-from contasdoape.models.Despesa import Despesa
 from contasdoape.web import app
 from datetime import datetime
 

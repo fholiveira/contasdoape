@@ -1,5 +1,4 @@
-from contasdoape.models.Despesa import Despesa
-from contasdoape.models.Usuario import Usuario
+from contasdoape.models import Despesa, Usuario
 from unittest import TestCase
 from datetime import datetime
 

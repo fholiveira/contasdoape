@@ -1,6 +1,4 @@
-from contasdoape.models.Condominio import Condominio
-from contasdoape.models.Usuario import Usuario
-from contasdoape.models.Ape import Ape
+from contasdoape.models import Condominio, Usuario, Ape
 from mongoengine import connect
 from unittest import TestCase
 

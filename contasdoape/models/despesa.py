@@ -1,6 +1,6 @@
 from mongoengine import Document, EmbeddedDocument, StringField, ObjectIdField
 from mongoengine import ReferenceField, FloatField, DateTimeField
-from contasdoape.models.Usuario import Usuario
+from contasdoape.models import Usuario
 from datetime import datetime
 
 

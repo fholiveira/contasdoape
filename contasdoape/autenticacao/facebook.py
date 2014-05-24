@@ -1,4 +1,4 @@
-from contasdoape.models.ControleDeAcesso import ControleDeAcesso
+from contasdoape.models import ControleDeAcesso
 from rauth.service import OAuth2Service
 
 

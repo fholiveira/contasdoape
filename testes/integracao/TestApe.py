@@ -1,8 +1,6 @@
-from unittest import TestCase
+from contasdoape.models import Ape, Condominio, ControleDeAcesso
 from mongoengine import connect
-from contasdoape.models.Ape import Ape
-from contasdoape.models.Condominio import Condominio
-from contasdoape.models.ControleDeAcesso import ControleDeAcesso
+from unittest import TestCase
 
 
 class TestApe(TestCase):

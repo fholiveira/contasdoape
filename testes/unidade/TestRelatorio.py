@@ -1,6 +1,4 @@
-from contasdoape.models.Despesa import Despesa
-from contasdoape.models.Usuario import Usuario
-from contasdoape.models.Relatorio import Relatorio, Divida
+from contasdoape.models import Despesa, Usuario, Relatorio, Divida
 from bson.objectid import ObjectId
 from unittest import TestCase
 from datetime import datetime

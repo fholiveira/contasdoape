@@ -1,5 +1,4 @@
-from contasdoape.models.Tesoureiro import Tesoureiro
-from contasdoape.models.Ape import Ape
+from contasdoape.models import Tesoureiro, Ape
 from unittest import TestCase
 from datetime import datetime
 
