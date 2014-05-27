@@ -1,10 +1,9 @@
 from flask.ext.login import (login_user, logout_user, login_required,
-                             current_user, AnonymousUserMixin)
+                             current_user)
 from flask import g, render_template, request, redirect, url_for, session
-from contasdoape.models import Condominio, Usuario, ControleDeAcesso
+from contasdoape.models import Condominio, ControleDeAcesso
 from contasdoape.autenticacao import FacebookProvider
 from contasdoape.web import app, login_manager
-from flask import session
 
 
 @login_manager.user_loader

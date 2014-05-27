@@ -1,7 +1,6 @@
-from mongoengine import Document, EmbeddedDocument, StringField, ObjectIdField
+from mongoengine import EmbeddedDocument, StringField, ObjectIdField
 from mongoengine import ReferenceField, FloatField, DateTimeField
-from contasdoape.models import Usuario
-from datetime import datetime
+from . import Usuario
 
 
 class Despesa(EmbeddedDocument):

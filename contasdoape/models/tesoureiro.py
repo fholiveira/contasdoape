@@ -1,8 +1,7 @@
-from contasdoape.models import MesFiscal, Relatorio
+from . import MesFiscal, Relatorio
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange
 from datetime import datetime
-from itertools import groupby
 
 
 class Tesoureiro():

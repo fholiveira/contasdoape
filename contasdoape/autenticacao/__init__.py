@@ -1,1 +1,1 @@
-from contasdoape.autenticacao.facebook import FacebookProvider
+from .facebook import FacebookProvider

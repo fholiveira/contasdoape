@@ -27,7 +27,7 @@ class FacebookProvider:
 
     def logout_url(self, redirect_url):
         url = self.LOGOUT_URL
-        url += '?access_token=' + session['fb_token']
+        url += '?access_token=' + self.token
         url += '&confirm=1'
         url += '&next=' + redirect_url
 
@@ -41,8 +41,8 @@ class FacebookProvider:
                 'redirect_uri': self.autorizado_url}
 
         fb_session = self.facebook.get_auth_session(data=data)
-        me = fb_session.get('me').json()
-        usuario = ControleDeAcesso().obter_usuario(me['id'], me['name'])
+        perfil = fb_session.get('me').json()
+        usuario = ControleDeAcesso().obter_usuario(perfil['id'], perfil['name'])
 
         self.token = fb_session.access_token
         return usuario
@@ -55,5 +55,5 @@ class FacebookProvider:
 
     @classmethod
     def from_descriptor(cls, descriptor):
-        auth, id, secret, token = descriptor
-        return cls(auth, id, descriptor, token=token)
+        auth, fb_id, secret, token = descriptor
+        return cls(auth, fb_id, secret, token=token)

@@ -1,8 +1,7 @@
 from contasdoape.environments import Environments
-from os import path, getcwd, environ, listdir
 from flask.ext.login import LoginManager
-from flask import Flask, abort, session
 from mongoengine import connect
+from flask import Flask
 
 app = Flask(__name__)
 

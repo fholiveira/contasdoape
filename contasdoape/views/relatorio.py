@@ -1,4 +1,4 @@
-from contasdoape.models import Tesoureiro, Condominio, Ape
+from contasdoape.models import Tesoureiro, Condominio
 from flask.ext.login import login_required, current_user
 from flask import render_template
 from contasdoape.web import app
@@ -16,10 +16,10 @@ def relatorio(ano, mes):
     ape = Condominio(current_user).obter_ape()
     tesoureiro = Tesoureiro(ape)
     mes_fiscal = tesoureiro.obter_mes_fiscal(data.month, data.year)
-    relatorio = tesoureiro.gerar_relatorio(mes_fiscal, current_user)
+    report = tesoureiro.gerar_relatorio(mes_fiscal, current_user)
 
     return render_template('relatorio.jinja',
                            ano=data.year,
                            mes=data.month,
-                           relatorio=relatorio,
+                           relatorio=report,
                            nome_mes=mes_fiscal.nome_do_mes())

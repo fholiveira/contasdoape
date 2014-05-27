@@ -1,4 +1,4 @@
-from contasdoape.models import ControleDeAcesso, Ape
+from . import ControleDeAcesso, Ape
 
 
 class Condominio:

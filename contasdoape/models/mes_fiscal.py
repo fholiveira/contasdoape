@@ -1,8 +1,3 @@
-from contasdoape.models import Despesa
-from datetime import datetime
-from itertools import groupby
-
-
 class MesFiscal():
     def __init__(self, ape, data_inicio, data_fim):
         params = {'data_inicio': data_inicio,

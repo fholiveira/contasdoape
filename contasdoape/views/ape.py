@@ -1,7 +1,7 @@
-from flask.ext.login import login_user, logout_user, login_required, current_user
-from flask import render_template, request, redirect, url_for, session
+from flask.ext.login import login_required, current_user
+from flask import render_template, request, redirect, url_for
 from contasdoape.models import Condominio, ControleDeAcesso
-from contasdoape.web import app, login_manager
+from contasdoape.web import app
 
 
 @app.route("/criar-ape")
@@ -16,18 +16,18 @@ def criar_ape():
 @app.route("/ape")
 @login_required
 def ape():
-    ape = Condominio(current_user).obter_ape()
-    return render_template('ape.jinja', ape=ape)
+    apto = Condominio(current_user).obter_ape()
+    return render_template('ape.jinja', ape=apto)
 
 
 @app.route("/ape/mudar-dia-do-acerto", methods=['POST'])
 @login_required
 def mudar_dia_do_acerto():
-    ape = Condominio(current_user).obter_ape()
+    apto = Condominio(current_user).obter_ape()
 
-    dia = request.form['dia'] or ape.dia_do_acerto
-    ape.dia_do_acerto = dia
-    ape.save()
+    dia = request.form['dia'] or apto.dia_do_acerto
+    apto.dia_do_acerto = dia
+    apto.save()
 
     return 'Ok', 200
 
@@ -40,9 +40,9 @@ def dividir_ape():
     if condominio.tem_ape() or not condominio.eh_convidado():
         redirect(url_for('index'))
 
-    ape = condominio.obter_ape()
+    apto = condominio.obter_ape()
 
-    return render_template('dividir-ape.jinja', usuarios=list(ape.membros))
+    return render_template('dividir-ape.jinja', usuarios=list(apto.membros))
 
 
 @app.route("/aceitar-convite", methods=['POST'])
@@ -76,7 +76,7 @@ def salvar_amigos():
     if not ids:
         return 'Ok', 200
 
-    ape = Condominio(current_user).obter_ape()
-    ape.adicionar_convidados(ids)
+    apto = Condominio(current_user).obter_ape()
+    apto.adicionar_convidados(ids)
 
     return 'Ok', 200

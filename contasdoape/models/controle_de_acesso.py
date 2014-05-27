@@ -1,4 +1,4 @@
-from contasdoape.models import Usuario
+from . import Usuario
 
 
 class ControleDeAcesso():
@@ -11,5 +11,5 @@ class ControleDeAcesso():
 
         return usuario
 
-    def carregar_usuario(self, id):
-        return Usuario.objects(facebook_id=id).first()
+    def carregar_usuario(self, fb_id):
+        return Usuario.objects(facebook_id=fb_id).first()

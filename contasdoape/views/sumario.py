@@ -1,6 +1,6 @@
 from flask.ext.login import login_required, current_user
 from contasdoape.models import Tesoureiro, Condominio
-from flask import render_template, request
+from flask import render_template
 from contasdoape.web import app
 from datetime import datetime
 
