@@ -11,11 +11,12 @@ class TestMesfiscal(TestCase):
         self.usuario = Usuario(1, 'José da Silva', id=ObjectId())
         self.usuario2 = Usuario(2, 'Pedro Pereira', id=ObjectId())
         self.ape.membros = [self.usuario, self.usuario2]
-        self.ape.despesas = [Despesa(self.usuario, 20, datetime(2013, 10, 15), id=ObjectId()),
-                             Despesa(self.usuario, 30, datetime(2013, 10, 16), id=ObjectId()),
-                             Despesa(self.usuario2, 80, datetime(2013, 10, 17), id=ObjectId()),
-                             Despesa(self.usuario, 50, datetime(2013, 12, 16), id=ObjectId())]
+        d = [Despesa(self.usuario, 20, datetime(2013, 10, 15), id=ObjectId()),
+             Despesa(self.usuario, 30, datetime(2013, 10, 16), id=ObjectId()),
+             Despesa(self.usuario2, 80, datetime(2013, 10, 17), id=ObjectId()),
+             Despesa(self.usuario, 50, datetime(2013, 12, 16), id=ObjectId())]
 
+        self.ape.despesas = d
         self.mes_fiscal = MesFiscal(self.ape,
                                     datetime(2013, 10, 10),
                                     datetime(2013, 11, 10))
@@ -51,7 +52,7 @@ class TestMesfiscal(TestCase):
         self.assertEqual(130, self.mes_fiscal.calcular_saldo())
 
     def teste_deve_listar_despesas_de_um_autor(self):
-        self.assertEquals(self.ape.despesas[2], 
+        self.assertEquals(self.ape.despesas[2],
                           self.mes_fiscal.obter_despesas(self.usuario2)[0])
 
     def teste_deve_listar_despesas_por_autor(self):

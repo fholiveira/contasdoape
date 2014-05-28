@@ -1,5 +1,5 @@
-from . import MesFiscal, Relatorio
 from dateutil.relativedelta import relativedelta
+from . import MesFiscal, Relatorio
 from calendar import monthrange
 from datetime import datetime
 
@@ -17,7 +17,8 @@ class Tesoureiro():
 
     def _calcular_data_fechamento(self, mes, ano):
         _, ultimo = monthrange(ano, mes)
-        dia = self.ape.dia_do_acerto if self.ape.dia_do_acerto < ultimo else ultimo
+        dia = self.ape.dia_do_acerto
+        dia = dia if dia < ultimo else ultimo
         return datetime(ano, mes, dia)
 
     def _calcular_periodo(self, data):
@@ -27,8 +28,8 @@ class Tesoureiro():
         data2 = data1 + delta if data1 < data else data1 - delta
         data2 = self._calcular_data_fechamento(data2.month, data2.year)
 
-        delta = relativedelta(days=1)
-        return (data1, data2 - delta) if data1 < data2 else (data2, data1 - delta)
+        D = relativedelta(days=1)
+        return (data1, data2 - D) if data1 < data2 else (data2, data1 - D)
 
     def listar_meses(self, ano):
         return [self.obter_mes_fiscal(mes, ano) for mes in range(1, 13)]

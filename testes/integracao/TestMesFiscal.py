@@ -17,15 +17,15 @@ class TestMesFiscal(TestCase):
         usuario.save()
         usuario2.save()
 
-        despesas = [Despesa(usuario, 20, datetime(2013, 10, 15), id=ObjectId()),
-                    Despesa(usuario, 30, datetime(2013, 10, 16), id=ObjectId()),
-                    Despesa(usuario2, 80, datetime(2013, 10, 17), id=ObjectId()),
-                    Despesa(usuario, 50, datetime(2013, 12, 16), id=ObjectId())]
+        lista = [Despesa(usuario, 20, datetime(2013, 10, 15), id=ObjectId()),
+                 Despesa(usuario, 30, datetime(2013, 10, 16), id=ObjectId()),
+                 Despesa(usuario2, 80, datetime(2013, 10, 17), id=ObjectId()),
+                 Despesa(usuario, 50, datetime(2013, 12, 16), id=ObjectId())]
 
         ape = Ape()
         ape.membros.append(usuario)
         ape.membros.append(usuario2)
-        ape.despesas = despesas
+        ape.despesas = lista
         ape.save()
 
         return ape

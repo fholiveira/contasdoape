@@ -15,7 +15,8 @@ class Condominio:
         if self.tem_ape():
             return Ape.objects(membros__contains=self.usuario.id).first()
         elif self.eh_convidado():
-            return Ape.objects(convidados__contains=self.usuario.facebook_id).first()
+            fb_id = self.usuario.facebook_id
+            return Ape.objects(convidados__contains=fb_id).first()
 
     def criar_ape(self):
         ape = Ape()
@@ -27,7 +28,8 @@ class Condominio:
     def aceitar_convite(self):
         ape = self.obter_ape()
 
-        ape.membros.append(ControleDeAcesso().carregar_usuario(self.usuario.facebook_id))
+        usuario = ControleDeAcesso().carregar_usuario(self.usuario.facebook_id)
+        ape.membros.append(usuario)
 
         ape.convidados.remove(self.usuario.facebook_id)
         ape.save()

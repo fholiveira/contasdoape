@@ -1,4 +1,5 @@
-from contasdoape.models import Condominio, Tesoureiro, Despesa, ControleDeAcesso
+from contasdoape.models import (Condominio, Tesoureiro, Despesa,
+                                ControleDeAcesso)
 from flask import render_template, request, redirect, url_for
 from flask.ext.login import login_required, current_user
 from contasdoape.web import app
@@ -56,6 +57,7 @@ def listar_despesas(ano, mes):
     mes_fiscal = Tesoureiro(ape).obter_mes_fiscal(mes or hoje.month,
                                                   ano or hoje.year)
     despesas = mes_fiscal.listar_despesas()
+    nome = mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year)
 
     return render_template('despesas.jinja',
                            ano=ano or hoje.year,
@@ -63,5 +65,5 @@ def listar_despesas(ano, mes):
                            despesas=despesas,
                            data_inicio=mes_fiscal.data_inicio,
                            data_fim=mes_fiscal.data_fim,
-                           titulo=mes_fiscal.nome_do_mes() + ' de ' + str(mes_fiscal.data_inicio.year),
+                           titulo=nome,
                            total=mes_fiscal.calcular_saldo())

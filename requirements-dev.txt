@@ -1,9 +1,9 @@
 Flask==0.10.1
 requests==2.2.1
 Flask-Login==0.2.10
+PyHamcrest==1.8.0
 PyYAML==3.11
 behave==1.2.4
-honcho==0.5.0
 mongoengine==0.8.7
 nose==1.3.3
 pep8==1.5.5
@@ -11,6 +11,5 @@ pyinotify==0.9.4
 python-dateutil==2.2
 rauth==0.7.0
 selenium==2.41.0
-sniffer==0.3.2
 wando-server==0.2.1
 yanc==0.2.4

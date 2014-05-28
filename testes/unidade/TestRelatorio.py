@@ -9,10 +9,22 @@ class Testrelatorio(TestCase):
     def setUp(self):
         self.usuario1 = Usuario(1, 'Walter Kovacs', id=ObjectId())
         self.usuario2 = Usuario(2, 'Dan Dreiberg', id=ObjectId())
-        self.gastos = {self.usuario1: [Despesa(self.usuario1, 30, datetime(2013, 10, 15), id=ObjectId()),
-                                       Despesa(self.usuario2, 40, datetime(2013, 10, 16), id=ObjectId())],
-                       self.usuario2: [Despesa(self.usuario1, 50, datetime(2013, 10, 17), id=ObjectId()),
-                                       Despesa(self.usuario2, 60, datetime(2013, 10, 18), id=ObjectId())]}
+        self.gastos = {self.usuario1: [Despesa(self.usuario1,
+                                               30,
+                                               datetime(2013, 10, 15),
+                                               id=ObjectId()),
+                                       Despesa(self.usuario2,
+                                               40,
+                                               datetime(2013, 10, 16),
+                                               id=ObjectId())],
+                       self.usuario2: [Despesa(self.usuario1,
+                                               530,
+                                               datetime(2013, 10, 17),
+                                               id=ObjectId()),
+                                       Despesa(self.usuario2,
+                                               60,
+                                               datetime(2013, 10, 18),
+                                               id=ObjectId())]}
 
     def test_deve_calcular_valor_total(self):
         relatorio = Relatorio(self.gastos, self.usuario1)

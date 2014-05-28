@@ -27,7 +27,7 @@ class MesFiscal():
         despesa = next(d for d in self.ape.despesas if str(d.id) == id_despesa)
 
         if usuario.id != despesa.autor.id:
-            raise Exception('Um usuário só pode excluir despesas que ele mesmo criou.')
+            raise Exception('Um usuário só pode excluir despesas dele mesmo.')
 
         self.ape.remover_despesa(despesa)
 
@@ -47,10 +47,12 @@ class MesFiscal():
         lista_despesas = self.listar_despesas()
         despesas_por_autor = {}
         for membro in self.ape.membros:
-            despesas_por_autor[membro] = [d for d in lista_despesas if d.autor == membro]
+            despesas_por_autor[membro] = [despesa for despesa in lista_despesas
+                                          if despesa.autor == membro]
 
         if autor:
-            return next(list(despesas) for usuario, despesas in despesas_por_autor.items()
+            return next(list(despesas) for usuario, despesas
+                        in despesas_por_autor.items()
                         if usuario.id == autor.id)
 
         return despesas_por_autor

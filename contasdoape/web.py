@@ -5,7 +5,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
-Environments(app, var_name='CONTASDOAPE_ENV').from_yaml('contasdoape/conf.yaml')
+Environments(app, var_name='CONTASDOAPE_ENV') \
+    .from_yaml('contasdoape/conf.yaml')
 
 login_manager = LoginManager()
 login_manager.init_app(app)

@@ -17,7 +17,8 @@ class Relatorio():
         return sum(gasto for pessoa, gasto in self.gastos.items())
 
     def valor_gasto_pelo_usuario(self):
-        return next((g for p, g in self.gastos.items() if p.id == self.usuario.id), 0)
+        return next((g for p, g in self.gastos.items()
+                     if p.id == self.usuario.id), 0)
 
     def valor_medio(self):
         return self.valor_total() / len(self.gastos)
