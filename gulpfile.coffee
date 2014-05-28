@@ -18,7 +18,13 @@ gulp.task 'clean', ->
     .pipe do clean
 
 gulp.task 'lint python', ->
-  watch glob: '{contasdoape,testes,features}/**/*.py', verbose: true
+  options =
+    glob: '{contasdoape,tests,features}/**/*.py',
+    name: 'Python lint'
+    verbose: true
+    silent: false
+
+  watch options
     .pipe do plumber
     .pipe shell 'pep8 <%= file.path %>'
 

@@ -1,6 +1,7 @@
 from .usuario import Usuario
 from .despesa import Despesa
 from .ape import Ape
+from .convite import Convite
 from .controle_de_acesso import ControleDeAcesso
 from .mes_fiscal import MesFiscal
 from .relatorio import Relatorio
