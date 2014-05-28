@@ -4,7 +4,7 @@ from unittest import TestCase
 from datetime import datetime
 
 
-class Testrelatorio(TestCase):
+class TestRelatorio(TestCase):
 
     def setUp(self):
         self.usuario1 = Usuario(1, 'Walter Kovacs', id=ObjectId())
@@ -18,7 +18,7 @@ class Testrelatorio(TestCase):
                                                datetime(2013, 10, 16),
                                                id=ObjectId())],
                        self.usuario2: [Despesa(self.usuario1,
-                                               530,
+                                               50,
                                                datetime(2013, 10, 17),
                                                id=ObjectId()),
                                        Despesa(self.usuario2,
