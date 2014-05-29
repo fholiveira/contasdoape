@@ -1,9 +1,9 @@
-from contasdoape.models import ControleDeAcesso, Usuario
+from contasdoape.models import Porteiro, Usuario
 from mongoengine import connect
 from unittest import TestCase
 
 
-class TestControleDeAcesso(TestCase):
+class TestPorteiro(TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -17,17 +17,17 @@ class TestControleDeAcesso(TestCase):
         usuario.save()
 
         self.assertEquals(usuario,
-                          ControleDeAcesso().carregar_usuario('12345678'))
+                          Porteiro.carregar_usuario('12345678'))
 
     def test_deve_obter_por_nome_e_id_usuario_previamente_salvo(self):
         usuario = Usuario('12345678', 'Walter Kovacs')
         usuario.save()
 
-        obtido = ControleDeAcesso().obter_usuario('12345678', 'Walter Kovacs')
+        obtido = Porteiro.obter_usuario('12345678', 'Walter Kovacs')
         self.assertEquals(usuario, obtido)
 
     def test_deve_criar_usuario_ao_tentar_obter_um_usuario_inexistente(self):
-        usuario = ControleDeAcesso().obter_usuario('12345678', 'Walter Kovacs')
+        usuario = Porteiro.obter_usuario('12345678', 'Walter Kovacs')
         self.assertEquals(usuario, Usuario.objects().first())
 
     @classmethod

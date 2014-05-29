@@ -1,6 +1,6 @@
 from flask.ext.login import login_required, current_user
 from flask import render_template, request, redirect, url_for
-from contasdoape.models import Condominio, ControleDeAcesso
+from contasdoape.models import Condominio, Porteiro
 from contasdoape.web import app
 
 
@@ -59,7 +59,7 @@ def aceitar_convite():
 @app.route("/convidar-amigos")
 @login_required
 def convidar_amigos():
-    usuario = ControleDeAcesso().carregar_usuario(current_user.facebook_id)
+    usuario = Porteiro.carregar_usuario(current_user.facebook_id)
     condominio = Condominio(usuario)
 
     if not condominio.tem_ape():

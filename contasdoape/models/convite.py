@@ -16,3 +16,5 @@ class Convite(EmbeddedDocument):
             raise ValueError('destinatario')
 
         self.data = datetime.now()
+        self.remetente = remetente
+        self.destinatario = destinatario

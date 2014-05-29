@@ -1,4 +1,4 @@
-from contasdoape.models import Condominio, Usuario, Ape
+from contasdoape.models import Condominio, Usuario, Ape, Porteiro, Convite
 from mongoengine import connect
 from unittest import TestCase
 
@@ -21,18 +21,20 @@ class TestCondominio(TestCase):
         ape.membros.append(self.usuario)
         ape.save()
 
-        self.assertTrue(Condominio(self.usuario).tem_ape())
+        self.assertTrue(Porteiro(self.usuario).tem_ape())
 
     def test_deve_confirmar_que_um_usuario_eh_convidado(self):
         ape = Ape()
-        ape.convidados.append('1234')
+        ape.membros.append(self.usuario)
+        ape.convites.append(Convite(self.usuario, '1234'))
         ape.save()
 
-        self.assertTrue(Condominio(self.usuario).eh_convidado())
+        self.assertTrue(Porteiro(self.usuario).eh_convidado())
 
     def test_deve_obter_o_ape_de_um_convidado(self):
         ape = Ape()
-        ape.convidados.append('1234')
+        ape.membros.append(self.usuario)
+        ape.convites.append(Convite(self.usuario, '1234'))
         ape.save()
 
         self.assertEquals(ape, Condominio(self.usuario).obter_ape())
@@ -56,7 +58,8 @@ class TestCondominio(TestCase):
 
     def test_deve_incluir_usuario_como_membro_ao_aceitar_o_convite(self):
         ape = Ape()
-        ape.convidados.append('1234')
+        ape.membros.append(self.usuario)
+        ape.convites.append(Convite(self.usuario, '1234'))
         ape.save()
 
         Condominio(self.usuario).aceitar_convite()
@@ -65,7 +68,8 @@ class TestCondominio(TestCase):
 
     def test_deve_remover_usuario_dos_convidados_ao_aceitar_convite(self):
         ape = Ape()
-        ape.convidados.append('1234')
+        ape.membros.append(self.usuario)
+        ape.convites.append(Convite(self.usuario, '1234'))
         ape.save()
 
         Condominio(self.usuario).aceitar_convite()

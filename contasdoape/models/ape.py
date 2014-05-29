@@ -1,6 +1,6 @@
-from mongoengine import ReferenceField, ListField, EmbeddedDocumentField
-from mongoengine import Document, StringField, DateTimeField, IntField
-from . import Usuario, Despesa
+from mongoengine import (ReferenceField, ListField, EmbeddedDocumentField,
+                         Document, StringField, DateTimeField, IntField)
+from . import Usuario, Despesa, Convite
 from bson.objectid import ObjectId
 from datetime import datetime
 
@@ -8,8 +8,9 @@ from datetime import datetime
 class Ape(Document):
     nome = StringField()
     convidados = ListField(StringField())
-    membros = ListField(ReferenceField(Usuario))
     data_criacao = DateTimeField(required=True)
+    membros = ListField(ReferenceField(Usuario))
+    convites = ListField(EmbeddedDocumentField(Convite))
     despesas = ListField(EmbeddedDocumentField(Despesa))
     dia_do_acerto = IntField(required=True, default=1)
 
@@ -22,13 +23,15 @@ class Ape(Document):
         self.despesas.append(despesa)
         self.save()
 
-    def adicionar_convidados(self, ids_convidados):
-        blacklist = self.convidados + [m.facebook_id for m in self.membros]
+    def adicionar_convites(self, convites):
+        blacklist = [convite.destinatario for convite in self.convites] + \
+                    [membro.facebook_id for membro in self.membros]
 
-        ids = [fb_id for fb_id in ids_convidados
-               if fb_id and fb_id not in blacklist]
-
-        self.convidados.extend(ids)
+        convites_validos = [convite for convite in convites
+                            if convite and
+                            convite.destinatario not in blacklist]
+        print(blacklist)
+        self.convites.extend(convites_validos)
         self.save()
 
     def remover_despesa(self, despesa):

@@ -1,5 +1,4 @@
-from contasdoape.models import (Condominio, Tesoureiro, Despesa,
-                                ControleDeAcesso)
+from contasdoape.models import (Condominio, Tesoureiro, Despesa, Porteiro)
 from flask import render_template, request, redirect, url_for
 from flask.ext.login import login_required, current_user
 from contasdoape.web import app
@@ -16,7 +15,7 @@ def home():
 @login_required
 def nova_despesa():
     ape = Condominio(current_user).obter_ape()
-    usuario = ControleDeAcesso().carregar_usuario(current_user.facebook_id)
+    usuario = Porteiro.carregar_usuario(current_user.facebook_id)
 
     data = None
     try:

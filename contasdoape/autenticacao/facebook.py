@@ -1,4 +1,4 @@
-from contasdoape.models import ControleDeAcesso
+from contasdoape.models import Porteiro
 from rauth.service import OAuth2Service
 
 
@@ -43,8 +43,7 @@ class FacebookProvider:
         fb_session = self.facebook.get_auth_session(data=data)
         perfil = fb_session.get('me').json()
 
-        usuario = ControleDeAcesso() \
-            .obter_usuario(perfil['id'], perfil['name'])
+        usuario = Porteiro.obter_usuario(perfil['id'], perfil['name'])
 
         self.token = fb_session.access_token
         return usuario

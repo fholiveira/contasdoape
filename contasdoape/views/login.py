@@ -1,14 +1,14 @@
 from flask.ext.login import (login_user, logout_user, login_required,
                              current_user)
 from flask import g, render_template, request, redirect, url_for, session
-from contasdoape.models import Condominio, ControleDeAcesso
 from contasdoape.autenticacao import FacebookProvider
+from contasdoape.models import Condominio, Porteiro
 from contasdoape.web import app, login_manager
 
 
 @login_manager.user_loader
 def load_user(userid):
-    usuario = ControleDeAcesso().carregar_usuario(userid)
+    usuario = Porteiro.carregar_usuario(userid)
     g.usuario = usuario
 
     return usuario
