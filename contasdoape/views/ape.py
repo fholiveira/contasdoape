@@ -7,7 +7,7 @@ from contasdoape.web import app
 @app.route("/criar-ape")
 @login_required
 def criar_ape():
-    if Condominio(current_user).tem_ape():
+    if Porteiro(current_user).tem_ape():
         redirect(url_for('index'))
 
     return render_template('criar-ape.jinja')
@@ -35,12 +35,12 @@ def mudar_dia_do_acerto():
 @app.route("/dividir-ape")
 @login_required
 def dividir_ape():
-    condominio = Condominio(current_user)
+    porteiro = Porteiro(current_user)
 
-    if condominio.tem_ape() or not condominio.eh_convidado():
+    if porteiro.tem_ape() or not porteiro.eh_convidado():
         redirect(url_for('index'))
 
-    apto = condominio.obter_ape()
+    apto = Condominio(current_user).obter_ape()
 
     return render_template('dividir-ape.jinja', usuarios=list(apto.membros))
 
@@ -48,10 +48,10 @@ def dividir_ape():
 @app.route("/aceitar-convite", methods=['POST'])
 @login_required
 def aceitar_convite():
-    condominio = Condominio(current_user)
+    cracha = Porteiro(usuario)
 
-    if not condominio.tem_ape() and condominio.eh_convidado():
-        condominio.aceitar_convite()
+    if not cracha.tem_ape() and cracha.eh_convidado():
+        Condominio(usuario).aceitar_convite()
 
     return redirect(url_for('index'))
 
@@ -59,11 +59,9 @@ def aceitar_convite():
 @app.route("/convidar-amigos")
 @login_required
 def convidar_amigos():
-    usuario = Porteiro.carregar_usuario(current_user.facebook_id)
-    condominio = Condominio(usuario)
-
-    if not condominio.tem_ape():
-        condominio.criar_ape()
+    if not Porteiro(current_user).tem_ape():
+        usuario = Porteiro.carregar_usuario(current_user.facebook_id)
+        Condominio(usuario).criar_ape()
 
     return render_template('convidar-amigos.jinja')
 
@@ -76,7 +74,7 @@ def salvar_amigos():
     if not ids:
         return 'Ok', 200
 
-    apto = Condominio(current_user).obter_ape()
-    apto.adicionar_convidados(ids)
+    usuario = Porteiro.carregar_usuario(current_user.facebook_id)
+    Condominio(usuario).incluir_convidados(ids)
 
     return 'Ok', 200

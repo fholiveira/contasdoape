@@ -8,10 +8,8 @@ from contasdoape.web import app, login_manager
 
 @login_manager.user_loader
 def load_user(userid):
-    usuario = Porteiro.carregar_usuario(userid)
-    g.usuario = usuario
-
-    return usuario
+    g.usuario = Porteiro.carregar_usuario(userid)
+    return g.usuario
 
 
 @app.route('/')
@@ -34,7 +32,6 @@ def login():
                                 app.config['FB_CLIENT_ID'],
                                 app.config['FB_CLIENT_SECRET'])
 
-    session['provider'] = provider.get_descriptor()
     return redirect(provider.login_url())
 
 
@@ -47,28 +44,30 @@ def logout():
 
 @app.route('/logoutall')
 def logout_all():
-    if not app.config.get('DEBUG'):
+    if not current_user or not app.config.get('DEBUG'):
         redirect(url_for('logout'))
 
-    try:
-        provider = FacebookProvider.from_descriptor(session['provider'])
-
-        return redirect(provider.logout(url_for('logout', _external=True)))
-    except:
-        return redirect('logout')
+    provider = FacebookProvider.from_descriptor(session['provider'])
+    url = provider.logout_url(url_for('logout', _external=True))
+    return redirect(url)
 
 
 @app.route('/authorized')
 def authorized():
-    provider = FacebookProvider.from_descriptor(session['provider'])
+    provider = FacebookProvider(url_for('authorized', _external=True),
+                                app.config['FB_CLIENT_ID'],
+                                app.config['FB_CLIENT_SECRET'])
 
     usuario = provider.logar(request.args)
+    session['provider'] = provider.get_descriptor()
+
     condominio = Condominio(usuario)
+    cracha = Porteiro(usuario)
 
     login_user(usuario)
 
-    if not condominio.tem_ape():
-        if condominio.eh_convidado():
+    if not cracha.tem_ape():
+        if cracha.eh_convidado():
             return redirect(url_for('dividir_ape'))
 
         return redirect(url_for('criar_ape'))

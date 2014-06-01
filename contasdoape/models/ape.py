@@ -30,7 +30,7 @@ class Ape(Document):
         convites_validos = [convite for convite in convites
                             if convite and
                             convite.destinatario not in blacklist]
-        print(blacklist)
+
         self.convites.extend(convites_validos)
         self.save()
 

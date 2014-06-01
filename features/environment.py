@@ -24,7 +24,6 @@ def before_all(context):
 def before_feature(context, feature):
     if 'firefox' in feature.tags:
         context.browser = webdriver.Firefox()
-        print('dimonho')
     else:
         context.browser = webdriver.PhantomJS()
 

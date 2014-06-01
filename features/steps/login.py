@@ -5,18 +5,18 @@ from behave import *
 @step('que eu não estou logado')
 @step('que não estou logado')
 @step('que eu sou um novo usuário')
-def step_impl(context):
+def passo(context):
     context.browser.get(context.url('/logoutall'))
 
 
 @step('eu clicar no botão de login')
-def step_impl1(context):
+def passo(context):
     context.browser.get(context.url('/'))
     context.browser.find_element_by_id('logar').click()
 
 
 @step('eu devo ser redirecionado para a página de login do Facebook')
-def step_impl2(context):
+def passo(context):
     url = context.browser.current_url
     assert_that(url, starts_with('https://www.facebook.com/login.php'))
 

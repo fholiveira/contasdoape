@@ -9,7 +9,7 @@ class Condominio:
     def obter_ape(self):
         if self.porteiro.tem_ape():
             return Ape.objects(membros__contains=self.usuario.id).first()
-        elif self.porteiro.eh_convidado(self.usuario):
+        elif self.porteiro.eh_convidado():
             fb_id = self.usuario.facebook_id
             return Ape.objects(convidados__contains=fb_id).first()
 
